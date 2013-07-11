@@ -39,10 +39,6 @@ do
   source $file
 done
 
-# add our complection functions location
-# _compdir=$DOTFILES/zsh/completion
-# [[ -z $fpath[(r)$_compdir] ]] && fpath=($fpath $_compdir)
-
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit

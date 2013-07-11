@@ -1,4 +1,4 @@
-bindkey -s '\el' 'ls\eq'
+bindkey -s '\el' '\eqls\n'
 bindkey -s '¬' 'ls\eq'
 #bindkey -M menuselect "/" accept-and-infer-next-history
 #bindkey -M menuselect "," accept-and-menu-complete

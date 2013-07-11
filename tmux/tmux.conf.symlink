@@ -1,0 +1,38 @@
+set -g prefix C-a
+set -g aggressive-resize on
+unbind C-b
+bind C-a send-prefix
+bind | split-window -h
+bind - split-window -v
+
+set -g history-limit 10000
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+# set-window-option -g mode-mouse on
+
+# set window notifications
+setw -g monitor-activity on
+set -g visual-activity on
+
+# default statusbar colors
+set -g status-fg blue
+set -g status-bg default
+
+# default window title colors
+set-window-option -g window-status-fg blue
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+
+# active window title colors
+set-window-option -g window-status-current-fg blue
+# set-window-option -g window-status-current-fg white
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr bright,underscore
+
+# statusline
+# set -g status-left '#[fg=green][ #S ]['
+set -g status-left '#[fg=green]['
+set -g status-right '#[fg=green]][ #[fg=blue]%Y-%m-%d #[fg=white]%I:%M #[fg=green]]'
+
+# join
+bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
+bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"

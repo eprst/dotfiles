@@ -1,5 +1,27 @@
 set nocompatible
 set filetype=off
+set syntax=off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'repos-scala/scala-vundle'
+Bundle 'YankRing.vim'
+Bundle 'sjbach/lusty'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'vimoutliner/vimoutliner'
+Bundle 'chela_light'
+
+filetype plugin indent on     " required!
+syntax on
+" if still not getting colors (eg ubuntu): comment out 'syntax on' in
+" /usr/share/vim/vimrc
+
 set vb
 " set backspace+=indent,eol,start
 set expandtab
@@ -12,30 +34,32 @@ set ai
 set mouse=a
 set hidden
 set number
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-syntax on
-
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ervandew/supertab'
-Bundle 'repos-scala/scala-vundle'
-Bundle 'YankRing.vim'
-Bundle 'sjbach/lusty' 
-" Bundle 'altercation/vim-colors-solarized'
-
-filetype plugin indent on     " required!
+set list
+set listchars=tab:>-,trail:-
+set hlsearch
 
 " alt-1 to find current file
 nnoremap <silent> <M-1> :NERDTreeFind<CR>
+nnoremap <silent> 1 :NERDTreeFind<CR>
 nnoremap <silent> ¡ :NERDTreeFind<CR>
 
-" by some reason scala plugin doesn't pick it up
-au BufRead,BufNewFile *.scala set filetype=scala
+nmap <F4> :q<CR>
+nmap <F3> :qa!<CR>
+nmap <F2> :wqa<CR>
+
+nmap :W :w
+nmap :Q :q
+nmap w :q<CR>
+nmap <c-s> :w<CR>
+
+" expand/collaps folds by space
+nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 
 if has("gui_macvim")
   set guifont=Monaco:h13
+elseif has("gui_running")
+  set guifont=Consolas\ 13
+  colorscheme solarized
+else
+  colorscheme chela_light
 endif
