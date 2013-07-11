@@ -1,0 +1,41 @@
+set nocompatible
+set filetype=off
+set vb
+" set backspace+=indent,eol,start
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set fo=tcrqnlv1
+set tw=80
+set ai
+set mouse=a
+set hidden
+set number
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+syntax on
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'repos-scala/scala-vundle'
+Bundle 'YankRing.vim'
+Bundle 'sjbach/lusty' 
+" Bundle 'altercation/vim-colors-solarized'
+
+filetype plugin indent on     " required!
+
+" alt-1 to find current file
+nnoremap <silent> <M-1> :NERDTreeFind<CR>
+nnoremap <silent> ¡ :NERDTreeFind<CR>
+
+" by some reason scala plugin doesn't pick it up
+au BufRead,BufNewFile *.scala set filetype=scala
+
+if has("gui_macvim")
+  set guifont=Monaco:h13
+endif

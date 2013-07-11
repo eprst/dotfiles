@@ -10,10 +10,12 @@
         helper = GIT_CREDENTIAL_HELPER
 [alias]
         co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributers = !$ZSH/bin/git-rank-contributers
+        promote = !$DOTFILES/bin/git-promote
+        wtf     = !$DOTFILES/bin/git-wtf
+        rank-contributers = !$DOTFILES/bin/git-rank-contributers
         count   = !git shortlog -sn
+        pl      = pull --ff-only
+        br      = branch -av --color=auto
 [color]
         diff = auto
         status = auto
@@ -22,6 +24,7 @@
 [core]
         excludesfile = ~/.gitignore
         editor = vim
+        pager = less -FXRS
 [apply]
         whitespace = nowarn
 [mergetool]

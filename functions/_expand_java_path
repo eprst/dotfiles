@@ -1,0 +1,23 @@
+#autoload
+local MATCH MBEGIN MEND pref suf
+
+#pref="**/${PREFIX//(#m)[[:upper:]]/${MATCH}[^[:upper:]]#}"
+pref="**/${PREFIX//(#m)[[:upper:]][^[:upper:]]#/${MATCH}[^[:upper:]]#}"
+suf="${SUFFIX//(#m)[[:upper:]]/${MATCH}[^[:upper:]]#}*.java"
+suf="${SUFFIX//(#m)[[:upper:]][^[:upper:]]#/${MATCH}[^[:upper:]]#}*.java"
+#echo "------------------------" >> /tmp/ccc
+#echo "PREFIX=${PREFIX}" >> /tmp/ccc
+#echo "SUFFIX=${SUFFIX}" >> /tmp/ccc
+#echo "pref=${pref}" >> /tmp/ccc
+#echo "suf=${suf}" >> /tmp/ccc
+
+local expl
+local -a exp
+exp=(${~pref}${~suf}(N))
+#echo "exp=${exp}" >> /tmp/ccc
+if (( ${#exp} )); then
+  _wanted java-files expl 'java source file (search)' \
+    compadd -U -a exp
+else
+  return 1
+fi
