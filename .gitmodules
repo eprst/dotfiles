@@ -4,3 +4,9 @@
 [submodule "vim.symlink/bundle/vundle"]
 	path = vim.symlink/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "zsh/zprezto.symlink"]
+	path = zsh/zprezto.symlink
+	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "zsh/fasd"]
+	path = zsh/fasd
+	url = https://github.com/clvv/fasd

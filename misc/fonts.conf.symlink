@@ -1,0 +1,49 @@
+<?xml version='1.0'?>
+<!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+<fontconfig>
+    <match target="font" >
+        <edit mode="assign" name="antialias" >
+            <bool>true</bool>
+        </edit>
+        <edit mode="assign" name="hintstyle" >
+            <const>hintfull</const>
+        </edit>
+        <edit mode="assign" name="lcdfilter" >
+            <const>lcdlegacy</const>
+        </edit>
+        <edit mode="assign" name="hinting" >
+            <bool>true</bool>
+        </edit>
+        <edit mode="assign" name="autohint" >
+            <bool>false</bool>  <!-- false -->
+        </edit>
+        <edit mode="assign" name="rgba" >
+            <const>rgb</const>
+        </edit>
+    </match>
+    <match target="pattern" >
+        <test name="family" qual="any" >
+            <string>Calibri</string>
+            <string>Calibri,sans-serif</string>
+        </test>
+        <edit mode="assign" name="family">
+            <string>Verdana</string>
+        </edit>
+    </match>
+    <match target="pattern" >
+        <test name="family" qual="any" >
+            <string>Tahoma</string>
+        </test>
+        <edit mode="assign" name="family">
+            <string>Verdana</string>
+        </edit>
+    </match>
+    <match target="pattern" >
+        <test name="family" qual="any" >
+            <string>monospace</string>
+        </test>
+        <edit mode="assign" name="family">
+            <string>terminus</string>
+        </edit>
+    </match>
+</fontconfig>

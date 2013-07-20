@@ -1,7 +1,7 @@
 bindkey -s '\el' '\eqls\n'
 bindkey -s '¬' 'ls\eq'
-#bindkey -M menuselect "/" accept-and-infer-next-history
-#bindkey -M menuselect "," accept-and-menu-complete
+bindkey -M menuselect "/" accept-and-infer-next-history
+bindkey -M menuselect "," accept-and-menu-complete
 zle -N select-from-cd-stack
 select-from-cd-stack() {
 	LBUFFER=$LBUFFER"~-"

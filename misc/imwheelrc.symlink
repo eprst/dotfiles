@@ -1,0 +1,7 @@
+".*"
+None, Left, Alt_L|Left
+None, Right, Alt_L|Right
+
+"(null)"
+None, Left, Alt_L|Left
+None, Right, Alt_L|Right
