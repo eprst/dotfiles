@@ -61,5 +61,8 @@ elseif has("gui_running")
   set guifont=Consolas\ 13
   colorscheme solarized
 else
-  colorscheme chela_light
+  try
+    colorscheme chela_light
+  catch
+  endtry
 endif

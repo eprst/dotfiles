@@ -123,17 +123,22 @@ install_dotfiles () {
 setup_gitconfig
 install_dotfiles
 
+info "installing vim bundles"
+vim -c BundleInstall! -c q -c q
+success "installed vim bundles"
+
 # If we are on a mac, lets install and setup homebrew
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if . bin/dot > /tmp/dotfiles-dot 2>&1
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
-fi
+# if [ "$(uname -s)" == "Darwin" ]
+# then
+#   info "installing dependencies"
+#   if . bin/dot > /tmp/dotfiles-dot 2>&1
+#   then
+#     success "dependencies installed"
+#   else
+#     fail "error installing dependencies"
+#   fi
+# fi
+
 
 echo ''
 echo '  All installed!'

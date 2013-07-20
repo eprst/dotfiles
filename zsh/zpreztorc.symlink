@@ -45,10 +45,10 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' keymap 'emacs'
+zstyle ':prezto:module:editor' keymap 'vi'
 
 # Auto convert .... to ../..
-# zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 #
 # Git
@@ -108,10 +108,10 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 #
 # SSH
 #
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'ksobolev_at_linkedin.com_dsa_key'
 
 # Set the SSH identities to load into the agent.
 # zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'ksobolev_at_linkedin.com_dsa_key'
 
 #
 # Syntax Highlighting
@@ -123,8 +123,9 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' \
   'pattern' \
-  'cursor' \
-  'root'
+  'cursor'
+#  'root' causes osx terminal to beep on every keypress
+
 #
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \

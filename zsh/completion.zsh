@@ -22,5 +22,8 @@ zstyle ':completion:complete-files:*' completer _files
 zstyle ':completion:complete-files:*' menu select yes
 bindkey '^x^f' complete-files
 
+bindkey -M menuselect "/" accept-and-infer-next-history
+bindkey -M menuselect "," accept-and-menu-complete
+
 # disable git files completion
-__git_files(){}
+# __git_files(){}
