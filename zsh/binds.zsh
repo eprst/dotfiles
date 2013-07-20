@@ -1,7 +1,5 @@
 zmodload zsh/terminfo
 
-bindkey -s '\el' '\eqls\n'
-bindkey -s '¬' 'ls\eq'
 zle -N select-from-cd-stack
 select-from-cd-stack() {
   LBUFFER=$LBUFFER"~-"
@@ -10,25 +8,25 @@ select-from-cd-stack() {
     LBUFFER=${LBUFFER[1,-3]}
   fi
 }
-bindkey '\ed' select-from-cd-stack
-bindkey '∂' select-from-cd-stack
 #[[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" history-beginning-search-backward-end
 #[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" history-beginning-search-forward-end
-
-bindkey "\e," copy-prev-shell-word
-bindkey "≤" copy-prev-shell-word
 
 if [[ "$OSTYPE" == darwin* ]]; then
   bindkey "[5D" backward-word
   bindkey "[5C" forward-word
+  bindkey -s '¬' '\eqls\n'
+  bindkey '∂' select-from-cd-stack
+  bindkey "≤" copy-prev-shell-word
 else
   bindkey "\C-${terminfo[kcub1]}" backward-word
   bindkey "\C-${terminfo[kcuf1]}" forward-word
-fi
-
+  bindkey -s '\el' '\eqls\n'
+  bindkey '\ed' select-from-cd-stack
+  bindkey "\e," copy-prev-shell-word
 # red hat's gnome terminal
-bindkey '\eOH'    beginning-of-line
-bindkey '\eOF'    end-of-line
+  bindkey '\eOH'    beginning-of-line
+  bindkey '\eOF'    end-of-line
+fi
 
 # history search with globs
 bindkey "\C-R" history-incremental-pattern-search-backward
