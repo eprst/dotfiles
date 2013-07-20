@@ -1,3 +1,5 @@
+# todo : move to prezto prompts
+
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 
@@ -160,4 +162,10 @@ $PR_NO_COLOUR '
 $PR_BLUE$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\
 $PR_LIGHT_GREEN%_$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOUR '
+}
+
+kosprompt () {
+    PROMPT="$(print '%{\e[1;32m%}%n@%M %{\e[1;34m%}%~ $%{\e[0m%}') "
+    RPROMPT=""
+    #prompt gentoo
 }

@@ -2,6 +2,8 @@ set nocompatible
 set filetype=off
 set syntax=off
 
+let g:yankring_history_dir = '~/tmp,~'
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
