@@ -124,8 +124,14 @@ setup_gitconfig
 install_dotfiles
 
 info "installing vim bundles"
-vim -c BundleInstall! -c q -c q
+vim -c NeoBundleInstall! -c q -c q
 success "installed vim bundles"
+
+if hash fc-cache 2>/dev/null; then
+  info "updating fonts cache"
+  fc-cache -f ~/.fonts
+  success "updated fonts cache"
+fi
 
 # If we are on a mac, lets install and setup homebrew
 # if [ "$(uname -s)" == "Darwin" ]

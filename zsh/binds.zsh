@@ -18,8 +18,15 @@ if [[ "$OSTYPE" == darwin* ]]; then
   bindkey '∂' select-from-cd-stack
   bindkey "≤" copy-prev-shell-word
 else
-  bindkey "\C-${terminfo[kcub1]}" backward-word
-  bindkey "\C-${terminfo[kcuf1]}" forward-word
+#  bindkey "\C-${terminfo[kcub1]}" backward-word
+#  bindkey "\C-${terminfo[kcuf2]}" forward-word
+  # xfce4-terminal
+  bindkey "[1;5D" backward-word
+  bindkey "[1;5C" forward-word
+  # tmux
+  bindkey "[D" backward-word
+  bindkey "[C" forward-word
+
   bindkey -s '\el' '\eqls\n'
   bindkey '\ed' select-from-cd-stack
   bindkey "\e," copy-prev-shell-word

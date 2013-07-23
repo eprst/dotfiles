@@ -1,169 +1,17 @@
-*Text*Font:-*-*-medium-r-*-*-*-120-*-*-m-*-iso10646-1
-Emacs.default.attributeFont: -*-*-medium-r-*-*-*-120-*-*-m-*-iso10646-1
 Xcursor.theme: redglass
 Xcursor.size: 18
-!urxvt.font: xft:Bitstream Vera Sans Mono:pixelsize=14, xft:Courier New:Bold:
-!urxvt.font: xft:Bitstream Vera Sans Mono:pixelsize=14, xft:andale mono:
-urxvt.font: xft:Terminus:antialias=false
-!urxvt.inheritPixmap: False
-!urxvt.background: 0x404040
-!urxvt.inheritPixmap: True
-!urxvt.tintColor: Blue
-!urxvt.fading: 50
-!urxvt.shading: -25
-!urxvt.shading: -5
-urxvt.realBold: True
-urxvt.scrollBar: False
-urxvt.jumpScroll: True
-!urxvt.geometry: 130x50
-!urxvt.geometry: 122x55+298+0
-!urxvt.background: #f0f0f0
-!urxvt.background: #e4e4be
-urxvt.urgentOnBell: true
-
-mrxvt*vt0*tabTitle:			term1
-mrxvt*vt1*tabTitle:			term2
-mrxvt*vt2*tabTitle:			term3
-mrxvt*vt0*saveLines:		600
-mrxvt*vt1*saveLines:		600
-mrxvt*vt2*saveLines:		600
-!mrxvt*vt0*Pixmap:			/home/jimmy/images/vt0bg.jpg
-!mrxvt*vt1*Pixmap:			/home/jimmy/images/vt1bg.png
-!mrxvt*vt2*Pixmap:			/home/jimmy/images/vt2bg.xpm
-!mrxvt*vt0*session:			/bin/tcsh
-!mrxvt*vt1*session:			/bin/bash
-!mrxvt*vt2*session:			/bin/bash -c "telnet www.mitbbs.com"
-!mrxvt*initSession:			True
-!mrxvt*cmdAllSession:		True
-mrxvt*initTermNumber:		3
-
-mrxvt*protectSecondary:		True
-mrxvt*loginShell:			True
-
-mrxvt*scrollbarStyle:		next
-!mrxvt*scrollbarPixmap:		/home/jimmy/images/scrollbarbg.jpg
-
-mrxvt*opacity:				75
-mrxvt*opacityDegree:		5
-mrxvt*transparent:			True
-mrxvt*transparentScrollbar:	True
-mrxvt*transparentTabbar:	True
-mrxvt*transparentMenubar:	True
-mrxvt*foreground:			white
-mrxvt*background:			black
-mrxvt*ufBackground:		yellow
-mrxvt*backgroundFade:		50
-mrxvt*fading:				50
-mrxvt*shading:				80
-mrxvt*tintColor:			red
-mrxvt*textShadow:			red
-mrxvt*textShadowMode:		botright
-
-!	Text color of active tab
-mrxvt*tabForeground:		blue
-!	Background color of active tab
-!mrxvt*tabBackground:		yellow
-!	Foreground color of inactive tab
-!mrxvt*itabForeground:		gray
-!	Background color of inactive tab
-!mrxvt*itabBackground:		gray
-!mrxvt*tabbarPixmap:		/home/jimmy/images/tabbarbg.png
-!	Use tabbar background as tab background?
-!mrxvt*tabPixmap:			true
-!mrxvt*syncTabTitle:		true
-!mrxvt*syncTabIcon:			true
-!mrxvt*nonBoldFont:			true
-!mrxvt*hideTabbar:			true
-!mrxvt*bottomTabbar:		true
-!mrxvt*hideButtons:			true
-!mrxvt*windowsSwitch:		true
-
-!mrxvt*menu:				/home/jimmy/doc/menu/rxvt.menu
-!mrxvt*showMenu:			False
-!mrxvt*menubarPixmap:		/home/jimmy/images/menubarbg.xpm
-
-mrxvt*xft:					True
-mrxvt*xftFont:				Bitstream Vera Sans Mono
-mrxvt*xftmFont:				Bitstream Vera Sans Mono
-mrxvt*xftNomFont:			True
-mrxvt*xftAntialias:		True
-mrxvt*xftWeight:			Medium
-mrxvt*xftSlant:			Roman
-mrxvt*xftHinting:			True
-mrxvt*xftAutoHint:			True
-mrxvt*xftGlobalAdvance:	True
-mrxvt*xftWidth:			normal
-mrxvt*xftRGBA:				rgb
-mrxvt*xftSize:				14
-
-!mrxvt*cursorBlink:			True
-!mrxvt*cursorBlinkInterval:	500
-
-mrxvt*geometry:				80x30
-!mrxvt*lineSpace:			2
-!mrxvt*borderLess:			True
-!mrxvt*overrideRedirect:	True
-!mrxvt*bellCommand:			ls
-!mrxvt*holdExit:			False
-!Mrxvt*holdExitText:		Terminal exited!
-
-!mrxvt*internalBorder:		2
-!mrxvt*externalBorder:		2
-
-!mrxvt*thai:				False
-mrxvt*multichar_encoding:	GB
-mrxvt*inputMethod:			SCIM
-
-!mrxvt*hotkey*NewTab:		Ctrl+Meta+v
-mrxvt*hotkey*NextTab:		Ctrl+Tab
-
-mrxvt.font: -*-*-*-*-*-*-12-*-*-*-*-*-iso10646-1
-mrxvt.mfont: -*-*-*-*-*-*-12-*-*-*-*-*-iso10646-1
 
 *VT100.eightBitControl: false
 *VT100.eightBitInput: false
 *VT100.eightBitOutput: true
 *VT100.metaSendsEscape: false
 
-XTerm*geometry: 122x55+100+85
-!XTerm*background: #f0f0f0
-!XTerm*background: #ffffd5
-!XTerm*background: #e4e4be
-!XTerm*foreground: black
-!XTerm*cursorColor: #447744
-!XTerm*TermName: xterm-new
-!xterm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1
-
-!XTerm*Font: -xos4-terminus-medium-r-normal--20-200-72-72-c-100-iso10646-1
-!XTerm*BoldFont: -xos4-terminus-medium-r-normal--20-200-72-72-c-100-iso10646-1
-
 XTerm*Font: -xos4-terminus-medium-r-normal--14-*-*-*-c-*-iso10646-1
 XTerm*BoldFont: -xos4-terminus-medium-r-normal--14-*-*-*-c-*-iso10646-1
-
-!XTerm*Font: -*-keyrus-medium-r-normal--16-*-*-*-c-*-iso10646-1
-!XTerm*BoldFont: -*-keyrus-medium-r-normal--16-*-*-*-c-*-iso10646-1
-
-!XTerm*boldMode: off
-!XTerm*allowBoldFonts: off
 XTerm*showBlinkAsBold: on
 XTerm*colorBDMode: off
 
-!XTerm*color0: #000000
-!XTerm*color1: #c00000
-!XTerm*color2: #009900
-!XTerm*color3: #af7a00
-!XTerm*color4: #0000c0
-!XTerm*color5: #c000c0
-!XTerm*color6: #008080
-!XTerm*color7: #c0c0c0
-!XTerm*color8: #808080
-!XTerm*color9: #ff6060
-!XTerm*color10: #00ff00
-!XTerm*color11: #ffff00
-!XTerm*color12: #8080ff
-!XTerm*color13: #ff40ff
-!XTerm*color14: #00ffff
-!XTerm*color15: #eeeeee
+XTerm*termName: xterm-256color
 
 Xft.dpi: 96
 Xft.antialias:  true
@@ -173,12 +21,6 @@ Xft.lcdfilter:  lcdlegacy
 !Xft.rgba:       none
 Xft.autohint:   false
 Xft.rgba:       rgb
-
-!XTerm*VT100.translations: #override\n\
-!Shift<Key>Left:string(0x1b)string("[d")\n\
-!Shift<Key>Right:string(0x1b)string("[c")\n\
-!Ctrl<Key>Prior:scroll-back(1, halfpage, m)\n\
-!Ctrl<Key>Next:scroll-forw(1, halfpage, m)\n 
 
 !solarized
 

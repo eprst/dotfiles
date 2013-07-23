@@ -1,23 +1,32 @@
 set nocompatible
-set filetype=off
-set syntax=off
-
 let g:yankring_history_dir = '~/tmp,~'
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ervandew/supertab'
-Bundle 'repos-scala/scala-vundle'
-Bundle 'YankRing.vim'
-Bundle 'sjbach/lusty'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vimoutliner/vimoutliner'
-Bundle 'chela_light'
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'repos-scala/scala-vundle'
+NeoBundle 'YankRing.vim'
+NeoBundle 'sjbach/lusty'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vimoutliner/vimoutliner'
+NeoBundle 'chela_light'
+NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 filetype plugin indent on     " required!
 syntax on
@@ -39,6 +48,7 @@ set number
 set list
 set listchars=tab:>-,trail:-
 set hlsearch
+set laststatus=2
 
 " alt-1 to find current file
 nnoremap <silent> <M-1> :NERDTreeFind<CR>
@@ -57,14 +67,15 @@ nmap <c-s> :w<CR>
 " expand/collaps folds by space
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 
-if has("gui_macvim")
+if has("gui_macvim") " todo powerline
   set guifont=Monaco:h13
 elseif has("gui_running")
-  set guifont=Consolas\ 13
+  set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   colorscheme solarized
 else
   try
     colorscheme chela_light
   catch
   endtry
+  hi Search ctermbg=227
 endif

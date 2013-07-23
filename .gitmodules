@@ -1,9 +1,9 @@
-[submodule "vim.symlink/bundle/vundle"]
-	path = vim.symlink/bundle/vundle
-	url = https://github.com/gmarik/vundle.git
 [submodule "zsh/fasd"]
 	path = zsh/fasd
 	url = https://github.com/clvv/fasd
 [submodule "zsh/zprezto.symlink"]
 	path = zsh/zprezto.symlink
 	url = git@github.com:eprst/prezto.git
+[submodule "vim.symlink/bundle/neobundle.vim"]
+	path = vim.symlink/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim
