@@ -133,6 +133,16 @@ if hash fc-cache 2>/dev/null; then
   success "updated fonts cache"
 fi
 
+if [ "$(uname -s)" == "Darwin" ]; then
+  info "installing OS X fonts"
+  sudo cp ~/.dotfiles/fonts.symlink/*.?tf /Library/Fonts > /dev/null 2>&1
+  success "installed OS X fonts"
+fi
+
+info "copying files from 'copy'"
+( cd copy ; tar cf - . | ( cd ~; tar --keep-newer-files -xf - ) )
+success "copied files from 'copy'"
+
 # If we are on a mac, lets install and setup homebrew
 # if [ "$(uname -s)" == "Darwin" ]
 # then

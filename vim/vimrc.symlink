@@ -1,5 +1,4 @@
 set nocompatible
-let g:yankring_history_dir = '~/tmp,~'
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
@@ -32,6 +31,8 @@ filetype plugin indent on     " required!
 syntax on
 " if still not getting colors (eg ubuntu): comment out 'syntax on' in
 " /usr/share/vim/vimrc
+
+let g:yankring_history_dir = '~/tmp,~'
 
 set vb
 " set backspace+=indent,eol,start
@@ -68,7 +69,8 @@ nmap <c-s> :w<CR>
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 
 if has("gui_macvim") " todo powerline
-  set guifont=Monaco:h13
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+  colorscheme solarized
 elseif has("gui_running")
   set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   colorscheme solarized
