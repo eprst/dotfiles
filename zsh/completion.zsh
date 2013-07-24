@@ -22,6 +22,7 @@ zstyle ':completion:complete-files:*' completer _files
 zstyle ':completion:complete-files:*' menu select yes
 bindkey '^x^f' complete-files
 
+zmodload -i zsh/complist # needed for 'menuselect' bindings
 bindkey -M menuselect "/" accept-and-infer-next-history
 bindkey -M menuselect "," accept-and-menu-complete
 
