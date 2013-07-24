@@ -28,11 +28,11 @@
 			"theme": "default"
 		},
 		"tmux": {
-			"colorscheme": "default",
+			"colorscheme": "solarized",
 			"theme": "default"
 		},
 		"vim": {
-			"colorscheme": "default",
+			"colorscheme": "solarized_light",
 			"theme": "default",
 			"local_themes": {
 				"cmdwin": "cmdwin",

@@ -43,5 +43,9 @@ ShortcutsNoMnemonics=TRUE
 BackgroundImageFile=/home/ksobolev/Pictures/wallpaper-1376500.jpg
 ScrollingLines=2000
 ScrollingOnOutput=FALSE
-FontName=Ubuntu Mono 14
+FontName=Ubuntu Mono for Powerline 14
+Term=xterm-256color
+ColorSelection=#cbcb4b4b1616
+AccelFullscreen=
+AccelContents=
 
