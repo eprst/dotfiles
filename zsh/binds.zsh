@@ -20,9 +20,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
 else
 #  bindkey "\C-${terminfo[kcub1]}" backward-word
 #  bindkey "\C-${terminfo[kcuf2]}" forward-word
-  # xfce4-terminal
-  bindkey "[1;5D" backward-word
-  bindkey "[1;5C" forward-word
   # tmux
   bindkey "[D" backward-word
   bindkey "[C" forward-word
@@ -34,6 +31,9 @@ else
   bindkey '\eOH'    beginning-of-line
   bindkey '\eOF'    end-of-line
 fi
+# xfce4-terminal and iterm
+bindkey "[1;5D" backward-word
+bindkey "[1;5C" forward-word
 
 # history search with globs
 bindkey "\C-R" history-incremental-pattern-search-backward
