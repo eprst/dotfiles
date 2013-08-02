@@ -26,6 +26,9 @@ zmodload -i zsh/complist # needed for 'menuselect' bindings
 bindkey -M menuselect "/" accept-and-infer-next-history
 bindkey -M menuselect "," accept-and-menu-complete
 
+# ignore completion functions for commands we don't have
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
 # disable git files completion
 # __git_files(){}
 
