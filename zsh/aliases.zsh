@@ -1,6 +1,6 @@
 alias reload!='. ~/.zshrc'
 # alias ls='ls -GFC'
-alias cdd='cd -1'
+alias cdd='cd +1'
 alias g='git'
 alias st='git status'
 alias gl='git log --branches --remotes --tags --graph --decorate'

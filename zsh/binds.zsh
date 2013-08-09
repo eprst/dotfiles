@@ -2,9 +2,9 @@ zmodload zsh/terminfo
 
 zle -N select-from-cd-stack
 select-from-cd-stack() {
-  LBUFFER=$LBUFFER"~-"
+  LBUFFER=$LBUFFER"~+"
   zle menu-complete
-  if [[ ${LBUFFER[-2,-1]} = "~-" ]]; then
+  if [[ ${LBUFFER[-2,-1]} = "~+" ]]; then
     LBUFFER=${LBUFFER[1,-3]}
   fi
 }
