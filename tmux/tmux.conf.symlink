@@ -39,6 +39,10 @@ set -g visual-activity on
 bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
 bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"
 
+# move between tabs
+bind-key -n -r M-Left previous-window
+bind-key -n -r M-Right next-window
+
 #powerline
 #source-file '/home/ksobolev/.vim/bundle/powerline/powerline/bindings/tmux/powerline.conf'
 if-shell 'test -z "$POWERLINE_COMMAND"' 'if-shell "which powerline-client" "set-environment -g POWERLINE_COMMAND powerline-client" "set-environment -g POWERLINE_COMMAND powerline"'
