@@ -70,7 +70,7 @@ nmap <c-s> :w<CR>
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 
 set background=light
-if has("gui_macvim") " todo powerline
+if has("gui_macvim")
   set guifont=Source\ Code\ Pro\ for\ Powerline:h12
   colorscheme solarized
 elseif has("gui_running")
@@ -79,7 +79,8 @@ elseif has("gui_running")
 else
   try
     colorscheme chela_light
+    hi LineNr ctermbg=lightgray
+    hi Search ctermbg=227
   catch
   endtry
-  hi Search ctermbg=227
 endif
