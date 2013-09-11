@@ -29,6 +29,9 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'vimoutliner/vimoutliner'
 NeoBundle 'chela_light'
 NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" todo: replace powerline with airline, convert colors, add powerline as
+" a subrepo for tmux
+" NeoBundle 'bling/vim-airline'
 
 filetype plugin indent on     " required!
 syntax on
