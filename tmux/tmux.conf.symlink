@@ -53,6 +53,9 @@ bind-key -n -r M-7 select-window -t 7
 bind-key -n -r M-8 select-window -t 8
 bind-key -n -r M-9 select-window -t 9
 
+# osx hack
+source-file '.tmux-osx.conf'
+
 #powerline
 #source-file '/home/ksobolev/.vim/bundle/powerline/powerline/bindings/tmux/powerline.conf'
 if-shell 'test -z "$POWERLINE_COMMAND"' 'if-shell "which powerline-client" "set-environment -g POWERLINE_COMMAND powerline-client" "set-environment -g POWERLINE_COMMAND powerline"'

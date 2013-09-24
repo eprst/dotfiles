@@ -137,6 +137,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
   info "installing OS X fonts"
   sudo cp ~/.dotfiles/fonts.symlink/*.?tf /Library/Fonts > /dev/null 2>&1
   success "installed OS X fonts"
+  info "installing tmux-osx.conf"
+  ln -sf .dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
 fi
 
 info "copying files from 'copy'"
