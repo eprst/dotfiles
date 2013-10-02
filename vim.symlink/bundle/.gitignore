@@ -1,9 +1,7 @@
 .neobundle
 YankRing.vim
 chela_light
-lusty
 nerdtree
-powerline
 scala-vundle
 supertab
 unite.vim
@@ -12,3 +10,4 @@ vimoutliner
 vimproc
 unite-locate
 vim-airline
+unite-outline

@@ -1,46 +1,5 @@
+" {{{1 global settings
 set nocompatible
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-
-let g:yankring_history_dir = '~/tmp,~'
-
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'ujihisa/unite-locate'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'repos-scala/scala-vundle'
-NeoBundle 'YankRing.vim'
-NeoBundle 'sjbach/lusty'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'vimoutliner/vimoutliner'
-NeoBundle 'chela_light'
-NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-" todo: replace powerline with airline, convert colors, add powerline as
-" a subrepo for tmux
-" NeoBundle 'bling/vim-airline'
-"
-" NeoBundle 'unite-outline'
-" NeoBundle 'vim-scripts/ZoomWin'
-
-filetype plugin indent on     " required!
-syntax on
-" if still not getting colors (eg ubuntu): comment out 'syntax on' in
-" /usr/share/vim/vimrc
-
 set vb
 " set backspace+=indent,eol,start
 set expandtab
@@ -57,16 +16,60 @@ set list
 set listchars=tab:>-,trail:-
 set hlsearch
 set laststatus=2
+let g:yankring_history_dir = '~/tmp,~'
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+" }}}
 
-" alt-1 to find current file
+" {{{1 neobundle
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'ujihisa/unite-locate'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'repos-scala/scala-vundle'
+NeoBundle 'YankRing.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vimoutliner/vimoutliner'
+NeoBundle 'chela_light'
+NeoBundle 'bling/vim-airline'
+" NeoBundle 'vim-scripts/ZoomWin'
+" }}}
+
+" {{{1 syntax
+filetype plugin indent on     " required!
+syntax on
+" if still not getting colors (eg ubuntu): comment out 'syntax on' in
+" /usr/share/vim/vimrc
+" }}}
+
+" {{{1 bindings
+" {{{2 alt-1 to find current file
 nnoremap <silent> <M-1> :NERDTreeFind<CR>
 nnoremap <silent> 1 :NERDTreeFind<CR>
 nnoremap <silent> ¡ :NERDTreeFind<CR>
+" }}}
 
+" {{{2 misc bindings
 nmap <F4> :q<CR>
 nmap <F3> :qa!<CR>
 nmap <F2> :wqa<CR>
-
 nmap :W :w
 nmap :Q :q
 nmap w :q<CR>
@@ -74,7 +77,33 @@ nmap <c-s> :w<CR>
 
 " expand/collaps folds by space
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
+" }}}
+" }}}
 
+" {{{1 Unite settings
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>l :<C-u>Unite -no-split -buffer-name=locate  -start-insert locate<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
+nnoremap <leader>b :<C-u>Unite -buffer-name=buffer  buffer -quick-match<cr>
+
+" {{{2 Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+" }}}
+" }}}
+
+" {{{1 color tweaks
 set background=light
 if has("gui_macvim")
   set guifont=Source\ Code\ Pro\ for\ Powerline:h12
@@ -90,3 +119,6 @@ else
   catch
   endtry
 endif
+" }}}
+
+" vim:foldmethod=marker:
