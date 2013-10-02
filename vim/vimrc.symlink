@@ -49,7 +49,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'vimoutliner/vimoutliner'
 NeoBundle 'chela_light'
 NeoBundle 'bling/vim-airline'
-" NeoBundle 'vim-scripts/ZoomWin'
+NeoBundle 'vim-scripts/ZoomWin'
 " }}}
 
 " {{{1 syntax
