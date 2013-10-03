@@ -5,17 +5,21 @@ bind C-a send-prefix
 bind | split-window -h
 bind - split-window -v
 
+set -g set-titles on
 set -g history-limit 10000
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 # set-window-option -g mode-mouse on
 set -g default-terminal "screen-256color"
+#set -g default-terminal "xterm-256color"
+#set-option -gw xterm-keys on
 
 # set window notifications
 #setw -g monitor-activity on # causes powerline problems, disabled for now
 set -g visual-activity on
 
 # Allow xterm titles in terminal window, terminal scrolling with scrollbar, and setting overrides of C-Up, C-Down, C-Left, C-Right
-set -g terminal-overrides "xterm*:XT:smcup@:rmcup@:kUP5=\eOA:kDN5=\eOB:kLFT5=\eOD:kRIT5=\eOC"
+# set -g terminal-overrides "xterm*:XT:smcup@:rmcup@:kUP5=\eOA:kDN5=\eOB:kLFT5=\eOD:kRIT5=\eOC"
+# breaks arrows keys
 
 # Set ability to capture on start and restore on exit window data when running an application
 setw -g alternate-screen on

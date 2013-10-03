@@ -1,7 +1,7 @@
 " {{{1 global settings
 set nocompatible
 set vb
-" set backspace+=indent,eol,start
+set backspace+=indent,eol,start
 set expandtab
 set shiftwidth=2
 set tabstop=2
