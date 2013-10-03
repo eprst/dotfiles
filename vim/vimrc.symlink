@@ -101,6 +101,7 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   " Run "split" action by <C-s>
   imap <silent><buffer><expr> <C-s>  unite#do_action('split')
+  imap <silent><buffer><expr> <C-v>  unite#do_action('vsplit')
 endfunction
 " }}}
 " }}}
