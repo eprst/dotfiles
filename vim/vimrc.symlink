@@ -16,7 +16,9 @@ set list
 set listchars=tab:>-,trail:-
 set hlsearch
 set laststatus=2
-let g:yankring_history_dir = '~/tmp,~'
+set shortmess+=I
+set dir=~/tmp//,/var/tmp//,/tmp//
+let g:yankring_history_dir = '~/tmp,/tmp,/var/tmp,~'
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 " }}}
@@ -50,6 +52,7 @@ NeoBundle 'vimoutliner/vimoutliner'
 NeoBundle 'chela_light'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/ZoomWin'
+NeoBundle 'choffee/openscad.vim'
 " }}}
 
 " {{{1 syntax
@@ -78,6 +81,11 @@ nmap <c-s> :w<CR>
 " expand/collaps folds by space
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 " }}}
+" }}}
+
+" {{{1 commands
+" CD to directory containing current file
+command! CD :cd %:h
 " }}}
 
 " {{{1 Unite settings
