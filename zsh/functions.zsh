@@ -7,6 +7,8 @@ rgre() {find . -type f -print | xargs egrep -n "$1" 2>/dev/null}
 ft() {find . -maxdepth 1 -type f | grep -i "$1"}
 # like ft but recursively
 ftr() {find . -type f -iregex ".*$1.*"}
+# cd and ls
+cdl() {cd $1 && ls}
 
 # function to make regexp from IDEA-like class name abbreviations {{{2
 # requires grep -P support (USE="pcre" emerge grep)
