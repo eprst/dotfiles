@@ -1,4 +1,4 @@
-{-# LANGUAGE NoMonomorphismRestriction, DeriveDataTypeable, TypeSynonymInstances, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternGuards #-}
+{-# LANGUAGE NoMonomorphismRestriction, DeriveDataTypeable, TypeSynonymInstances, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternGuards, ScopedTypeVariables #-}
 
 import XMonad hiding ( (|||), focus )
 import XMonad.Actions.TagWindows
@@ -69,12 +69,14 @@ import Data.Maybe
 import Data.Monoid
 import Data.String.Utils
 import Control.Monad
-import Control.OldException
+import Control.Exception
 
 --import DBus
 --import DBus.Connection
 --import DBus.Message
 
+ignoreIOErrors :: IO () -> IO ()
+ignoreIOErrors x = catch x (\(e :: SomeException) -> return ())
 
 logEventHook :: Event -> X All
 logEventHook e =
@@ -171,6 +173,7 @@ checkAtom name value = ask >>= \w -> liftX $ do
 checkDialog = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DIALOG"
 checkMenu = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 checkUtility = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_UTILITY"
+checkSkipTaskbar = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_STATE_SKIP_TASKBAR"
 
 manageDialogs = checkDialog --> doFloat
 manageMenus = checkMenu --> doFloat
@@ -219,15 +222,15 @@ myWorkspaces = map show [1..8] ++ ["im", "t"]
 
 empathyRoster = (ClassName "Empathy") `And` (Role "contact_list")
 empathy = (ClassName "Empathy")
-psiRoster = (ClassName "psi") `And` (Resource "main")
-psiOther = ClassName "psi"
+psiRoster = (ClassName "psi+") `And` (Resource "main")
+psiOther = ClassName "psi+"
 konversation = ClassName "Konversation"
 skype = ClassName "Skype"
-onIM = empathy `Or` skype `Or` konversation `Or` psiOther
+onIM = empathy `Or` skype `Or` konversation `Or` psiRoster `Or` psiOther
 
 
 myLayoutHook = desktopLayoutModifiers $ fixFocus $ minimize $ workspaceDir "/home/ksobolev" $ avoidStruts $
-                boringWindows $ smartBorders $ windowNavigation $ toggleLayouts myTabbed $ 
+                boringWindows $ smartBorders $ windowNavigation $ toggleLayouts myTabbed $
                 chat $
                 mouseResizableTile {draggerType = BordersDragger} |||
                 mouseResizableTileMirrored {draggerType = BordersDragger} |||
@@ -275,6 +278,7 @@ myManageHook = composeAll [
         title ~=? "IntelliJ IDEA"  --> moveTo "3"
          , (className ~=? ideaClassName) <&&> (title |=? ideaWindowsOn4)  --> (moveTo "4") <+> doSink
         , (className ~=? ideaClassName) <&&> (title ~=? "win") --> doIgnore
+        -- , (title ~=? "FocusProxy") --> doIgnore
         -- , (className =? "Focus-Proxy-Window") --> doIgnore
         , propertyToQuery onIM       --> moveTo "im"
 
@@ -438,7 +442,7 @@ mySearchMap method = M.fromList $
         , ((0, xK_d), method dictionary')
         , ((0, xK_y), method youtube')
         , ((0, xK_l), method lwiki)
-        , ((0, xK_b), method jirabug)
+        , ((0, xK_b), method jira)
         , ((0, xK_c), method grepcode)
         ]
 
@@ -459,8 +463,8 @@ maps'       = utf8SearchEngine maps
 thesaurus'  = utf8SearchEngine thesaurus
 dictionary' = utf8SearchEngine dictionary
 youtube'    = utf8SearchEngine youtube
-lwiki       = searchEngine' "linkedin wiki" "https://iwww.corp.linkedin.com/wiki/cf/dosearchsite.action?where=conf_all&type=&lastModified=&contributor=&contributorUsername=&queryString="
-jirabug     = searchEngine' "jira PLFM bug by number" "https://jira01.corp.linkedin.com:8443/browse/PLFM-"
+lwiki       = searchEngine' "linkedin wiki" "https://iwww.corp.linkedin.com/wiki/cf/dosearchsite.action?where=conf_all&queryString="
+jira        = searchEngine' "jira" "https://jira01.corp.linkedin.com:8443/browse/%s"
 duckduckgo  = searchEngine' "duckduckgo.com" "http://duckduckgo.com?q="
 grepcode    = searchEngine' "grepcode" "http://grepcode.com/search?query="
 
@@ -519,15 +523,14 @@ pipe2 = "/home/ksobolev/pipeapplet/pipe2"
 
 printToPipe :: String -> String -> IO ()
 printToPipe p s =
-        ( do
+        ignoreIOErrors $ do
                 h <- openFile p WriteMode
                 hPutStrLn h s
                 hClose h
                 -- klogio s
-        ) `Prelude.catch` (\e -> return ())
 
 printToPipes :: String -> IO ()
-printToPipes s = 
+printToPipes s =
         let sp = split "<###>" s
             sp1 = head sp
             sp2 = head $ tail sp
