@@ -54,6 +54,7 @@ NeoBundle 'chela_light'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'choffee/openscad.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
 " }}}
 
 " {{{1 syntax
