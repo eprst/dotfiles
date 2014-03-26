@@ -7,7 +7,7 @@ import XMonad.Actions.Submap
 import XMonad.Actions.WindowNavigation
 import XMonad.Prompt
 import XMonad.Actions.Search hiding (Query)
-import XMonad.Actions.OnScreen
+import XMonad.Actions.OnScreen (viewOnScreen, onlyOnScreen)
 import XMonad.Actions.CycleWS
 import XMonad.Actions.WithAll
 import XMonad.Config.Desktop
@@ -323,8 +323,8 @@ swapScreens = do
 myKeys x =
     [((m .|. myMod, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces x) ([xK_1 .. xK_9] ++ [xK_0])
-        , (f, m) <- [ (viewOnScreen rightScreen, 0)         -- mod + 1..0 - switch to workspace on right screen
-                   , (viewOnScreen leftScreen, controlMask) -- ctrl + mod + 1..0 - switch to workspace on left screen
+        , (f, m) <- [ (onlyOnScreen rightScreen, 0)         -- mod + 1..0 - switch to workspace on right screen
+                   , (onlyOnScreen leftScreen, controlMask) -- ctrl + mod + 1..0 - switch to workspace on left screen
                    , (W.greedyView, controlMask .|. shiftMask) -- ctrl+shift+mod + 1..0 - default greedyView
                    , (W.shift, shiftMask)]]                 -- shift + mod + 1..0 - move window to workspace
 
