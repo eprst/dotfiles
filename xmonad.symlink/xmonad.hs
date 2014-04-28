@@ -277,9 +277,7 @@ myManageHook = composeAll [
 --          propertyToQuery onMain     --> moveTo "main"
         title ~=? "IntelliJ IDEA"  --> moveTo "3"
          , (className ~=? ideaClassName) <&&> (title |=? ideaWindowsOn4)  --> (moveTo "4") <+> doSink
-        , (className ~=? ideaClassName) <&&> (title ~=? "win") --> doIgnore
-        -- , (title ~=? "FocusProxy") --> doIgnore
-        -- , (className =? "Focus-Proxy-Window") --> doIgnore
+        , (className ~=? ideaClassName) <&&> (resource =? "sun-awt-X11-XDialogPeer") <&&> (title =? " ") --> doIgnore -- ignore ctrl-n window
         , propertyToQuery onIM       --> moveTo "im"
 
         , className =? "MPlayer"     --> doFloat

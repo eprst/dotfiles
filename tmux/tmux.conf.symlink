@@ -8,7 +8,8 @@ bind - split-window -v
 set -g set-titles on
 set -g history-limit 10000
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
-set-window-option -g mode-mouse on
+# doesn't work on OSX
+# set-window-option -g mode-mouse on
 set -g default-terminal "screen-256color"
 #set -g default-terminal "xterm-256color"
 #set-option -gw xterm-keys on

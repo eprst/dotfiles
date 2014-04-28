@@ -55,6 +55,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'choffee/openscad.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'szw/vim-maximizer'
 " }}}
 
 " {{{1 syntax
@@ -86,6 +87,12 @@ nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr
 " ctrl-arrows for tabs
 nnoremap [1;5D :tabp<CR>
 nnoremap [1;5C :tabn<CR>
+" }}}
+
+" {{{2
+nnoremap <silent><F5> :MaximizerToggle<CR>
+vnoremap <silent><F5> :MaximizerToggle<CR>gv
+inoremap <silent><F5> <C-o>:MaximizerToggle<CR>
 " }}}
 " }}}
 
@@ -123,6 +130,8 @@ function! s:unite_settings()
   " Run "split" action by <C-s>
   imap <silent><buffer><expr> <C-s>  unite#do_action('split')
   imap <silent><buffer><expr> <C-v>  unite#do_action('vsplit')
+  " Close Unite by ESC
+  nmap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 " }}}
 " }}}
