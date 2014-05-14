@@ -8,15 +8,20 @@ select-from-cd-stack() {
     LBUFFER=${LBUFFER[1,-3]}
   fi
 }
-#[[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" history-beginning-search-backward-end
-#[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" history-beginning-search-forward-end
 
 if [[ "$OSTYPE" == darwin* ]]; then
   bindkey "[5D" backward-word
   bindkey "[5C" forward-word
+  # tmux
+  if [[ "$TERM" == screen-256color ]]; then
+    bindkey "[D" backward-word
+    bindkey "[C" forward-word
+  fi
   bindkey -s '¬' '\eqls\n'
   bindkey '∂' select-from-cd-stack
   bindkey "≤" copy-prev-shell-word
+  bindkey "[A" history-substring-search-up
+  bindkey "[B" history-substring-search-down
 else
 #  bindkey "\C-${terminfo[kcub1]}" backward-word
 #  bindkey "\C-${terminfo[kcuf2]}" forward-word
@@ -30,9 +35,11 @@ fi
 # xfce4-terminal
 bindkey "[1;5D" backward-word
 bindkey "[1;5C" forward-word
-# tmux and iterm
-bindkey "[D" backward-word
-bindkey "[C" forward-word
+# tmux (breaks iterm)
+if [[ "$OSTYPE" != darwin* ]]; then
+  bindkey "[D" backward-word
+  bindkey "[C" forward-word
+fi
 
 # history search with globs
 bindkey "\C-R" history-incremental-pattern-search-backward
