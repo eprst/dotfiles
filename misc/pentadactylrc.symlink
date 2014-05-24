@@ -30,13 +30,13 @@ map K 10k
 "set guioptions=m
 set guioptions=bCrs
 set hlfind
-highlight StatusLineNormal black
+" highlight StatusLineNormal black
 
 set passkeys=email.corp.linkedin.com:<Del>
 
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 
-colorscheme lightgrey
+colorscheme solarized-light
 
 "{{{ Appearance
 hi StatusLine -a font-size: 12px !important;

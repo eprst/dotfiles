@@ -33,4 +33,4 @@ setopt HIST_ALLOW_CLOBBER
 #   like: git comm-[tab]
 setopt complete_aliases
 
-cdpath=( ~/workspace )
+# cdpath=( ~/workspace )

@@ -20,8 +20,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   bindkey -s '¬' '\eqls\n'
   bindkey '∂' select-from-cd-stack
   bindkey "≤" copy-prev-shell-word
-  bindkey "[A" history-substring-search-up
-  bindkey "[B" history-substring-search-down
 else
 #  bindkey "\C-${terminfo[kcub1]}" backward-word
 #  bindkey "\C-${terminfo[kcuf2]}" forward-word
@@ -32,14 +30,16 @@ else
   bindkey '\eOH'    beginning-of-line
   bindkey '\eOF'    end-of-line
 fi
+bindkey "[A" history-substring-search-up
+bindkey "[B" history-substring-search-down
 # xfce4-terminal
 bindkey "[1;5D" backward-word
 bindkey "[1;5C" forward-word
 # tmux (breaks iterm)
-if [[ "$OSTYPE" != darwin* ]]; then
-  bindkey "[D" backward-word
-  bindkey "[C" forward-word
-fi
+#if [[ "$OSTYPE" != darwin* ]]; then
+#  bindkey "[D" backward-word
+#  bindkey "[C" forward-word
+#fi
 
 # history search with globs
 bindkey "\C-R" history-incremental-pattern-search-backward
@@ -48,3 +48,4 @@ bindkey "\C-S" history-incremental-pattern-search-forward
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
+bindkey '\e.' insert-last-word
