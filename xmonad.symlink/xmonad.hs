@@ -224,12 +224,15 @@ empathyRoster = (ClassName "Empathy") `And` (Role "contact_list")
 empathy = (ClassName "Empathy")
 psiRoster = (ClassName "psi+") `And` (Resource "main")
 psiOther = ClassName "psi+"
+vacuumRoster = (ClassName "Vacuum") `And` (Role "MainWindow")
+vacuumOther = ClassName "Vacuum"
+roster = psiRoster `Or` vacuumRoster
 konversation = ClassName "Konversation"
 skype = ClassName "Skype"
-onIM = empathy `Or` skype `Or` konversation `Or` psiRoster `Or` psiOther
+onIM = empathy `Or` skype `Or` konversation `Or` roster `Or` psiOther `Or` vacuumOther
 
 
-myLayoutHook = desktopLayoutModifiers $ fixFocus $ minimize $ workspaceDir "/home/ksobolev" $ avoidStruts $
+myLayoutHook = desktopLayoutModifiers {-$ fixFocus -} $ minimize $ workspaceDir "/home/ksobolev" $ avoidStruts $
                 boringWindows $ smartBorders $ windowNavigation $ toggleLayouts myTabbed $
                 chat $
                 mouseResizableTile {draggerType = BordersDragger} |||
@@ -244,7 +247,7 @@ myLayoutHook = desktopLayoutModifiers $ fixFocus $ minimize $ workspaceDir "/hom
 
                 -- chatLayout = chat2
                 -- chatLayout = combineTwoP (dragPane Vertical 0.1 (6/7))   chat2 simpleTall (Not empathyRoster)
-                chatLayout = combineTwoP (dragPane Vertical 0.1 (6/7))   chat2 simpleTall (Not psiRoster)
+                chatLayout = combineTwoP (dragPane Vertical 0.1 (6/7))   chat2 simpleTall (Not roster)
                 -- chat1      = combineTwoP (dragPane Horizontal 0.1 (2/3)) chat2 simpleTall (Not konversation)
                 chat2      = Grid -- False
                 -- chat2      = MosaicAlt M.empty
@@ -277,7 +280,7 @@ myManageHook = composeAll [
 --          propertyToQuery onMain     --> moveTo "main"
         title ~=? "IntelliJ IDEA"  --> moveTo "3"
          , (className ~=? ideaClassName) <&&> (title |=? ideaWindowsOn4)  --> (moveTo "4") <+> doSink
-        , (className ~=? ideaClassName) <&&> (resource =? "sun-awt-X11-XDialogPeer") <&&> (title =? " ") --> doIgnore -- ignore ctrl-n window
+        -- , (className ~=? ideaClassName) <&&> (resource =? "sun-awt-X11-XDialogPeer") <&&> (title =? " ") --> doIgnore -- ignore ctrl-n window
         , propertyToQuery onIM       --> moveTo "im"
 
         , className =? "MPlayer"     --> doFloat
@@ -393,8 +396,8 @@ myKeys x =
 --       ,((0, 0x1008FF1B), ror "/usr/bin/urxvt -e screen -S screen" (className =? "URxvt"))
        -- ,((myMod, xK_k),   ror "/usr/bin/gnome-terminal"            (className =? "Gnome-terminal"))
        ,((myMod, xK_k),   ror "/usr/bin/xfce4-terminal"            (className =? "Xfce4-terminal"))
-       ,((myMod, xK_i),   ror "/home/kos/idea/bin/idea.sh"         (title    ~=? "IntelliJ IDEA"))
-       ,((0, 0x1008FF19), ror "/home/kos/idea/bin/idea.sh"         (title    ~=? "IntelliJ IDEA"))
+       ,((myMod, xK_i),   ror "/home/ksobolev/idea/bin/idea.sh"         (title    ~=? "IntelliJ IDEA"))
+       ,((0, 0x1008FF19), ror "/home/ksobolev/idea/bin/idea.sh"         (title    ~=? "IntelliJ IDEA"))
 
        -- tags
        ,((modMask x, xK_k), submap . M.fromList $
@@ -591,16 +594,21 @@ myConfig = xfceConfig {
             , workspaces         = myWorkspaces
             -- , startupHook        = startupHook gnomeConfig >> setWMName "LG3D" -- fix for Java
             , layoutHook         = myLayoutHook
+
             -- , handleEventHook    = mconcat [{- (focusHistoryHook 10), -}logEventHook, perWindowKbdLayout, ewmhDesktopsEventHook]
             , handleEventHook    = mconcat [{- (focusHistoryHook 10), -} perWindowKbdLayout, ewmhDesktopsEventHook]
             --, handleEventHook    = mconcat [logEventHook, perWindowKbdLayout, ewmhDesktopsEventHook]
             --, handleEventHook    = ewmhDesktopsEventHook
-            -- , logHook            = takeTopFocus >> ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
-            , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
+            --
+            , logHook            = takeTopFocus >> ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
+            -- , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
             -- , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP (dbusPP dbus)
+            --
             , manageHook         = myManageHook <+> (namedScratchpadManageHook scratchpads) <+> manageFixes <+> manageDocks
+
             --, terminal           = "gnome-terminal"
             , terminal           = "xfce4-terminal"
+
             , normalBorderColor  = "#90dd70"
             , focusedBorderColor = "#a93131" }
 

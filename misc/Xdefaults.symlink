@@ -12,6 +12,7 @@ XTerm*showBlinkAsBold: on
 XTerm*colorBDMode: off
 
 XTerm*termName: xterm-256color
+XTerm*allowSendEvents: true
 
 Xft.dpi: 96
 Xft.antialias:  true

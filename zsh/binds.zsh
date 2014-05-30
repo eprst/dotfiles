@@ -40,6 +40,9 @@ bindkey "[1;5C" forward-word
 #  bindkey "[D" backward-word
 #  bindkey "[C" forward-word
 #fi
+# tmux in xfce terminal
+bindkey "OD" backward-word
+bindkey "OC" forward-word
 
 # history search with globs
 bindkey "\C-R" history-incremental-pattern-search-backward
