@@ -1,0 +1,2 @@
+"sleep 1 && xdotool type --delay 15 qwerty && xdotool key --delay 15 Return"
+Mod3+grave

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pipe="/var/run/execpipes/pipe_$$"
+pipe="/var/execpipes/pipe_$$"
 
 cleanup() {
   rm -f $pipe

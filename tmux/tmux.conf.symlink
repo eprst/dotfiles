@@ -70,10 +70,10 @@ bind-key -n -r M-8 select-window -t 8
 bind-key -n -r M-9 select-window -t 9
 
 # osx hack
-source-file ~/.tmux-osx.conf
+# :source-file ~/.tmux-osx.conf
 
 #powerline
-if-shell 'test -z "$POWERLINE_COMMAND"' 'if-shell "which powerline-client" "set-environment -g POWERLINE_COMMAND powerline-client" "set-environment -g POWERLINE_COMMAND powerline"'
+#if-shell 'test -z "$POWERLINE_COMMAND"' 'if-shell "which powerline-client" "set-environment -g POWERLINE_COMMAND powerline-client" "set-environment -g POWERLINE_COMMAND powerline"'
 set -g status on
 set -g status-utf8 on
 set -g status-interval 2
@@ -83,8 +83,10 @@ set -g status-bg colour007
 #setw -g window-status-activity-bg black
 #setw -g window-status-activity-fg yellow
 set -g status-left-length 80
-set -g status-left '#[fg=colour07,bg=colour004,bold] #S #[fg=colour004,bg=colour007,nobold]#(eval $POWERLINE_COMMAND tmux left)'
-set -g status-right '#(eval $POWERLINE_COMMAND tmux right -R pane_id=`tmux display -p "#D"`)'
+# set -g status-left '#[fg=colour07,bg=colour004,bold] #S #[fg=colour004,bg=colour007,nobold]#(eval $POWERLINE_COMMAND tmux left)'
+set -g status-left '#[fg=colour07,bg=colour004,bold] #S #[fg=colour004,bg=colour007,nobold]'
+#set -g status-right '#(eval $POWERLINE_COMMAND tmux right -R pane_id=`tmux display -p "#D"`)'
+set -g status-right ''
 set -g status-right-length 50
 setw -g window-status-format "#[fg=colour4,bg=colour7]#I #[fg=colour4] #[fg=colour11]#W "
 setw -g window-status-current-format "#[fg=colour07,bg=colour14,nobold]#[fg=colour7,bg=colour14] #I  #[fg=colour7,bold]#W #[fg=colour14,bg=colour007,nobold]"

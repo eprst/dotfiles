@@ -222,8 +222,8 @@ myWorkspaces = map show [1..8] ++ ["im", "t"]
 
 empathyRoster = (ClassName "Empathy") `And` (Role "contact_list")
 empathy = (ClassName "Empathy")
-psiRoster = (ClassName "psi+") `And` (Resource "main")
-psiOther = ClassName "psi+"
+psiRoster = (ClassName "psi") `And` (Resource "main")
+psiOther = ClassName "psi"
 vacuumRoster = (ClassName "Vacuum") `And` (Role "MainWindow")
 vacuumOther = ClassName "Vacuum"
 roster = psiRoster `Or` vacuumRoster
@@ -234,7 +234,7 @@ onIM = empathy `Or` skype `Or` konversation `Or` roster `Or` psiOther `Or` vacuu
 
 myLayoutHook = desktopLayoutModifiers {-$ fixFocus -} $ minimize $ workspaceDir "/home/ksobolev" $ avoidStruts $
                 boringWindows $ smartBorders $ windowNavigation $ toggleLayouts myTabbed $
-                chat $
+--                chat $
                 mouseResizableTile {draggerType = BordersDragger} |||
                 mouseResizableTileMirrored {draggerType = BordersDragger} |||
                 spiral (6/7) ||| MosaicAlt M.empty -- ||| myTabbed
@@ -392,10 +392,11 @@ myKeys x =
        ,((myMod, xK_e),   ror "gvim"                               (className =? "Gvim"))
        ,((myMod, xK_p),   ror "psi-plus"                                (className =? "psi"))
 --       ,((myMod, xK_q),   ror "konqueror"                          (className =? "Konqueror"))
---       ,((myMod, xK_k),   ror "/usr/bin/urxvt -e screen -S screen" (className =? "URxvt"))
+       ,((myMod, xK_k),   ror "/usr/bin/urxvt"                       (className =? "URxvt"))
 --       ,((0, 0x1008FF1B), ror "/usr/bin/urxvt -e screen -S screen" (className =? "URxvt"))
        -- ,((myMod, xK_k),   ror "/usr/bin/gnome-terminal"            (className =? "Gnome-terminal"))
-       ,((myMod, xK_k),   ror "/usr/bin/xfce4-terminal"            (className =? "Xfce4-terminal"))
+       -- ,((myMod, xK_k),   ror "/usr/bin/xfce4-terminal"            (className =? "Xfce4-terminal"))
+       -- ,((myMod, xK_k),   ror "/usr/bin/st"                             (className =? "st-256color"))
        ,((myMod, xK_i),   ror "/home/ksobolev/idea/bin/idea.sh"         (title    ~=? "IntelliJ IDEA"))
        ,((0, 0x1008FF19), ror "/home/ksobolev/idea/bin/idea.sh"         (title    ~=? "IntelliJ IDEA"))
 
@@ -578,7 +579,9 @@ scratchpads = [ NS "notes"    "gvim --role notes --servername NOTES ~/notes/note
               , NS "ncmpc"    "xterm -e ncmpc -C"          (title     =? "ncmpc")      smallerRect
               , NS "calc"     "xterm -e wcalc   "          (title     =? "wcalc")      calcRect
               -- , NS "term"     "gnome-terminal --role term" (role      =? "term")       defaultRect
-              , NS "term"     "xfce4-terminal --role term" (role      =? "term")       defaultRect
+              -- , NS "term"     "xfce4-terminal --role term" (role      =? "term")       defaultRect
+              -- , NS "term"     "/usr/bin/st -c term" (resource      =? "term")       defaultRect
+              , NS "term"     "urxvt -name term"           (resource      =? "term")       defaultRect
               ] where
                 defaultRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
                 smallerRect = customFloating $ W.RationalRect (1/4) (1/6) (1/2) (2/3)
@@ -607,7 +610,9 @@ myConfig = xfceConfig {
             , manageHook         = myManageHook <+> (namedScratchpadManageHook scratchpads) <+> manageFixes <+> manageDocks
 
             --, terminal           = "gnome-terminal"
-            , terminal           = "xfce4-terminal"
+            --, terminal           = "xfce4-terminal"
+            , terminal             = "urxvt"
+            -- , terminal             = "/usr/bin/st"
 
             , normalBorderColor  = "#90dd70"
             , focusedBorderColor = "#a93131" }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pipe_dir=/var/run/execpipes
+pipe_dir=/var/execpipes
 
 for pipe in `ls $pipe_dir`
 do
