@@ -6,6 +6,6 @@ for pipe in `ls $pipe_dir`
 do
   pipe="$pipe_dir/$pipe"
   if [[ -p $pipe ]]; then
-    echo $@ > $pipe
+    echo $@ | /usr/bin/pipe_echo $pipe
   fi
 done

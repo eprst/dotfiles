@@ -35,6 +35,9 @@ bindkey "[B" history-substring-search-down
 # xfce4-terminal
 bindkey "[1;5D" backward-word
 bindkey "[1;5C" forward-word
+bindkey "Od" backward-word
+bindkey "Oc" forward-word
+
 # tmux (breaks iterm)
 #if [[ "$OSTYPE" != darwin* ]]; then
 #  bindkey "[D" backward-word
