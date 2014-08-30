@@ -10,6 +10,7 @@ import XMonad.Actions.Search hiding (Query)
 import XMonad.Actions.OnScreen (viewOnScreen, onlyOnScreen)
 import XMonad.Actions.CycleWS
 import XMonad.Actions.WithAll
+import XMonad.Actions.UpdatePointer
 import XMonad.Config.Desktop
 --import XMonad.Config.Gnome
 import XMonad.Config.Xfce
@@ -350,6 +351,7 @@ myKeys x =
        ,((modMask x, xK_f),     focusUrgent)
        ,((modMask x, xK_z),     withFocused $ windows . W.sink)
        ,((modMask x .|. shiftMask, xK_z),     sinkAll)
+--       ,((modMask x .|. shiftMask, xK_q),     spawn "xfce4-session-logout")
 
 --       ,((myMod, xK_Up),        sendMessage $ Go U)
 --       ,((myMod, xK_Down),      sendMessage $ Go D)
@@ -443,7 +445,6 @@ mySearchMap method = M.fromList $
         , ((0, xK_t), method thesaurus')
         , ((0, xK_d), method dictionary')
         , ((0, xK_y), method youtube')
-        , ((0, xK_l), method lwiki)
         , ((0, xK_b), method jira)
         , ((0, xK_c), method grepcode)
         ]
@@ -465,7 +466,6 @@ maps'       = utf8SearchEngine maps
 thesaurus'  = utf8SearchEngine thesaurus
 dictionary' = utf8SearchEngine dictionary
 youtube'    = utf8SearchEngine youtube
-lwiki       = searchEngine' "linkedin wiki" "https://iwww.corp.linkedin.com/wiki/cf/dosearchsite.action?where=conf_all&queryString="
 jira        = searchEngine' "jira" "https://jira01.corp.linkedin.com:8443/browse/%s"
 duckduckgo  = searchEngine' "duckduckgo.com" "http://duckduckgo.com?q="
 grepcode    = searchEngine' "grepcode" "http://grepcode.com/search?query="
@@ -603,8 +603,8 @@ myConfig = xfceConfig {
             --, handleEventHook    = mconcat [logEventHook, perWindowKbdLayout, ewmhDesktopsEventHook]
             --, handleEventHook    = ewmhDesktopsEventHook
             --
-            , logHook            = takeTopFocus >> ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
-            -- , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
+            --, logHook            = takeTopFocus >> ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP >> updatePointer (TowardsCentre 1 1)
+            , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
             -- , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP (dbusPP dbus)
             --
             , manageHook         = myManageHook <+> (namedScratchpadManageHook scratchpads) <+> manageFixes <+> manageDocks

@@ -14,8 +14,19 @@ set hidden
 set number
 set list
 set listchars=tab:>-,trail:-
-set hlsearch
 set laststatus=2
+set wildmenu
+set wildmode=list:longest
+set ignorecase " ignore case when searching
+set smartcase  " don't ignore case when there's one captial letter
+set gdefault " /g by default for replace
+set rnu " relative line numbers
+set undofile " persistent per-file undo
+
+set incsearch
+set showmatch
+set hlsearch
+
 set shortmess+=I " don't show intro when starting vim
 set dir=~/tmp//,/var/tmp//,/tmp// " keep swap files in this locations
 let g:yankring_history_dir = '~/tmp,/tmp,/var/tmp,~'
@@ -81,6 +92,8 @@ nmap :W :w
 nmap :Q :q
 nmap w :q<CR>
 nmap <c-s> :w<CR>
+nnoremap <leader><space> :noh<cr>
+inoremap jj <ESC>
 
 " expand/collaps folds by space
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
@@ -143,7 +156,8 @@ if has("gui_macvim")
   set guifont=Source\ Code\ Pro\ for\ Powerline:h12
   colorscheme solarized
 elseif has("gui_running")
-  set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
+  "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
+  set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
   colorscheme solarized
 else
   try
