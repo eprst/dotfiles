@@ -10,7 +10,8 @@ import XMonad.Actions.Search hiding (Query)
 import XMonad.Actions.OnScreen (viewOnScreen, onlyOnScreen)
 import XMonad.Actions.CycleWS
 import XMonad.Actions.WithAll
-import XMonad.Actions.UpdatePointer
+--import XMonad.Actions.UpdatePointer
+import XMonad.Actions.Warp
 import XMonad.Config.Desktop
 --import XMonad.Config.Gnome
 import XMonad.Config.Xfce
@@ -358,15 +359,15 @@ myKeys x =
 --       ,((myMod, xK_Right),     sendMessage FocusNext)
 --       ,((myMod, xK_Left),      sendMessage FocusPrev)
 
-       , ((modMask x, xK_semicolon),    focusHistoryBack)
-       , ((modMask x, xK_apostrophe),   focusHistoryForward)
+--       , ((modMask x, xK_semicolon),    focusHistoryBack)
+--       , ((modMask x, xK_apostrophe),   focusHistoryForward)
 --       , ((mod1Mask, xK_Tab),                   focusHistoryBack)
 --       , ((mod1Mask .|. controlMask, xK_Tab),   focusHistoryForward)
 
 --       ,((myMod, xK_Right), sendMessage $ ModifyWindowSubset (W.focusDown'::(Stack Window -> Stack Window)))
 --       ,((myMod, xK_Left), sendMessage $ ModifyWindowSubset (W.focusUp'::(Stack Window -> Stack Window)))
 
-       ,((modMask x, xK_g),     sendMessage $ ToggleGaps)
+--       ,((modMask x, xK_g),     sendMessage $ ToggleGaps)
 --       ,((modMask x, xK_Up),    sendMessage $ Move U)
 --       ,((modMask x, xK_Down),  sendMessage $ Move D)
 --       ,((modMask x, xK_Right), sendMessage $ Move R)
@@ -388,6 +389,9 @@ myKeys x =
 -- esc-m  minimize, esc-r  restore
        ,((modMask x, xK_m), withFocused (\f -> sendMessage (MinimizeWin f)))
        ,((modMask x, xK_r), sendMessage RestoreNextMinimizedWin)
+
+-- meta-alt-space: warp pointer to the center of focused window
+       ,((mod1Mask .|. myMod, xK_space), warpToWindow 0.5 0.5)
 
        ,((myMod, xK_f),   ror browser                              browserClass)
        ,((0, 0x1008FF18), ror browser                              browserClass)
@@ -437,7 +441,8 @@ mySearchMap method = M.fromList $
         , ((0, xK_w), method wikipedia')
         , ((0, xK_h), method hoogle')
         , ((shiftMask, xK_h), method hackage')
-        , ((0, xK_s), method scholar')
+        , ((0, xK_s), method scalex)
+        , ((shiftMask, xK_s), method scholar')
         , ((0, xK_m), method mathworld')
         , ((0, xK_a), method alpha')
         , ((0, xK_z), method amazon')
@@ -469,6 +474,7 @@ youtube'    = utf8SearchEngine youtube
 jira        = searchEngine' "jira" "https://jira01.corp.linkedin.com:8443/browse/%s"
 duckduckgo  = searchEngine' "duckduckgo.com" "http://duckduckgo.com?q="
 grepcode    = searchEngine' "grepcode" "http://grepcode.com/search?query="
+scalex      = searchEngine' "scalex" "http://scalex.org/?q="
 
 searchEngine' name site = searchEngineF name (\s -> site ++ (utf8Encode (escape s)))
 

@@ -28,7 +28,7 @@ map K 10k
 "set guioptions=mT
 "set guioptions=sT
 "set guioptions=m
-set guioptions=bCrs
+set guioptions=bCrsT
 set hlfind
 " highlight StatusLineNormal black
 

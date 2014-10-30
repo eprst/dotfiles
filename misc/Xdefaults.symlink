@@ -38,6 +38,10 @@ Xft.lcdfilter:  lcdlegacy
 Xft.autohint:   false
 Xft.rgba:       rgb
 
+! xscreensaver
+xscreensaver.splash: False
+xscreensaver.captureStderr: False
+
 !solarized
 
 ! Common
