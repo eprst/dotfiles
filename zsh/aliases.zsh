@@ -20,3 +20,5 @@ alias cal='LC_TIME="en_GB.UTF-8" cal -3'
 alias rhssh='ssh -t localhost "export TMUX_PANE=$TMUX_PANE; zsh -l"'
 
 alias v='vim'
+alias m='mutt'
+alias oi='offlineimap'

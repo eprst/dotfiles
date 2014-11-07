@@ -425,7 +425,8 @@ myKeys x =
        ,((0, 0x1008FF1D),     namedScratchpadAction scratchpads "dict")
        ,((myMod, xK_s),       namedScratchpadAction scratchpads "dict")
        ,((myMod, xK_t),       namedScratchpadAction scratchpads "htop")
-       ,((myMod, xK_m),       namedScratchpadAction scratchpads "ncmpc")
+       -- ,((myMod, xK_m),       namedScratchpadAction scratchpads "ncmpc")
+       ,((myMod, xK_m),       namedScratchpadAction scratchpads "mutt")
        ,((myMod, xK_c),       namedScratchpadAction scratchpads "calc")
        ,((myMod, xK_space),   namedScratchpadAction scratchpads "term")
     ] where
@@ -583,10 +584,11 @@ scratchpads = [ NS "notes"    "gvim --role notes --servername NOTES ~/notes/note
               , NS "htop"     "xterm -e htop"              (title     =? "htop")       defaultRect
               , NS "dict"     "goldendict"                 (className =? "Goldendict") defaultRect
               , NS "ncmpc"    "xterm -e ncmpc -C"          (title     =? "ncmpc")      smallerRect
-              , NS "calc"     "xterm -e wcalc   "          (title     =? "wcalc")      calcRect
+              , NS "calc"     "xterm -e wcalc"             (title     =? "wcalc")      calcRect
               -- , NS "term"     "gnome-terminal --role term" (role      =? "term")       defaultRect
               -- , NS "term"     "xfce4-terminal --role term" (role      =? "term")       defaultRect
               -- , NS "term"     "/usr/bin/st -c term" (resource      =? "term")       defaultRect
+              , NS "mutt"     "urxvt -name mutt -fn \"xft:DejaVu Sans Mono:pixelsize=16:antialias=true\" -e mutt"   (resource      =? "mutt")       defaultRect
               , NS "term"     "urxvt -name term"           (resource      =? "term")       defaultRect
               ] where
                 defaultRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)

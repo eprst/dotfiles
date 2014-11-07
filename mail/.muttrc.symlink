@@ -1,0 +1,65 @@
+source ~/.mutt_account
+
+set sort=threads
+set sort_aux=last-date-received
+
+set alias_file=~/.mutt/alias
+
+set wait_key=no
+unset move
+set delete
+set quit
+set beep_new
+set pipe_decode
+set use_from=yes
+set fast_reply=yes
+set editor="vim"
+set edit_headers=yes
+set implicit_autoview=yes
+set arrow_cursor
+auto_view text/html image/*
+
+set sidebar_delim=" | "
+#set sidebar_visible=no
+set sidebar_visible=yes
+set sidebar_width=24
+#color sidebar_new color8 color7
+color sidebar_new color242 default
+
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options -------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+set sendmail="/usr/bin/msmtp"
+
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+# Other bindings
+#macro index \CR "T~N\n;WNT~O;WO\CT~A" "mark all messages read"
+macro index \CR "T~N\n;WN;T~O\n;WO;\CT~A\n" "mark all messages read"
+# Sidebar bindings
+bind index,pager \CK sidebar-prev
+bind index,pager \CJ sidebar-next
+bind index,pager \CO sidebar-open
+macro index B '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager B '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+bind index gg       first-entry
+bind index G        last-entry
+bind index <space>  collapse-thread
+# Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+#folder-hook . "exec collapse-all"
+
+# solarized light
+source ~/.mutt-colors-solarized-light-256.muttrc
