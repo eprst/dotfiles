@@ -148,7 +148,8 @@ color body          color33        default        "([a-z][a-z0-9+-]*://(((([a-z0
 
 #color header        color245        color233        "^"
 color header        color33         default         "^(Subject)"  #color233
-color hdrdefault    color245        default                       #color233
 #mutt bug? have to set it twice and color is still wrong..
-color header        color132        default         "^(From)"     #color233
-color header        color132        default         "^(From)"     #color233
+#color header        default        color160         "^(From)"     #color233
+color header        default        color160         "^(From)"     #color233
+
+color hdrdefault    color245        default                       #color233
