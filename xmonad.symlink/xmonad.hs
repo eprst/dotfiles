@@ -467,7 +467,8 @@ hackage'    = utf8SearchEngine hackage
 scholar'    = utf8SearchEngine scholar
 mathworld'  = utf8SearchEngine mathworld
 alpha'      = utf8SearchEngine alpha
-amazon'     = utf8SearchEngine amazon
+-- amazon'     = utf8SearchEngine amazon
+amazon'     = searchEngine' "amazon" "http://amazon.com/s/ref=nb_sb_noss_1?field-keywords="
 maps'       = utf8SearchEngine maps
 thesaurus'  = utf8SearchEngine thesaurus
 dictionary' = utf8SearchEngine dictionary

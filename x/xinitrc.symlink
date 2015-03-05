@@ -1,0 +1,29 @@
+hash unclutter 2>/dev/null && { unclutter -idle 3 & }
+hash redshift 2>/dev/null && { redshift -l 37.38918:-122.05739 -m randr & }
+hash imwheel 2>/dev/null && { imwheel & }
+
+[[ -f /usr/local/bin/pipe_runner.sh ]] && { /usr/local/bin/pipe_runner.sh & }
+[[ -f ~/.Xmodmap ]] && /usr/bin/xmodmap ~/.Xmodmap
+[[ -f ~/.xbindkeysrc ]] && /usr/bin/xbindkeys
+
+[[ -d /usr/share/fonts/terminus ]] && xset fp+ /usr/share/fonts/terminus
+[[ -d /usr/share/fonts/termsyn ]] && xset fp+ /usr/share/fonts/termsyn
+[[ -d /usr/share/fonts/dejavu ]] && xset fp+ /usr/share/fonts/dejavu
+[[ -d /usr/share/fonts/urw-fonts ]] && xset fp+ /usr/share/fonts/urw-fonts
+[[ -d /usr/share/fonts/liberation-fonts ]] && xset fp+ /usr/share/fonts/liberation-fonts
+
+
+export PATH=~/.cabal/bin:$PATH
+
+eval $(gnome-keyring-daemon --components=pkcs11,secrets,ssh,gpg)
+export GNOME_KEYRING_PID
+export GNOME_KEYRING_SOCKET
+export SSH_AUTO_SOCK
+export GPG_AGENT_INFO
+
+#dbus-launch nm-applet &
+#ck-launch-session startxfce4
+#exec startxfce4 --with-ck-launch
+exec startxfce4
+#exec twm
+#exec xterm

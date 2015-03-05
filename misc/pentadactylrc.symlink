@@ -32,7 +32,7 @@ set guioptions=bCrsT
 set hlfind
 " highlight StatusLineNormal black
 
-set passkeys=email.corp.linkedin.com:<Del>
+set passkeys=box-eng.jiveon.com:<Enter>
 
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 

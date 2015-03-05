@@ -12,11 +12,6 @@ select-from-cd-stack() {
 if [[ "$OSTYPE" == darwin* ]]; then
   bindkey "[5D" backward-word
   bindkey "[5C" forward-word
-  # tmux
-  if [[ "$TERM" == screen-256color ]]; then
-    bindkey "[D" backward-word
-    bindkey "[C" forward-word
-  fi
   bindkey -s '¬' '\eqls\n'
   bindkey '∂' select-from-cd-stack
   bindkey "≤" copy-prev-shell-word
@@ -38,14 +33,15 @@ bindkey "[1;5C" forward-word
 bindkey "Od" backward-word
 bindkey "Oc" forward-word
 
-# tmux (breaks iterm)
-#if [[ "$OSTYPE" != darwin* ]]; then
-#  bindkey "[D" backward-word
-#  bindkey "[C" forward-word
-#fi
-# tmux in xfce terminal
-bindkey "OD" backward-word
-bindkey "OC" forward-word
+# tmux
+if [[ "$TERM" == screen-256color ]]; then
+  bindkey "[D" backward-word
+  bindkey "[C" forward-word
+
+  # tmux in xfce terminal (caution, this often breaks!)
+  # bindkey "OD" backward-word
+  # bindkey "OC" forward-word
+fi
 
 # history search with globs
 bindkey "\C-R" history-incremental-pattern-search-backward
