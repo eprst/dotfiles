@@ -16,3 +16,5 @@ openscad.vim
 vim-multiple-cursors
 vim-maximizer
 neomru.vim
+vim-fugitive
+NeoBundle.lock

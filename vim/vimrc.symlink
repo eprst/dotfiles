@@ -68,6 +68,7 @@ NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'choffee/openscad.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'szw/vim-maximizer'
+NeoBundle 'tpope/vim-fugitive'
 
 call neobundle#end()
 " }}}
@@ -103,6 +104,8 @@ nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr
 " ctrl-arrows for tabs
 nnoremap [1;5D :tabp<CR>
 nnoremap [1;5C :tabn<CR>
+nnoremap [D :tabp<CR>
+nnoremap [C :tabn<CR>
 " }}}
 
 " {{{2
@@ -127,6 +130,7 @@ nnoremap <leader>l :<C-u>Unite -no-split -buffer-name=locate  -start-insert loca
 nnoremap <leader>o :<C-u>Unite -buffer-name=outline -vertical -start-insert outline<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
 nnoremap <leader>b :<C-u>Unite -buffer-name=buffer  buffer -quick-match<cr>
+nnoremap <leader>g :<C-u>Unite -no-split -auto-preview -auto-highlight  grep:.<cr>
 
 " Use ag for search if available
 if executable('ag')
@@ -169,6 +173,7 @@ else
   catch
   endtry
 endif
+hi VisualNOS term=reverse ctermbg=220 cterm=none
 " }}}
 
 " vim:foldmethod=marker:
