@@ -18,15 +18,19 @@ keycode 107 = Super_L
 clear Mod3
 clear Mod4
 
+! these two not needed for ergodox, should be removed after the switch
 ! esc -> hyper_l
 keycode 9 = Hyper_L
 ! left win -> esc
 keycode 133 = Escape
+
+! right win -> Super_L
+keycode 134 = Super_L
+
 ! menu -> super_l
 keycode 135 = Super_L
-
-! menu -> hyper_l
-! keycode 135 = Hyper_L
+! ergodox:
+!keycode 135 = Hyper_L
 
 add Mod3 = Hyper_L
 add Mod4 = Super_L

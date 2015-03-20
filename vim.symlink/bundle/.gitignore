@@ -17,4 +17,5 @@ vim-multiple-cursors
 vim-maximizer
 neomru.vim
 vim-fugitive
+vim-gitgutter
 NeoBundle.lock

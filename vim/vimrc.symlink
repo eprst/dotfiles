@@ -69,6 +69,7 @@ NeoBundle 'choffee/openscad.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'szw/vim-maximizer'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
 
 call neobundle#end()
 " }}}
@@ -158,16 +159,16 @@ endfunction
 
 " {{{1 color tweaks
 set background=light
+  colorscheme solarized
+  hi clear SignColumn
 if has("gui_macvim")
   set guifont=Source\ Code\ Pro\ for\ Powerline:h12
-  colorscheme solarized
 elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
-  colorscheme solarized
 else
   try
-    colorscheme chela_light
+    " colorscheme chela_light
     hi LineNr ctermbg=lightgray
     hi Search ctermbg=227
   catch
