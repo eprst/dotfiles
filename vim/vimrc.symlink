@@ -28,8 +28,10 @@ set showmatch
 set hlsearch
 
 set shortmess+=I " don't show intro when starting vim
-set dir=~/tmp//,/var/tmp//,/tmp// " keep swap files in this locations
-let g:yankring_history_dir = '~/tmp,/tmp,/var/tmp,~'
+set dir=~/tmp/vim//,~/tmp//,/var/tmp//,/tmp//" keep swap files in this locations
+set bdir=~/tmp/vim//,~/tmp//,/var/tmp//,/tmp//" keep backup files in this locations
+set undodir=~/tmp/vim,~/tmp,/var/tmp,/tmp,." keep undo files in this locations
+let g:yankring_history_dir = '~/tmp/vim,~/tmp,/tmp,/var/tmp,~'
 set tags=tags; " look for tags in current folder, then in parent folder etc
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
@@ -97,7 +99,7 @@ nmap :Q :q
 nmap w :q<CR>
 nmap <c-s> :w<CR>
 nnoremap <leader><space> :noh<cr>
-inoremap jj <ESC>
+" inoremap jj <ESC> " cool but won't work in ideavim
 
 " expand/collaps folds by space
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>

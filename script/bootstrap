@@ -123,6 +123,9 @@ install_dotfiles () {
 setup_gitconfig
 install_dotfiles
 
+# create vim tmp folder
+mkdir -p ~/tmp/vim
+
 info "installing vim bundles"
 vim -c NeoBundleInstall! -c q -c q
 success "installed vim bundles"
@@ -158,7 +161,6 @@ success "copied files from 'copy'"
 #     fail "error installing dependencies"
 #   fi
 # fi
-
 
 echo ''
 echo '  All installed!'
