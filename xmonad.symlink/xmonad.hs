@@ -27,6 +27,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.ComboP
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.TrackFloating
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.MouseResizableTile
@@ -234,7 +235,7 @@ skype = ClassName "Skype"
 onIM = empathy `Or` skype `Or` konversation `Or` roster `Or` psiOther `Or` vacuumOther
 
 
-myLayoutHook = desktopLayoutModifiers {-$ fixFocus -} $ minimize $ workspaceDir "/home/ksobolev" $ avoidStruts $
+myLayoutHook = desktopLayoutModifiers {-$ fixFocus -} $ minimize $ workspaceDir "/home/ksobolev" $ avoidStruts $ trackFloating $
                 boringWindows $ smartBorders $ windowNavigation $ toggleLayouts myTabbed $
 --                chat $
                 mouseResizableTile {draggerType = BordersDragger} |||
@@ -451,7 +452,7 @@ mySearchMap method = M.fromList $
         , ((0, xK_t), method thesaurus')
         , ((0, xK_d), method dictionary')
         , ((0, xK_y), method youtube')
-        , ((0, xK_b), method jira)
+        -- , ((0, xK_b), method jira)
         , ((0, xK_c), method grepcode)
         ]
 
@@ -501,7 +502,8 @@ viewWeb = raise browserClass
 myXPConfig = defaultXPConfig
     { fgColor = "#101010"
     , bgColor = "#f0f0d0"
-    , font = "-xos4-terminus-medium-r-normal--14-*-*-*-c-*-iso10646-1"
+    , font = "-*-*-medium-r-*-*-14-*-*-*-*-*-iso10646-1"
+    -- , font = "-xos4-terminus-medium-r-normal-*-14-*-*-*-*-*-*-*"
     }
 
 

@@ -1,5 +1,5 @@
 " restart Vimperator
-map <C-r>   :restart<CR>
+" map <C-r>   :restart<CR>
 
 " select next/previous tab
 map <Right> gt
@@ -22,8 +22,9 @@ map т n
 map о j
 map <C-щ> <C-o>
 
-set guioptions=mT
+" set guioptions=mT
 "set guioptions=m
+set gui=addons,nobookmarks,nomenu,navigation,tabs
 set hlsearch
 echo ".vimperatorrc sourced"
 
