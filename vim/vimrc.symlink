@@ -94,8 +94,6 @@ nnoremap <silent> ¡ :NERDTreeFind<CR>
 nmap <F4> :q<CR>
 nmap <F3> :qa!<CR>
 nmap <F2> :wqa<CR>
-nmap :W :w
-nmap :Q :q
 nmap w :q<CR>
 nmap <c-s> :w<CR>
 nnoremap <leader><space> :noh<cr>
@@ -111,7 +109,7 @@ nnoremap [D :tabp<CR>
 nnoremap [C :tabn<CR>
 " }}}
 
-" {{{2
+" {{{2 maximize-toggle
 nnoremap <silent><F5> :MaximizerToggle<CR>
 vnoremap <silent><F5> :MaximizerToggle<CR>gv
 inoremap <silent><F5> <C-o>:MaximizerToggle<CR>
@@ -125,8 +123,15 @@ command! CD :cd %:h
 
 " {{{1 Unite settings
 let g:unite_source_history_yank_enable = 1
+let g:unite_redraw_hold_candidates = 50000
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source(
+      \ 'buffer,file_rec,file_rec/async,file_rec/git', 'matchers',
+      \ ['converter_relative_word', 'matcher_fuzzy'])
+      " ['converter_relative_word', 'matcher_fuzzy', 'matcher_project_ignore_files'])
+
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>T :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/git:!<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
 nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
 nnoremap <leader>l :<C-u>Unite -no-split -buffer-name=locate  -start-insert locate<cr>
