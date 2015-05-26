@@ -35,6 +35,7 @@ let g:yankring_history_dir = '~/tmp/vim,~/tmp,/tmp,/var/tmp,~'
 set tags=tags; " look for tags in current folder, then in parent folder etc
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
+let g:gitgutter_enabled = 0 " disable git gutter by default, it can get super slow
 " }}}
 
 " {{{1 neobundle
