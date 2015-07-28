@@ -20,9 +20,12 @@ clear Mod4
 
 ! these two not needed for ergodox, should be removed after the switch
 ! esc -> hyper_l
-keycode 9 = Hyper_L
+!keycode 9 = Hyper_L
 ! left win -> esc
-keycode 133 = Escape
+!keycode 133 = Escape
+
+! left win -> Hyper_L
+keycode 133 = Hyper_L
 
 ! right win -> Super_L
 keycode 134 = Super_L
