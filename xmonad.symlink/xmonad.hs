@@ -1,5 +1,7 @@
 {-# LANGUAGE NoMonomorphismRestriction, DeriveDataTypeable, TypeSynonymInstances, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternGuards, ScopedTypeVariables #-}
 
+-- TODO: meta-k not creating new terminal; try new layout from contrib
+
 import XMonad hiding ( (|||), focus )
 import XMonad.Actions.TagWindows
 import XMonad.Actions.WindowGo
@@ -232,7 +234,8 @@ vacuumOther = ClassName "Vacuum"
 roster = psiRoster `Or` vacuumRoster
 konversation = ClassName "Konversation"
 skype = ClassName "Skype"
-onIM = empathy `Or` skype `Or` konversation `Or` roster `Or` psiOther `Or` vacuumOther
+pidgin = ClassName "Pidgin"
+onIM = empathy `Or` skype `Or` konversation `Or` roster `Or` psiOther `Or` vacuumOther `Or` pidgin
 
 
 myLayoutHook = desktopLayoutModifiers {-$ fixFocus -} $ minimize $ workspaceDir "/home/ksobolev" $ avoidStruts $ trackFloating $

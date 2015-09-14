@@ -1,0 +1,11 @@
+#!/bin/sh
+
+xmonad &
+xfce4-panel --disable-wm-check &
+pasystray &
+~/.dropbox-dist/dropboxd &
+nm-applet &
+pidgin &
+xscreensaver &
+parcellite &
+

@@ -13,8 +13,9 @@ XTerm*termName: xterm-256color
 XTerm*allowSendEvents: true
 
 ! urxvt
-!URxvt.font:         xft:Terminess Powerline:size=12,xft:Symbola:size=12
-URxvt.font: xft:Terminess Powerline:pixelsize=15:antialias=true, \
+URxvt.font: \
+            xft:Terminess Powerline:pixelsize=15:antialias=true, \
+            xft:Anonymous Pro:pixelsize=15:antialias=true, \
             xft:Symbola:pixelsize=15:antialias=true:hinting=true, \
             xft:Droid Sans Fallback:pixelsize=15:style=Regular, \
             xft:DejaVu Sans Mono:pixelsize=15:antialias=true:hinting=true
