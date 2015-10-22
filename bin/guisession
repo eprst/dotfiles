@@ -2,6 +2,8 @@
 
 xmonad &
 xfce4-panel --disable-wm-check &
+xfce4-power-manager &
+xfce4-volumed-pulse &
 pasystray &
 ~/.dropbox-dist/dropboxd &
 nm-applet &

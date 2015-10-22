@@ -18,4 +18,5 @@ vim-maximizer
 neomru.vim
 vim-fugitive
 vim-gitgutter
+tagbar
 NeoBundle.lock
