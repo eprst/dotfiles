@@ -16,8 +16,7 @@ autoload -U zmv
 alias zcp='noglob zmv -W -C'
 alias zmvv='noglob zmv -W -M'
 
-alias cal='LC_TIME="en_GB.UTF-8" cal -3'
-alias rhssh='ssh -t localhost "export TMUX_PANE=$TMUX_PANE; zsh -l"'
+alias cal='TERM="xterm-256color" cal -m -3'
 
 alias v='vim'
 alias m='mutt'
