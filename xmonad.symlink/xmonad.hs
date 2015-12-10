@@ -143,6 +143,21 @@ instance LayoutModifier FixFocus Window where
 
 fixFocus = ModifiedLayout $ FixFocus Nothing
 
+pointerFollowsFocusForJavaDialogs :: Rational -> Rational -> X ()
+pointerFollowsFocusForJavaDialogs h v = do
+  dpy <- asks display
+  root <- asks theRoot
+  withFocused $ \w -> do
+    wa <- io $ getWindowAttributes dpy w
+    cn <- runQuery clas w
+    (sameRoot,_,w',_,_,_,_,_) <- io $ queryPointer dpy root
+    if (not (startswith "sun-awt-X11-XDialogPeer" cn) || (sameRoot && w == w'))
+      then
+        return ()
+      else
+        io $ warpPointer dpy none w 0 0 0 0
+          (fraction h (wa_width wa)) (fraction v (wa_height wa))
+        where fraction x y = floor (x * fromIntegral y)
 -------------------
 
 -- Send WM_TAKE_FOCUS
@@ -308,9 +323,6 @@ myManageHook = composeAll [
 --        ((className =? "jetbrains-idea") <&&> (title ~=? "win") --> doIgnore) <+>
 --        ((className =? "jetbrains-idea") --> doSink)
 
---getEditor :: IO String
---getEditor = return "gvim"
-
 leftScreen = 1
 rightScreen = 0
 
@@ -343,12 +355,6 @@ myKeys x =
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
     [
-{-        ((0, 0x1008FF5B), windows $ W.greedyView "main")
-       ,((0, 0x1008FF32), windows $ W.greedyView "idea")
-       ,((0, 0x1008FF43), windows $ W.greedyView "chat")
-       ,((0, 0x1008FF44), windows $ W.greedyView "gimp")
-       ,((0, 0x1008FF45), windows $ W.greedyView "float")
--}
        ((myMod, xK_F3),        shellPrompt myXPConfig)
        ,((modMask x, xK_Return), sendMessage ToggleLayout)
        ,((myMod, xK_Return),    windows W.swapMaster)
@@ -618,8 +624,7 @@ myConfig = xfceConfig {
             --, handleEventHook    = ewmhDesktopsEventHook
             --
             --, logHook            = takeTopFocus >> ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP >> updatePointer (TowardsCentre 1 1)
-            , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP
-            -- , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP (dbusPP dbus)
+            , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> pointerFollowsFocusForJavaDialogs 0.5 0.5 -- >> dynamicLogWithPP myPP
             --
             , manageHook         = myManageHook <+> (namedScratchpadManageHook scratchpads) <+> manageFixes <+> manageDocks
 
