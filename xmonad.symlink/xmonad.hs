@@ -143,21 +143,27 @@ instance LayoutModifier FixFocus Window where
 
 fixFocus = ModifiedLayout $ FixFocus Nothing
 
-pointerFollowsFocusForJavaDialogs :: Rational -> Rational -> X ()
-pointerFollowsFocusForJavaDialogs h v = do
+pointerFollowsFocus :: (Query Bool) -> Rational -> Rational -> X ()
+pointerFollowsFocus q h v = do
   dpy <- asks display
   root <- asks theRoot
   withFocused $ \w -> do
     wa <- io $ getWindowAttributes dpy w
+    qr <- runQuery q w
+
     cn <- runQuery clas w
+    ct <- runQuery title w
+
     (sameRoot,_,w',_,_,_,_,_) <- io $ queryPointer dpy root
-    if (not (startswith "sun-awt-X11-XDialogPeer" cn) || (sameRoot && w == w'))
+    if (qr {- && (not sameRoot) -} && w /= w') -- TODO don't know why sameRoot check was needed and why doesn't it work now
       then
-        return ()
-      else
         io $ warpPointer dpy none w 0 0 0 0
           (fraction h (wa_width wa)) (fraction v (wa_height wa))
-        where fraction x y = floor (x * fromIntegral y)
+      else
+        -- klog $ ct ++ "|" ++ cn ++ "|" ++ (show qr) ++ "|" ++ (show (not sameRoot)) ++ "|" ++ (show (w /= w'))
+        return ()
+
+       where fraction x y = floor (x * fromIntegral y)
 -------------------
 
 -- Send WM_TAKE_FOCUS
@@ -624,7 +630,15 @@ myConfig = xfceConfig {
             --, handleEventHook    = ewmhDesktopsEventHook
             --
             --, logHook            = takeTopFocus >> ewmhDesktopsLogHook >> setWMName "LG3D"  >> dynamicLogWithPP myPP >> updatePointer (TowardsCentre 1 1)
-            , logHook            = ewmhDesktopsLogHook >> setWMName "LG3D"  >> pointerFollowsFocusForJavaDialogs 0.5 0.5 -- >> dynamicLogWithPP myPP
+            , logHook            = ewmhDesktopsLogHook >>
+                                   setWMName "LG3D"  >>
+                                   pointerFollowsFocus (
+                                     (resource ~=? "sun-awt-X11-XDialogPeer") <||>   -- warp pointer to java dialogs
+                                     (resource =? "term") <||>                       -- and pop-up terminal
+                                     (className =? "Goldendict") <||>                -- and pop-up dict
+                                     (title =? "wcalc")                              -- and pop-up calc
+                                   ) 0.5 0.5
+                                   -- >> dynamicLogWithPP myPP
             --
             , manageHook         = myManageHook <+> (namedScratchpadManageHook scratchpads) <+> manageFixes <+> manageDocks
 
