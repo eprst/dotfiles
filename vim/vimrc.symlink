@@ -70,7 +70,7 @@ NeoBundle 'choffee/openscad.vim'
 NeoBundle 'terryma/vim-multiple-cursors'      " Ctrl-N to add new cursor
 NeoBundle 'szw/vim-maximizer'                 " F5 to toggle maximize
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'airblade/vim-gitgutter'            " preview \hp, stage \s, revert \hr
 NeoBundle 'majutsushi/tagbar'                 " :TagbarToggle
 
 call neobundle#end()
@@ -183,6 +183,12 @@ else
   endtry
 endif
 hi VisualNOS term=reverse ctermbg=220 cterm=none
+" }}}
+
+" {{{1 have Vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 " }}}
 
 " vim:foldmethod=marker:

@@ -16,7 +16,11 @@ autoload -U zmv
 alias zcp='noglob zmv -W -C'
 alias zmvv='noglob zmv -W -M'
 
-alias cal='TERM="xterm-256color" cal -m -3'
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias cal='gcal -m .'
+else
+  alias cal='TERM="xterm-256color" cal -m -3'
+fi
 
 alias v='vim'
 alias m='mutt'

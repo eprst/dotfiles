@@ -15,6 +15,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   bindkey -s '¬' '\eqls\n'
   bindkey '∂' select-from-cd-stack
   bindkey "≤" copy-prev-shell-word
+  bindkey '\ed' select-from-cd-stack # see http://superuser.com/questions/449378/how-to-bindkey-altkey-in-osx
+  bindkey "\e," copy-prev-shell-word
 else
 #  bindkey "\C-${terminfo[kcub1]}" backward-word
 #  bindkey "\C-${terminfo[kcuf2]}" forward-word
