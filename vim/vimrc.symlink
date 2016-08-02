@@ -70,8 +70,11 @@ NeoBundle 'choffee/openscad.vim'
 NeoBundle 'terryma/vim-multiple-cursors'      " Ctrl-N to add new cursor
 NeoBundle 'szw/vim-maximizer'                 " F5 to toggle maximize
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'airblade/vim-gitgutter'            " preview \hp, stage \s, revert \hr
+NeoBundle 'airblade/vim-gitgutter'            " next ]c prev [c preview \hp, stage \hs, revert \hr
 NeoBundle 'majutsushi/tagbar'                 " :TagbarToggle
+NeoBundle 'godlygeek/tabular'                 " needed for the next one. :Tab /= tab on '=' vimcasts.org/e/29
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'JamshedVesuna/vim-markdown-preview'
 
 call neobundle#end()
 " }}}
@@ -101,6 +104,14 @@ nnoremap <leader><space> :noh<cr>
 
 " expand/collaps folds by space
 nnoremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
+
+" yank into system clipboard
+noremap <leader>y "*y
+" yank line into system clipboard
+noremap <leader>yy "*yy
+
+" paste from system clipboard preserving indent
+noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
 " ctrl-arrows for tabs
 nnoremap [1;5D :tabp<CR>
@@ -170,7 +181,7 @@ set background=light
   colorscheme solarized
   hi clear SignColumn
 if has("gui_macvim")
-  set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   set guifont=Ubuntu\ Mono\ for\ Powerline\ 12

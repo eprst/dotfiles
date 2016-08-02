@@ -19,4 +19,7 @@ neomru.vim
 vim-fugitive
 vim-gitgutter
 tagbar
+tabular
+vim-markdown
+vim-markdown-preview
 NeoBundle.lock
