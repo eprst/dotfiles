@@ -13,6 +13,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   bindkey "[5D" backward-word
   bindkey "[5C" forward-word
   bindkey -s '¬' '\eqls\n'
+  bindkey -s 'l' '\eqls\n'
   bindkey '∂' select-from-cd-stack
   bindkey "≤" copy-prev-shell-word
   bindkey '\ed' select-from-cd-stack # see http://superuser.com/questions/449378/how-to-bindkey-altkey-in-osx
