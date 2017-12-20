@@ -66,6 +66,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'vimoutliner/vimoutliner'           " for .otl files.. really needed?
 NeoBundle 'chela_light'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'choffee/openscad.vim'
 NeoBundle 'terryma/vim-multiple-cursors'      " Ctrl-N to add new cursor
 NeoBundle 'szw/vim-maximizer'                 " F5 to toggle maximize
@@ -74,7 +75,8 @@ NeoBundle 'airblade/vim-gitgutter'            " next ]c prev [c preview \hp, sta
 NeoBundle 'majutsushi/tagbar'                 " :TagbarToggle
 NeoBundle 'godlygeek/tabular'                 " needed for the next one. :Tab /= tab on '=' vimcasts.org/e/29
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'JamshedVesuna/vim-markdown-preview'
+NeoBundle 'JamshedVesuna/vim-markdown-preview' " ctrl-q to preview
+NeoBundle 'sukima/xmledit'
 
 call neobundle#end()
 " }}}
@@ -118,6 +120,9 @@ nnoremap [1;5D :tabp<CR>
 nnoremap [1;5C :tabn<CR>
 nnoremap [D :tabp<CR>
 nnoremap [C :tabn<CR>
+
+" map ctrl-q to save and markdown preview
+nnoremap <c-q> :w<CR>:call Vim_Markdown_Preview()<CR>
 " }}}
 
 " {{{2 maximize-toggle
