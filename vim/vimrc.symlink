@@ -54,10 +54,12 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
+" see mappings below. \t=file_rec T=file_rec/git f=file r=mru l=locate o=outline
+" y=yank history b=buffer g=grep G=grep word under cursor
+NeoBundle 'Shougo/unite.vim'                  " :Unite file or file_rec/async
+NeoBundle 'Shougo/unite-outline'              " :Unite outline
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'ujihisa/unite-locate'
+NeoBundle 'ujihisa/unite-locate'              " :Unite locate
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'repos-scala/scala-vundle'
@@ -170,11 +172,11 @@ function! s:unite_settings()
   " Play nice with supertab
   let b:SuperTabDisabled=1
   " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  inoremap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  inoremap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   " Run "split" action by <C-s>
-  imap <silent><buffer><expr> <C-s>  unite#do_action('split')
-  imap <silent><buffer><expr> <C-v>  unite#do_action('vsplit')
+  inoremap <silent><buffer><expr> <C-s>  unite#do_action('split')
+  inoremap <silent><buffer><expr> <C-v>  unite#do_action('vsplit')
   " Close Unite by ESC
   nmap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
