@@ -12,7 +12,7 @@ set ai
 set mouse=a
 set hidden
 set number
-set list
+set nolist
 set listchars=tab:>-,trail:-
 set laststatus=2
 set wildmenu
