@@ -35,6 +35,8 @@ let g:yankring_history_dir = '~/tmp/vim,~/tmp,/tmp,/var/tmp,~'
 set tags=tags; " look for tags in current folder, then in parent folder etc
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
+
+let g:dark = filereadable(expand('~/.dark'))
 " }}}
 
 " {{{1 neobundle
@@ -184,9 +186,13 @@ endfunction
 " }}}
 
 " {{{1 color tweaks
-set background=light
-  colorscheme solarized
-  hi clear SignColumn
+if g:dark
+  set background=dark
+else
+  set background=light
+endif
+colorscheme solarized
+hi clear SignColumn
 if has("gui_macvim")
   set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 elseif has("gui_running")
@@ -195,7 +201,9 @@ elseif has("gui_running")
 else
   try
     " colorscheme chela_light
-    hi LineNr ctermbg=lightgray
+    if ! g:dark
+      hi LineNr ctermbg=lightgray
+    endif
     hi Search ctermbg=227
   catch
   endtry
