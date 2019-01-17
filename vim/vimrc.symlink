@@ -81,6 +81,10 @@ NeoBundle 'godlygeek/tabular'                 " needed for the next one. :Tab /=
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'JamshedVesuna/vim-markdown-preview' " ctrl-q to preview
 NeoBundle 'sukima/xmledit'
+" typescript support
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'jason0x43/vim-js-indent'
+NeoBundle 'Quramy/tsuquyomi'
 
 call neobundle#end()
 " }}}
