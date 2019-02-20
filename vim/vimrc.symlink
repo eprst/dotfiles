@@ -12,8 +12,6 @@ set ai
 set mouse=a
 set hidden
 set number
-set nolist
-set listchars=tab:>-,trail:-
 set laststatus=2
 set wildmenu
 set wildmode=list:longest
@@ -198,7 +196,8 @@ endif
 colorscheme solarized
 hi clear SignColumn
 if has("gui_macvim")
-  set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+  "set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+  set guifont=FiraCode-Regular:h14
 elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
@@ -213,6 +212,13 @@ else
   endtry
 endif
 hi VisualNOS term=reverse ctermbg=220 cterm=none
+if has("gui_running")
+  set list
+  set showbreak=↪\ 
+  set listchars=tab:→\ ,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+  hi SpecialKey guifg=red
+  hi NonText guifg=grey90
+end
 " }}}
 
 " {{{1 have Vim jump to the last position when reopening a file
