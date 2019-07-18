@@ -58,7 +58,7 @@ NeoBundle 'Shougo/vimproc', {
 " y=yank history b=buffer g=grep G=grep word under cursor
 NeoBundle 'Shougo/unite.vim'                  " :Unite file or file_rec/async
 NeoBundle 'Shougo/unite-outline'              " :Unite outline
-" NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'ujihisa/unite-locate'              " :Unite locate
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ervandew/supertab'
