@@ -18,7 +18,7 @@ set wildmode=list:longest
 set ignorecase " ignore case when searching
 set smartcase  " don't ignore case when there's one captial letter
 set gdefault " /g by default for replace
-set rnu " relative line numbers
+" set rnu " relative line numbers (disabled, they're slow)
 set undofile " persistent per-file undo
 
 set incsearch
@@ -58,7 +58,7 @@ NeoBundle 'Shougo/vimproc', {
 " y=yank history b=buffer g=grep G=grep word under cursor
 NeoBundle 'Shougo/unite.vim'                  " :Unite file or file_rec/async
 NeoBundle 'Shougo/unite-outline'              " :Unite outline
-NeoBundle 'Shougo/neomru.vim'
+" NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'ujihisa/unite-locate'              " :Unite locate
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ervandew/supertab'
