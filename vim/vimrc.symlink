@@ -98,6 +98,7 @@ syntax on
 " {{{2 alt-1 to find current file
 nnoremap <silent> <M-1> :NERDTreeFind<CR>
 nnoremap <silent> 1 :NERDTreeFind<CR>
+nnoremap <silent> ! :NERDTreeFind<CR>
 nnoremap <silent> ¡ :NERDTreeFind<CR>
 " }}}
 
