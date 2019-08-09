@@ -1,0 +1,58 @@
+#=============================================================================
+# basic.toml --- basic configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "NeoSolarized"
+    # colorscheme = "material"
+    colorscheme_bg = "light"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = false
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "curve"
+    statusline_inactive_separator = "bar"
+    buffer_index_type = 4
+    windows_index_type = 3
+    enable_tabline_filetype_icon = true
+    enable_statusline_mode = true
+    statusline_unicode_symbols = true
+    # Enable vim compatible mode, avoid changing origin vim key bindings
+    vimcompatible = true
+    enable_language_specific_leader = false
+    guifont = "FuraCode Nerd Font:h11"
+    filetree_direction = "left"
+    disabled_plugins = ["vim-startify", "denite.vim"] # https://github.com/SpaceVim/SpaceVim/issues/2881
+    filemanager = "nerdtree"
+    bootstrap_after = "myconfig#after"
+
+
+# Enable autocomplete layer
+[[layers]]
+name = 'autocomplete'
+auto-completion-return-key-behavior = "complete"
+auto-completion-tab-key-behavior = "cycle"
+
+[[layers]]
+name = 'shell'
+default_position = 'bottom'
+default_height = 30
+default_shell = 'terminal'
+
+[[layers]]
+name = 'colorscheme'
+
+[[layers]]
+name = 'unite' # till denite is fixed
+
+[[custom_plugins]]
+name = "szw/vim-maximizer"
