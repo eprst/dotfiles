@@ -23,6 +23,7 @@ else
 fi
 
 alias v='vim'
+alias nv='nvim'
 alias m='mutt'
 alias oi='offlineimap'
 alias socks='ssh -D 8080 -q -C -N -p 2212 kos@sobolev.io'

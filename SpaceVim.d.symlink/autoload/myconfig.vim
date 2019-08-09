@@ -8,3 +8,5 @@ nnoremap <leader>o :<C-u>Unite -buffer-name=outline -vertical -start-insert outl
 nnoremap <silent><F5> :MaximizerToggle<CR>
 vnoremap <silent><F5> :MaximizerToggle<CR>gv
 inoremap <silent><F5> <C-o>:MaximizerToggle<CR>
+
+let g:spacevim_project_rooter_automatically = 0
