@@ -8,6 +8,8 @@ set tabstop=2
 set softtabstop=2
 set fo=tcrqnlv1
 set tw=80
+set wrap
+set linebreak
 set ai
 set mouse=a
 set hidden
