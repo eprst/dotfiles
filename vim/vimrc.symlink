@@ -195,8 +195,8 @@ if g:dark
   set background=dark
 else
   set background=light
+  colorscheme solarized
 endif
-colorscheme solarized
 hi clear SignColumn
 if has("gui_macvim")
   "set guifont=Source\ Code\ Pro\ for\ Powerline:h14
