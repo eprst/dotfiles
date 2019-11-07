@@ -30,14 +30,16 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! xft
-Xft.dpi: 96
-Xft.antialias:  true
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
-Xft.lcdfilter:  lcdlegacy
+! Xft.dpi: 96
+Xft.dpi: 168
+! Xft.dpi: 192
+! Xft.antialias:  true
+! Xft.hinting:    true
+! Xft.hintstyle:  hintfull
+! Xft.lcdfilter:  lcdlegacy
 !Xft.rgba:       none
-Xft.autohint:   false
-Xft.rgba:       rgb
+! Xft.autohint:   false
+! Xft.rgba:       rgb
 
 ! xscreensaver
 xscreensaver.splash: False

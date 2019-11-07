@@ -19,7 +19,7 @@ set wildmenu
 set wildmode=list:longest
 set ignorecase " ignore case when searching
 set smartcase  " don't ignore case when there's one captial letter
-set gdefault " /g by default for replace
+" set gdefault " /g by default for replace || very easy to forget and be confused
 " set rnu " relative line numbers (disabled, they're slow)
 set undofile " persistent per-file undo
 
@@ -81,10 +81,12 @@ NeoBundle 'godlygeek/tabular'                 " needed for the next one. :Tab /=
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'JamshedVesuna/vim-markdown-preview' " ctrl-q to preview
 NeoBundle 'sukima/xmledit'
+NeoBundle 'xolox/vim-misc'    " required by vim-notes
+NeoBundle 'xolox/vim-notes'
 " typescript support
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'jason0x43/vim-js-indent'
-NeoBundle 'Quramy/tsuquyomi'
+" NeoBundle 'leafgarland/typescript-vim'
+" NeoBundle 'jason0x43/vim-js-indent'
+" NeoBundle 'Quramy/tsuquyomi'
 
 call neobundle#end()
 " }}}
@@ -193,6 +195,9 @@ endfunction
 " {{{1 color tweaks
 if g:dark
   set background=dark
+  if has("gui_running")
+    colorscheme evening
+  endif
 else
   set background=light
   colorscheme solarized
@@ -203,7 +208,8 @@ if has("gui_macvim")
   set guifont=FiraCode-Regular:h14
 elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
-  set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
+  "set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
+  set guifont=Fira\ Code\ weight=453\ 14
 else
   try
     " colorscheme chela_light
@@ -215,10 +221,11 @@ else
   endtry
 endif
 hi VisualNOS term=reverse ctermbg=220 cterm=none
+set listchars=nbsp:␣,trail:•,extends:⟩,precedes:⟨
 if has("gui_running")
   set list
   set showbreak=↪\ 
-  set listchars=tab:→\ ,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+  " set listchars=tab:→\ ,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨
   hi SpecialKey guifg=red
   hi NonText guifg=grey90
 end
