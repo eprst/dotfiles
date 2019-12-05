@@ -63,11 +63,11 @@ NeoBundle 'Shougo/unite-outline'              " :Unite outline
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'ujihisa/unite-locate'              " :Unite locate
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'ervandew/supertab'
+" NeoBundle 'ervandew/supertab'
 NeoBundle 'repos-scala/scala-vundle'
 NeoBundle 'YankRing.vim'                      " :YRShow, <C-P> after p
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'vimoutliner/vimoutliner'           " for .otl files.. really needed?
+" NeoBundle 'vimoutliner/vimoutliner'           " for .otl files.. really needed?
 NeoBundle 'chela_light'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
@@ -83,6 +83,7 @@ NeoBundle 'JamshedVesuna/vim-markdown-preview' " ctrl-q to preview
 NeoBundle 'sukima/xmledit'
 NeoBundle 'xolox/vim-misc'    " required by vim-notes
 NeoBundle 'xolox/vim-notes'
+NeoBundle 'lifepillar/vim-mucomplete'
 " typescript support
 " NeoBundle 'leafgarland/typescript-vim'
 " NeoBundle 'jason0x43/vim-js-indent'
@@ -193,6 +194,9 @@ endfunction
 " }}}
 
 " {{{1 color tweaks
+" completion menu is ugly
+hi Pmenu ctermbg=gray
+hi PmenuSel ctermbg=227
 if g:dark
   set background=dark
   if has("gui_running")
@@ -229,6 +233,14 @@ if has("gui_running")
   hi SpecialKey guifg=red
   hi NonText guifg=grey90
 end
+" }}}
+
+" {{{1 MuComplete
+set completeopt-=preview
+set completeopt+=noinsert,menuone,noselect
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
+let g:mucomplete#enable_auto_at_startup = 1
 " }}}
 
 " {{{1 have Vim jump to the last position when reopening a file
