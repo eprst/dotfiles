@@ -1,0 +1,3 @@
+for f in `ls /usr/share/fonts`; do
+  xset +fp /usr/share/fonts/$f
+done

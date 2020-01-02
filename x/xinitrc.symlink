@@ -6,12 +6,7 @@ hash imwheel 2>/dev/null && { imwheel & }
 [[ -f ~/.Xmodmap ]] && /usr/bin/xmodmap ~/.Xmodmap
 [[ -f ~/.xbindkeysrc ]] && /usr/bin/xbindkeys
 
-[[ -d /usr/share/fonts/terminus ]] && xset fp+ /usr/share/fonts/terminus
-[[ -d /usr/share/fonts/termsyn ]] && xset fp+ /usr/share/fonts/termsyn
-[[ -d /usr/share/fonts/dejavu ]] && xset fp+ /usr/share/fonts/dejavu
-[[ -d /usr/share/fonts/urw-fonts ]] && xset fp+ /usr/share/fonts/urw-fonts
-[[ -d /usr/share/fonts/liberation-fonts ]] && xset fp+ /usr/share/fonts/liberation-fonts
-
+source ~/.xinitrc_fonts
 
 export PATH=~/.cabal/bin:$PATH
 

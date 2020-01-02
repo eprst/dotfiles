@@ -9,6 +9,8 @@ ft() {find . -maxdepth 1 -type f | grep -i "$1"}
 ftr() {find . -type f -iregex ".*$1.*"}
 # cd and ls
 cdl() {cd $1 && ls}
+# grep and kill
+gkill() {psg $1 | grep -v grep | awk -e '{print $2}' | xargs kill}
 
 # function to make regexp from IDEA-like class name abbreviations {{{2
 # requires grep -P support (USE="pcre" emerge grep)

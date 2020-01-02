@@ -44,6 +44,13 @@ Xft.dpi: 168
 ! xscreensaver
 xscreensaver.splash: False
 xscreensaver.captureStderr: False
+xscreensaver.Dialog.headingFont: -*-dejavu sans mono-bold-r-*-*-0-200-144-144-*-*-*-*
+xscreensaver.Dialog.bodyFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*-*-*
+xscreensaver.Dialog.labelFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*-*-*
+xscreensaver.Dialog.unameFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*-*-*
+xscreensaver.Dialog.buttonFont: -*-dejavu sans mono-bold-r-*-*-0-120-144-144-*-*-*-*
+xscreensaver.Dialog.dateFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*-*-*
+xscreensaver.passwd.passwdFont: -*-dejavu sans mono-bold-r-*-*-0-120-144-144-*-*-*-*
 
 !solarized
 
