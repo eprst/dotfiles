@@ -7,7 +7,7 @@ Xcursor.theme: redglass
 ! *VT100.metaSendsEscape: false
 
 ! xterm
-XTerm*faceName: xft:Terminess Powerline:pixelsize=15
+XTerm*faceName: xft:Ubuntu Mono for VimPowerline:pixelsize=32
 XTerm*showBlinkAsBold: on
 XTerm*termName: xterm-256color
 XTerm*allowSendEvents: true
@@ -31,7 +31,6 @@ URxvt*scrollTtyKeypress: true
 
 ! xft
 ! Xft.dpi: 96
-Xft.dpi: 168
 ! Xft.dpi: 192
 ! Xft.antialias:  true
 ! Xft.hinting:    true
@@ -49,7 +48,7 @@ xscreensaver.Dialog.bodyFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*
 xscreensaver.Dialog.labelFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*-*-*
 xscreensaver.Dialog.unameFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*-*-*
 xscreensaver.Dialog.buttonFont: -*-dejavu sans mono-bold-r-*-*-0-120-144-144-*-*-*-*
-xscreensaver.Dialog.dateFont: -*-dejavu sans mono-medium-r-*-*-0-120-144-144-*-*-*-*
+xscreensaver.Dialog.dateFont: -*-dejavu sans mono-medium-r-*-*-0-100-*-*-*-*-*-*
 xscreensaver.passwd.passwdFont: -*-dejavu sans mono-bold-r-*-*-0-120-144-144-*-*-*-*
 
 !solarized
