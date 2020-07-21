@@ -36,7 +36,7 @@ set tags=tags; " look for tags in current folder, then in parent folder etc
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 
-let g:dark = filereadable(expand('~/.dark'))
+let g:dark = filereadable(expand('~/.dark')) && $TERMINAL_EMULATOR != 'JetBrains-JediTerm'
 " }}}
 
 " {{{1 neobundle
@@ -199,7 +199,11 @@ if g:dark
   endif
 else
   set background=light
-  colorscheme solarized
+  if $TERMINAL_EMULATOR == 'JetBrains-JediTerm'
+    colorscheme blue
+  else
+    colorscheme solarized
+  endif
 endif
 hi clear SignColumn
 if has("gui_macvim")
@@ -208,7 +212,8 @@ if has("gui_macvim")
 elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   "set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
-  set guifont=Fira\ Code\ weight=453\ 14
+  "set guifont=Fira\ Code\ weight=453\ 14
+  set guifont=Fira\ Code\ weight=453\ 8
 else
   try
     " colorscheme chela_light
@@ -224,11 +229,15 @@ set listchars=nbsp:␣,trail:•,extends:⟩,precedes:⟨
 if has("gui_running")
   set list
   set showbreak=↪\ 
-  " set listchars=tab:→\ ,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+  set listchars=tab:▸┈,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨
   hi SpecialKey guifg=red
-  hi NonText guifg=grey90
+  hi NonText guibg=grey20 guifg=grey30
 end
 set colorcolumn=120
+" }}}
+
+" {{{1 Fugitive
+set diffopt+=vertical
 " }}}
 
 " {{{1 MuComplete
