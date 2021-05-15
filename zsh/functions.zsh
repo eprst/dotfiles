@@ -80,3 +80,25 @@ vcl() {
 pstop() {
   ps -eo pid,user,pri,ni,vsz,rsz,stat,pcpu,pmem,time,comm --sort -pcpu | head "${@:--n 20}"
 }
+
+# gradle invocation helper
+grd() {
+  argn=$#
+  if [ $argn -lt 2 ]; then
+    echo "too few parameters"
+    return -1
+  fi
+  keys=${@: 1: $(($argn-2))}
+  projects=${@: -2: 1}
+  tasks=${@: -1: 1}
+  cmd="./gradlew $keys"
+  for p in $(echo $projects | sed "s/,/ /g")
+  do
+    for t in $(echo $tasks | sed "s/,/ /g")
+    do
+      cmd="$cmd :$p:$t"
+    done
+  done
+  echo "Running $cmd"
+  eval $cmd
+}

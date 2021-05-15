@@ -225,7 +225,7 @@ else
   endtry
 endif
 hi VisualNOS term=reverse ctermbg=220 cterm=none
-set listchars=nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set listchars=tab:▸┈,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 if has("gui_running")
   set list
   set showbreak=↪\ 

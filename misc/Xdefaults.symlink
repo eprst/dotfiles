@@ -7,7 +7,7 @@ Xcursor.theme: redglass
 ! *VT100.metaSendsEscape: false
 
 ! xterm
-XTerm*faceName: xft:Ubuntu Mono for VimPowerline:pixelsize=32
+XTerm*faceName: xft:Ubuntu Mono for VimPowerline:pixelsize=50
 XTerm*showBlinkAsBold: on
 XTerm*termName: xterm-256color
 XTerm*allowSendEvents: true
