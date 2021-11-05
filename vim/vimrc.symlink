@@ -35,6 +35,7 @@ let g:yankring_history_dir = '~/tmp/vim,~/tmp,/tmp,/var/tmp,~'
 set tags=tags; " look for tags in current folder, then in parent folder etc
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
+let g:vim_markdown_new_list_item_indent = 0
 
 let g:dark = filereadable(expand('~/.dark')) && $TERMINAL_EMULATOR != 'JetBrains-JediTerm'
 " }}}
@@ -213,7 +214,7 @@ elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   "set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
   "set guifont=Fira\ Code\ weight=453\ 14
-  set guifont=Fira\ Code\ weight=453\ 8
+  set guifont=Fira\ Code\ weight=453\ 14
 else
   try
     " colorscheme chela_light
