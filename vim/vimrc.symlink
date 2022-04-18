@@ -233,7 +233,7 @@ if has("gui_running")
   set list
   set showbreak=↪\ 
   set listchars=tab:▸┈,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-  hi SpecialKey guifg=red
+  hi SpecialKey guifg=grey30
   hi NonText guibg=grey20 guifg=grey30
 end
 set colorcolumn=120

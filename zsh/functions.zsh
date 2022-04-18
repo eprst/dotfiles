@@ -24,7 +24,7 @@ function makeClassRegexp {
         }
         res=${res}${char}
     }
-    echo $res"(.*)\.java$"
+  echo $res"(.*)\.(java|scala)$"
 }
 
 #function to choose a file from a result of a 'find' command
@@ -67,7 +67,8 @@ vtr() {
 # find classes using IDEA-like name abbrevs
 fcl() {
     regexp=`makeClassRegexp $1`
-    find . -type f | GREPP $regexp
+    # find . -type f | GREPP $regexp
+    find . -type f | grep -P $regexp
 }
 # edit classes using IDEA-like name abbrevs
 vcl() {

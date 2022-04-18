@@ -126,9 +126,14 @@ install_dotfiles
 # create vim tmp folder
 mkdir -p ~/tmp/vim
 
-info "installing vim bundles"
-vim -c NeoBundleInstall! -c q -c q
-success "installed vim bundles"
+# info "installing vim bundles"
+# vim -c NeoBundleInstall! -c q -c q
+# success "installed vim bundles"
+
+# info "settin up nvim"
+mkdir -p ~/.config/nvim/lua
+ln -sf nvim/init.vim ~/.config/nvim/init.vim
+ln -sf nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
 if hash fc-cache 2>/dev/null; then
   info "updating fonts cache"
