@@ -132,8 +132,8 @@ mkdir -p ~/tmp/vim
 
 # info "settin up nvim"
 mkdir -p ~/.config/nvim/lua
-ln -sf nvim/init.vim ~/.config/nvim/init.vim
-ln -sf nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
+ln -sf $DOTFILES_ROOT/nvim/init.vim ~/.config/nvim/init.vim
+ln -sf $DOTFILES_ROOT/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
 if hash fc-cache 2>/dev/null; then
   info "updating fonts cache"
