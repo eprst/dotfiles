@@ -104,5 +104,20 @@ if exists("g:fvim_loaded")
   FVimCursorSmoothBlink v:true
 endif
 " }}}
+"
+" {{{1 bindings
+" {{{2 alt-1 to find current file
+nnoremap <silent> <M-1> :NvimTreeFindFile<CR>
+nnoremap <silent> 1 :NERDTreeFind<CR>
+nnoremap <silent> ! :NERDTreeFind<CR>
+nnoremap <silent> ¡ :NERDTreeFind<CR>
+" }}}
+
+" {{{2 commenting
+nnoremap <silent>  :CommentToggle<CR>j
+vnoremap <silent>  :CommentToggle<CR>
+" }}}
+" }}}
+"
 
 " vim:foldmethod=marker:

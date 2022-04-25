@@ -74,12 +74,15 @@ require('packer').startup(function()
 		end
 	}
 
-	use({
-		"WhoIsSethDaniel/goldsmith.nvim",
-		-- run = ":GoInstallBinaries",
-		requires = { "antoinemadec/FixCursorHold.nvim" },
-	})
+	if vim.fn.executable('gopls') == 1 then
+		use({
+			"WhoIsSethDaniel/goldsmith.nvim",
+			-- run = ":GoInstallBinaries",
+			requires = { "antoinemadec/FixCursorHold.nvim" },
+		})
+	end
 
+	use { 'terrortylor/nvim-comment' }
 	use { 'Yggdroot/indentLine' }
 	use { 'tpope/vim-fugitive' }
 	use { 'junegunn/gv.vim' }
@@ -94,6 +97,7 @@ require('packer').startup(function()
 	end
 end)
 
+require('nvim_comment').setup{}
 require('bufferline').setup{}
 require('nvim-lastplace').setup{}
 require('nvim-tree').setup{}
@@ -109,14 +113,16 @@ require("null-ls").setup({
 	sources = {
 		require("null-ls").builtins.formatting.stylua,
 		require("null-ls").builtins.diagnostics.eslint,
-		require("null-ls").builtins.completion.spell,
+		-- require("null-ls").builtins.completion.spell,
 	},
 })
 
-require("goldsmith").config({
-	null = { run_setup = false, revive = false, gofumpt = false, golines = false },
-	mappings = { format = {} },
-})
+if vim.fn.executable('gopls') == 1 then
+	require("goldsmith").config({
+		null = { run_setup = false, revive = false, gofumpt = false, golines = false },
+		mappings = { format = {} },
+	})
+end
 
 require('gitsigns').setup{
 	on_attach = function(bufnr)
