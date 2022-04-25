@@ -40,23 +40,24 @@ let g:dark = filereadable(expand('~/.dark')) && $TERMINAL_EMULATOR != 'JetBrains
 " }}}
 
 " {{{1 color tweaks
+
+if g:dark
+  set background=dark
+else
+  set background=light
+endif
+
+if $TERMINAL_EMULATOR == 'JetBrains-JediTerm'
+  colorscheme blue
+else
+  colorscheme NeoSolarized
+endif
+
+hi clear SignColumn
 " completion menu is ugly
 hi Pmenu ctermbg=gray
 hi PmenuSel ctermbg=227
-if g:dark
-  set background=dark
-"  if has("gui_running")
-"    colorscheme evening
-"  endif
-else
-  set background=light
-  if $TERMINAL_EMULATOR == 'JetBrains-JediTerm'
-    colorscheme blue
-  else
-    colorscheme NeoSolarized
-  endif
-endif
-hi clear SignColumn
+
 if has("gui_macvim")
   "set guifont=Source\ Code\ Pro\ for\ Powerline:h14
   set guifont=FiraCode-Regular:h14
