@@ -118,6 +118,10 @@ nnoremap <silent> ¡ :NERDTreeFind<CR>
 nnoremap <silent>  :CommentToggle<CR>j
 vnoremap <silent>  :CommentToggle<CR>
 " }}}
+
+nnoremap <silent>  :w<CR>
+inoremap <silent>  :w<CR>
+
 " }}}
 "
 

@@ -10,6 +10,7 @@ require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 	use 'ethanholz/nvim-lastplace'
 	use 'overcache/NeoSolarized'
+	use 'ixru/nvim-markdown'
 	use {'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons'}
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use { 'nvim-treesitter/nvim-treesitter-textobjects' }
