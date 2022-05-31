@@ -122,7 +122,9 @@ vnoremap <silent>  :CommentToggle<CR>
 nnoremap <silent>  :w<CR>
 inoremap <silent>  :w<CR>
 
-" }}}
-"
+nnoremap <silent> <S-Insert> "*p
+vnoremap <silent> <C-Insert> "*y
 
-" vim:foldmethod=marker:
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0:
