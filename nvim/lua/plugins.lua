@@ -248,7 +248,7 @@ cmp.setup({
 		-- { name = 'look' },
 		{ name = 'path' },
 		{ name = 'calc' },
-		{ name = 'spell' }
+		-- { name = 'spell' }
 	}, {
 		{ name = 'buffer' },
 	})
