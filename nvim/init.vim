@@ -37,6 +37,7 @@ set undodir=~/tmp/vim,~/tmp,/var/tmp,/tmp,." keep undo files in this locations
 set tags=tags; " look for tags in current folder, then in parent folder etc
 
 let g:dark = filereadable(expand('~/.dark')) && $TERMINAL_EMULATOR != 'JetBrains-JediTerm'
+let g:vim_markdown_toc_autofit = 1
 " }}}
 
 " {{{1 color tweaks
@@ -62,7 +63,7 @@ if has("gui_macvim")
   "set guifont=Source\ Code\ Pro\ for\ Powerline:h14
   set guifont=FiraCode-Regular:h14
 elseif has("gui_vimr") || exists("g:neovide") || exists("g:fvim_loaded")
-  set guifont=Hack\ Nerd\ Font\ Mono:h14
+  set guifont=FuraCode\ Nerd\ Font\ Mono:h13
 elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   "set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
@@ -108,10 +109,16 @@ endif
 "
 " {{{1 bindings
 " {{{2 alt-1 to find current file
-nnoremap <silent> <M-1> :NvimTreeFindFile<CR>
-nnoremap <silent> 1 :NERDTreeFind<CR>
-nnoremap <silent> ! :NERDTreeFind<CR>
-nnoremap <silent> ¡ :NERDTreeFind<CR>
+if exists("g:NERDTree")
+  nnoremap <silent> 1 :NERDTreeFind<CR>
+  nnoremap <silent> ! :NERDTreeFind<CR>
+  nnoremap <silent> ¡ :NERDTreeFind<CR>
+else
+  nnoremap <silent> <M-1> :NvimTreeFindFile<CR>
+  nnoremap <silent> 1 :NvimTreeFindFile<CR>
+  nnoremap <silent> ! :NvimTreeFindFile<CR>
+  nnoremap <silent> ¡ :NvimTreeFindFile<CR>
+endif
 " }}}
 
 " {{{2 commenting
@@ -123,7 +130,10 @@ nnoremap <silent>  :w<CR>
 inoremap <silent>  :w<CR>
 
 nnoremap <silent> <S-Insert> "*p
+inoremap <silent> <S-Insert> <Esc>"*pa
 vnoremap <silent> <C-Insert> "*y
+
+nnoremap <silent> <leader>o :SymbolsOutline<CR>
 
 " }}}
 

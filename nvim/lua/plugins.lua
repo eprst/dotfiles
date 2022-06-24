@@ -91,6 +91,8 @@ require('packer').startup(function()
 	use { 'windwp/nvim-autopairs' }
 	use { 'rcarriga/nvim-notify' }
 	use({ "neovim/nvim-lspconfig", requires = { "williamboman/nvim-lsp-installer" } })
+	use { 'simrat39/symbols-outline.nvim' }
+	use { 'chrisbra/csv.vim' }
 
 	if packer_bootstrap then
 		vim.notify("Installing plugins...")
@@ -104,6 +106,9 @@ require('nvim-lastplace').setup{}
 require('nvim-tree').setup{}
 require('nvim-autopairs').setup{}
 require('nvim-treesitter').setup{}
+if vim.fn.executable('pylsp') == 1 then
+	require('lspconfig').pylsp.setup{}
+end
 
 require('nvim-lsp-installer').on_server_ready(function(server)
 	local opts = {}
@@ -285,7 +290,7 @@ local map = vim.api.nvim_set_keymap
 map('n', '<leader>t', [[:NvimTreeToggle<CR>]], {})
 map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
 map('n', '<leader>fb', [[:Telescope buffers<CR>]], {})
-map('n', '<leader>fo', [[:Telescope old_files<CR>]], {})
+map('n', '<leader>fo', [[:Telescope oldfiles<CR>]], {})
 map('n', '<leader>fr', [[:Telescope live_grep<CR>]], {})
 map('n', '<leader>fg', [[:Telescope git_files<CR>]], {})
 map('n', '<leader>fp', [[:Telescope project<CR>]], {})
