@@ -36,8 +36,17 @@ set bdir=~/tmp/vim//,~/tmp//,/var/tmp//,/tmp//" keep backup files in this locati
 set undodir=~/tmp/vim,~/tmp,/var/tmp,/tmp,." keep undo files in this locations
 set tags=tags; " look for tags in current folder, then in parent folder etc
 
+" vim-markdown: don't conceal characters on the cursor line
+" set cocu=
+" let g:vim_markdown_strikethrough = 1
+" let g:vim_markdown_toc_autofit = 1
+" let g:vim_markdown_folding_disabled = 1
+let g:markdown_fenced_languages = ['sh', 'sql', 'go']
+let g:markdown_folding = 1
+let g:indentLine_concealcursor=''
+set concealcursor=
+
 let g:dark = filereadable(expand('~/.dark')) && $TERMINAL_EMULATOR != 'JetBrains-JediTerm'
-let g:vim_markdown_toc_autofit = 1
 " }}}
 
 " {{{1 color tweaks
@@ -117,7 +126,8 @@ else
   nnoremap <silent> <M-1> :NvimTreeFindFile<CR>
   nnoremap <silent> 1 :NvimTreeFindFile<CR>
   nnoremap <silent> ! :NvimTreeFindFile<CR>
-  nnoremap <silent> ¡ :NvimTreeFindFile<CR>
+  nnoremap <silent> <M-O>3P :NvimTreeFindFile<CR>
+  nnoremap <silent> <M-F1> :NvimTreeFindFile<CR>
 endif
 " }}}
 
@@ -129,8 +139,8 @@ vnoremap <silent>  :CommentToggle<CR>
 nnoremap <silent>  :w<CR>
 inoremap <silent>  :w<CR>
 
-nnoremap <silent> <S-Insert> "*p
-inoremap <silent> <S-Insert> <Esc>"*pa
+" nnoremap <silent> <S-Insert> "*p
+" inoremap <silent> <S-Insert> <Esc>"*pa
 vnoremap <silent> <C-Insert> "*y
 
 nnoremap <silent> <leader>o :SymbolsOutline<CR>

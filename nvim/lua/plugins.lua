@@ -10,8 +10,7 @@ require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 	use 'ethanholz/nvim-lastplace'
 	use 'overcache/NeoSolarized'
-	use 'ixru/nvim-markdown'
-	use {'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons'}
+	use { 'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons' }
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 	use {
@@ -92,7 +91,8 @@ require('packer').startup(function()
 	use { 'rcarriga/nvim-notify' }
 	use({ "neovim/nvim-lspconfig", requires = { "williamboman/nvim-lsp-installer" } })
 	use { 'simrat39/symbols-outline.nvim' }
-	use { 'chrisbra/csv.vim' }
+	use { 'chrisbra/csv.vim' } -- very slow on large files
+  use { 'gbprod/yanky.nvim' }
 
 	if packer_bootstrap then
 		vim.notify("Installing plugins...")
@@ -105,7 +105,12 @@ require('bufferline').setup{}
 require('nvim-lastplace').setup{}
 require('nvim-tree').setup{}
 require('nvim-autopairs').setup{}
-require('nvim-treesitter').setup{}
+require('nvim-treesitter').setup{
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+}
 if vim.fn.executable('pylsp') == 1 then
 	require('lspconfig').pylsp.setup{}
 end
@@ -286,6 +291,30 @@ cmp.setup.cmdline(':', {
 	})
 })
 
+require("yanky").setup({
+	highlight = {
+		on_put = true,
+		on_yank = true,
+		timer = 500,
+	},
+	picker = {
+		select = {
+			action = nil,
+		},
+		telescope = {
+			mappings = nil,
+		},
+		system_clipboard = {
+			sync_with_ring = true,
+		},
+		preserve_cursor_position = {
+			enabled = true,
+		},
+	}
+})
+
+require("telescope").load_extension("yank_history")
+
 local map = vim.api.nvim_set_keymap
 map('n', '<leader>t', [[:NvimTreeToggle<CR>]], {})
 map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
@@ -296,6 +325,7 @@ map('n', '<leader>fg', [[:Telescope git_files<CR>]], {})
 map('n', '<leader>fp', [[:Telescope project<CR>]], {})
 map('n', '<leader>ff', [[:Telescope find_files]], {})
 map('n', '<leader>fm', [[:Telescope marks<CR>]], {})
+map('n', '<leader>fy', [[:Telescope yank_history<CR>]], {})
 map('n', '<leader>lm', [[:Telescope lsp_references<CR>]], {})
 map('n', '<leader>lo', [[:Telescope lsp_document_symbols<CR>]], {})
 
