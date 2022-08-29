@@ -72,7 +72,11 @@ if has("gui_macvim")
   "set guifont=Source\ Code\ Pro\ for\ Powerline:h14
   set guifont=FiraCode-Regular:h14
 elseif has("gui_vimr") || exists("g:neovide") || exists("g:fvim_loaded")
-  set guifont=FuraCode\ Nerd\ Font\ Mono:h13
+  if has("macunix")
+    set guifont=Hack\ Nerd\ Font\ Mono:h15
+  elseif
+    set guifont=FuraCode\ Nerd\ Font\ Mono:h13
+  endif
 elseif has("gui_running")
   "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
   "set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
