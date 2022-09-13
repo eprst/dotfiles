@@ -132,12 +132,20 @@ else
   nnoremap <silent> ! :NvimTreeFindFile<CR>
   nnoremap <silent> <M-O>3P :NvimTreeFindFile<CR>
   nnoremap <silent> <M-F1> :NvimTreeFindFile<CR>
+  nnoremap <silent> ¡ :NvimTreeFindFile<CR>
 endif
 " }}}
 
 " {{{2 commenting
 nnoremap <silent>  :CommentToggle<CR>j
 vnoremap <silent>  :CommentToggle<CR>
+" }}}
+
+" {{{2 diagnostics
+nnoremap <silent> <leader>ld :lua vim.diagnostic.open_float()<CR>
+nnoremap <silent> <leader>ne :lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> <F2> :lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>pe :lua vim.diagnostic.goto_prev()<CR>
 " }}}
 
 nnoremap <silent>  :w<CR>
