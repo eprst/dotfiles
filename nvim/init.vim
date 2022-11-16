@@ -101,11 +101,24 @@ hi VisualNOS term=reverse ctermbg=220 cterm=none
   hi NonText guifg=grey80
   if g:dark
     hi SpecialKey guifg=red
-    hi NonText guibg=grey20 guifg=grey30
+    " hi NonText guibg=grey20 guifg=grey30
+    hi NonText guifg=grey30
   endif
 " end
 set colorcolumn=120
+
+function Light()
+  set background=light
+  hi NonText guifg=grey80
+endfunction
+function Dark()
+  set background=dark
+  hi NonText guifg=grey30
+endfunction
+command Light call Light()
+command Dark call Dark()
 " }}}
+
 
 " {{{1 frontend config
 if exists("g:neovide")
@@ -138,7 +151,9 @@ endif
 
 " {{{2 commenting
 nnoremap <silent>  :CommentToggle<CR>j
+nnoremap <silent> <C-/> :CommentToggle<CR>j
 vnoremap <silent>  :CommentToggle<CR>
+vnoremap <silent> <C-/> :CommentToggle<CR>
 " }}}
 
 " {{{2 diagnostics

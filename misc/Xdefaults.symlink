@@ -14,11 +14,12 @@ XTerm*allowSendEvents: true
 
 ! urxvt
 URxvt.font: \
-            xft:Terminess Powerline:pixelsize=15:antialias=true, \
-            xft:Anonymous Pro:pixelsize=15:antialias=true, \
-            xft:Symbola:pixelsize=15:antialias=true:hinting=true, \
-            xft:Droid Sans Fallback:pixelsize=15:style=Regular, \
-            xft:DejaVu Sans Mono:pixelsize=15:antialias=true:hinting=true
+            xft:FiraCode:pixelsize=14:antialias=true, \
+            xft:PowerlineSymbols:pixelsize=14:antialias=true, \
+            xft:Anonymous Pro:pixelsize=14:antialias=true, \
+            xft:Symbola:pixelsize=14:antialias=true:hinting=true, \
+            xft:Droid Sans Fallback:pixelsize=14:style=Regular, \
+            xft:DejaVu Sans Mono:pixelsize=14:antialias=true:hinting=true
 URxvt.scrollBar:    false
 URxvt.urgentOnBell: true
 URxvt.url-select.launcher: firefox
@@ -67,26 +68,26 @@ xscreensaver.passwd.passwdFont: -*-dejavu sans mono-bold-r-*-*-0-120-144-144-*-*
 
 ! Dark
 
-! #define S_base03        #002b36
-! #define S_base02        #073642
-! #define S_base01        #586e75
-! #define S_base00        #657b83
-! #define S_base0         #839496
-! #define S_base1         #93a1a1
-! #define S_base2         #eee8d5
-! #define S_base3         #fdf6e3
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
 
 
 ! Light
 
-#define S_base03        #fdf6e3
-#define S_base02        #eee8d5
-#define S_base01        #93a1a1
-#define S_base00        #839496
-#define S_base0         #657b83
-#define S_base1         #586e75
-#define S_base2         #073642
-#define S_base3         #002b36
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
 
 
 ! To only apply colors to your terminal, for example, prefix
@@ -104,23 +105,23 @@ xscreensaver.passwd.passwdFont: -*-dejavu sans mono-bold-r-*-*-0-120-144-144-*-*
 
 ! solarized light had black and white swapped: 0-7 and 8-15
 
-!*color0:                  S_base02
-*color0:                  S_base2
+*color0:                  S_base02
+!*color0:                  S_base2
 *color1:                  S_red
 *color2:                  S_green
 *color3:                  S_yellow
 *color4:                  S_blue
 *color5:                  S_magenta
 *color6:                  S_cyan
-!*color7:                  S_base2
-*color7:                  S_base02
-!*color8:                  S_base03
-*color8:                  S_base3
+*color7:                  S_base2
+!*color7:                  S_base02
+*color8:                  S_base03
+!*color8:                  S_base3
 *color9:                  S_orange
 *color10:                 S_base01
 *color11:                 S_base00
 *color12:                 S_base0
 *color13:                 S_violet
 *color14:                 S_base1
-!*color15:                 S_base3
-*color15:                 S_base03
+*color15:                 S_base3
+!*color15:                 S_base03
