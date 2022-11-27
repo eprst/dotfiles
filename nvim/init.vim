@@ -68,20 +68,23 @@ hi clear SignColumn
 hi Pmenu ctermbg=gray
 hi PmenuSel ctermbg=227
 
-if has("gui_macvim")
-  "set guifont=Source\ Code\ Pro\ for\ Powerline:h14
-  set guifont=FiraCode-Regular:h14
-elseif has("gui_vimr") || exists("g:neovide") || exists("g:fvim_loaded")
-  if has("macunix")
-    set guifont=Hack\ Nerd\ Font\ Mono:h15
+if has("gui_running") || has("gui_macvim") || has("gui_vimr") || exists("g:neovide") || exists("g:fvim_loaded")
+  if has("macunix") || has("gui_macvim")
+    let g:gui_font_name = 'Hack\ Nerd\ Font\ Mono'
+    let g:gui_font_size = 15
+    " set guifont=Hack\ Nerd\ Font\ Mono:h15
   else
-    set guifont=FuraCode\ Nerd\ Font\ Mono:h13
+    let g:gui_font_name = 'FuraCode Nerd Font Mono'
+    let g:gui_font_size = 13
+    " set guifont=FuraCode\ Nerd\ Font\ Mono:h13
   endif
-elseif has("gui_running")
-  "set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
-  "set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
-  "set guifont=Fira\ Code\ weight=453\ 14
-  set guifont=Fira\ Code\ weight=453\ 14
+  function! ResizeFont(delta)
+    let g:gui_font_size = g:gui_font_size + a:delta
+    silent! execute('set guifont='.g:gui_font_name.':h'.g:gui_font_size)
+  endfunction
+  call ResizeFont(0)
+  noremap <expr><C-=> ResizeFont(1)
+  noremap <expr><C--> ResizeFont(-1)
 else
   try
     " colorscheme chela_light
@@ -118,7 +121,6 @@ endfunction
 command Light call Light()
 command Dark call Dark()
 " }}}
-
 
 " {{{1 frontend config
 if exists("g:neovide")
