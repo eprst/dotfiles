@@ -74,7 +74,7 @@ if has("gui_running") || has("gui_macvim") || has("gui_vimr") || exists("g:neovi
     let g:gui_font_size = 15
     " set guifont=Hack\ Nerd\ Font\ Mono:h15
   else
-    let g:gui_font_name = 'FuraCode Nerd Font Mono'
+    let g:gui_font_name = 'FuraCode\ Nerd\ Font\ Mono'
     let g:gui_font_size = 13
     " set guifont=FuraCode\ Nerd\ Font\ Mono:h13
   endif
