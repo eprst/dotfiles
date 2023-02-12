@@ -3,3 +3,5 @@
 *~
 *.swp
 *.rbc
+.stignore
+scratch1.txt
