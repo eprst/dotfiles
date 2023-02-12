@@ -34,7 +34,7 @@ require('packer').startup(function()
 			-- 'quangnguyen30192/cmp-nvim-ultisnips', 
 			'hrsh7th/cmp-nvim-lua',
 			'octaltree/cmp-look', 'hrsh7th/cmp-path', 'hrsh7th/cmp-calc',
-			'f3fora/cmp-spell', 'hrsh7th/cmp-emoji'
+			'f3fora/cmp-spell', 'hrsh7th/cmp-emoji', 'hrsh7th/cmp-cmdline'
 		}
 	}
 	use {
@@ -321,6 +321,8 @@ cmp.setup.cmdline(':', {
 		{ name = 'path' }
 	}, {
 		{ name = 'cmdline' }
+	}, {
+		{ name = 'nvim-lua'}
 	})
 })
 
