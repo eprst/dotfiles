@@ -1,0 +1,6 @@
+set rnu
+set ideajoin
+set hlsearch
+set incsearch
+set NERDTree
+idearefactormode=keep

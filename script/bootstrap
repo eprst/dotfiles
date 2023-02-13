@@ -135,6 +135,9 @@ mkdir -p ~/.config/nvim/lua
 ln -sf $DOTFILES_ROOT/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $DOTFILES_ROOT/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
+# info "settin up ideavim"
+ln -sf $DOTFILES_ROOT/.ideavimrc ~/.ideavimrc
+
 if hash fc-cache 2>/dev/null; then
   info "updating fonts cache"
   fc-cache -f ~/.fonts
