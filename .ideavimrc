@@ -1,4 +1,4 @@
-set rnu
+set relativenumber number
 set ideajoin
 set hlsearch
 set incsearch

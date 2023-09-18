@@ -23,7 +23,7 @@ set wildmode=list:longest
 set ignorecase " ignore case when searching
 set smartcase  " don't ignore case when there's one captial letter
 " set gdefault " /g by default for replace || very easy to forget and be confused
-" set rnu " relative line numbers (disabled, they're slow)
+set relativenumber number
 set undofile " persistent per-file undo
 
 set incsearch

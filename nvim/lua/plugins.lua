@@ -371,6 +371,7 @@ require("telescope").load_extension("yank_history")
 -- TODO experiment with layout_strategies.bottom_pane()
 local map = vim.api.nvim_set_keymap
 map('n', '<leader>t', [[:NvimTreeToggle<CR>]], {})
+map('n', '<Tab>', [[:NvimTreeToggle<CR>]], {})
 map('n', '<leader>pp', [[:Telescope resume<CR>]], {})
 map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
 map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
@@ -402,7 +403,8 @@ local function open_nvim_tree(data)
   -- buffer is a directory
   local directory = vim.fn.isdirectory(data.file) == 1
 
-  if not no_name and not directory then
+  -- if not no_name and not directory then
+  if not directory then
     return
   end
 
