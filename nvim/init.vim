@@ -171,6 +171,7 @@ inoremap <silent>  :w<CR>
 " nnoremap <silent> <S-Insert> "*p
 " inoremap <silent> <S-Insert> <Esc>"*pa
 vnoremap <silent> <C-Insert> "*y
+map! <S-Insert> <C-R>+
 
 nnoremap <silent> <leader>o :SymbolsOutline<CR>
 

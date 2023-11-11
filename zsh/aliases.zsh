@@ -3,7 +3,8 @@ alias reload!='. ~/.zshrc'
 alias cdd='cd +1'
 alias g='git'
 alias st='git status'
-alias gl='git log --branches --remotes --tags --graph --decorate --stat'
+# alias gl='git log --branches --remotes --tags --graph --decorate --stat'
+alias gl="git --no-pager log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%<(20)%an%Cgreen%d %Creset%s' --date=short"
 alias br='git branch -v | cat -'
 alias gpr='git push review'
 alias -g G='| grep'
@@ -22,6 +23,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias cal='gcal -m .'
 else
   alias cal='TERM="xterm-256color" cal -m -3'
+  alias caly='TERM="xterm-256color" cal -m -y'
 fi
 
 alias v='vim'
