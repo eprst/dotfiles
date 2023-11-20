@@ -88,8 +88,12 @@ end
 
 -- {{{1 key bindings
 vim.keymap.set('n', '<space>', 'za', {silent=true})
-vim.keymap.set('n', "<C-/>", 'gccj', { remap = true })
-vim.keymap.set('v', "<C-/>", 'gc', { remap = true })
+vim.keymap.set('n', "<C-/>", 'gccj', {remap=true})
+vim.keymap.set('v', "<C-/>", 'gc', {remap=true})
+vim.keymap.set('n', "<leader>bl", '<CMD>:set background=light<CR>', {remap=true, silent=true, desc='light theme'})
+vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, silent=true, desc='dark theme'})
+vim.keymap.set('v', '<C-Insert>', '"*y', {silent=true})
+vim.keymap.set('n', '<S-Insert>', '<C-R>+', {})
 -- }}}
 
 -- vim:foldmethod=marker:foldlevel=0:
