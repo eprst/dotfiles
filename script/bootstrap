@@ -131,9 +131,11 @@ mkdir -p ~/tmp/vim
 # success "installed vim bundles"
 
 # info "settin up nvim"
-mkdir -p ~/.config/nvim/lua
-ln -sf $DOTFILES_ROOT/nvim/init.vim ~/.config/nvim/init.vim
-ln -sf $DOTFILES_ROOT/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
+# mkdir -p ~/.config/nvim/lua
+# ln -sf $DOTFILES_ROOT/nvim/init.vim ~/.config/nvim/init.vim
+# ln -sf $DOTFILES_ROOT/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
+rm -rf ~/.config/nvim
+ln -sf $DOTFILES_ROOT/nvim ~/.config/nvim
 
 # info "settin up ideavim"
 ln -sf $DOTFILES_ROOT/.ideavimrc ~/.ideavimrc
