@@ -162,7 +162,7 @@ return {
       end
 
       -- set up key bindings
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { expr=true, silent=true })
+      vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { expr=true, silent=true, desc='LSP Rename' })
     end,
   },
 

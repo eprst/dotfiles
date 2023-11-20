@@ -55,8 +55,6 @@ return {
 
 
       local map = vim.api.nvim_set_keymap
-      map('n', '<leader>t', [[:NvimTreeToggle<CR>]], {})
-      map('n', '<Tab>', [[:NvimTreeToggle<CR>]], {})
       map('n', '<leader>pp', [[:Telescope resume<CR>]], {})
       map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
       map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
@@ -68,7 +66,8 @@ return {
       map('n', '<leader>ff', [[:Telescope find_files<CR>]], {})
       map('n', '<leader>fm', [[:Telescope marks<CR>]], {})
       map('n', '<leader>fy', [[:Telescope yank_history<CR>]], {})
-      map('n', '<leader>ft', [[:Telescope file_browser path=%:p:h select_buffer=true<CR>]], {})
+      map('n', '<leader>ft', [[:Telescope file_browser<CR>]], {})
+      map('n', '<C-1>', [[:Telescope file_browser path=%:p:h select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
       map('n', '<leader>fz', [[:Telescope lazy<CR>]], {})
 
       map('n', '<leader>lr', [[:Telescope lsp_references<CR>]], {})
