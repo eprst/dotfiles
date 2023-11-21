@@ -51,11 +51,11 @@ vim.o.colorcolumn=120
 -- }}}
 
 -- {{{1 GUI options
-if vim.fn.has('gui_running') or vim.g.neovide or vim.g.fvim_loaded then
-  vim.g.gui_font_default_size = 13
-  vim.g.gui_font_face = "FuraCode Nerd Font Mono"
-
-  if vim.fn.has('macunix') then
+if vim.fn.has('gui_running')==1 or vim.g.neovide or vim.g.fvim_loaded then
+  if vim.fn.has('linux')==1 then
+    vim.g.gui_font_default_size = 13
+    vim.g.gui_font_face = "FuraCode Nerd Font Mono"
+  elseif vim.fn.has('macunix')==1 then
     vim.g.gui_font_face = "Hack Nerd Font Mono"
     vim.g.gui_font_default_size = 15
   end
@@ -69,7 +69,7 @@ if vim.fn.has('gui_running') or vim.g.neovide or vim.g.fvim_loaded then
   vim.keymap.set({'n', 'i'}, "<C-=>", function() ResizeFont(1)  end, { noremap = true, silent = true })
   vim.keymap.set({'n', 'i'}, "<C-->", function() ResizeFont(-1) end, { noremap = true, silent = true })
 
-  if vim.neovide then
+  if vim.g.neovide then
     vim.g.neovide_remember_window_size = true
     vim.g.neovide_cursor_trail_size = 0.3
     vim.g.neovide_cursor_vfx_mode = "railgun"
