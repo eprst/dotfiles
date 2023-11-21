@@ -54,7 +54,7 @@ vim.o.colorcolumn=120
 if vim.fn.has('gui_running')==1 or vim.g.neovide or vim.g.fvim_loaded then
   if vim.fn.has('linux')==1 then
     vim.g.gui_font_default_size = 13
-    vim.g.gui_font_face = "FuraCode Nerd Font Mono"
+    vim.g.gui_font_face = "CommitMono Nerd Font"
   elseif vim.fn.has('macunix')==1 then
     vim.g.gui_font_face = "Hack Nerd Font Mono"
     vim.g.gui_font_default_size = 15

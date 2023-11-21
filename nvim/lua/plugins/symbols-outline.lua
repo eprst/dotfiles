@@ -20,7 +20,7 @@ return {
         Fragment = { icon = "...", hl = "@constant" },
         Function = { icon = "󰊕 ", hl = "@function" },
         Interface = { icon = " ", hl = "@type" },
-        Key = { icon = "🔐", hl = "@type" },
+        Key = { icon = " ", hl = "@type" },
         Method = { icon = "󰊕 ", hl = "@method" },
         Module = { icon = " ", hl = "@namespace" },
         Namespace = { icon = "N ", hl = "@namespace" },
