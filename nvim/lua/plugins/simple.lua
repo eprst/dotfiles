@@ -10,6 +10,8 @@ return {
   { 'echasnovski/mini.comment', version = false, config = true },
   { 'simrat39/symbols-outline.nvim',  config = true },
   { 'folke/which-key.nvim', opts = {} },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- indendation blank lines
+  { 'stevearc/dressing.nvim', opts = {} },
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',

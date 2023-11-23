@@ -56,18 +56,22 @@ return {
 
       local map = vim.api.nvim_set_keymap
       map('n', '<leader>pp', [[:Telescope resume<CR>]], {})
+      map('n', '<leader>pP', ':lua require("telescope.builtin").buffers()<CR>', {})
       map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
       map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
       map('n', '<leader>fb', [[:Telescope buffers<CR>]], {})
       map('n', '<leader>fo', [[:Telescope oldfiles<CR>]], {})
       map('n', '<leader>fr', [[:Telescope live_grep<CR>]], {})
+      map('n', '<leader>fR', ':lua require("telescope.builtin").live_grep({cwd=require("telescope.utils").buffer_dir()})<CR>', {desc = 'Live grep at the current buffer location'})
       map('n', '<leader>fg', [[:Telescope git_files<CR>]], {})
+      map('n', '<leader>fc', [[:Telescope git_commits<CR>]], {})
       map('n', '<leader>fp', [[:Telescope project<CR>]], {})
       map('n', '<leader>ff', [[:Telescope find_files<CR>]], {})
       map('n', '<leader>fm', [[:Telescope marks<CR>]], {})
       map('n', '<leader>fy', [[:Telescope yank_history<CR>]], {})
       map('n', '<leader>ft', [[:Telescope file_browser<CR>]], {})
       map('n', '<C-1>', [[:Telescope file_browser path=%:p:h select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
+      map('n', '<leader>f1', [[:Telescope file_browser path=%:p:h select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
       map('n', '<leader>fz', [[:Telescope lazy<CR>]], {})
 
       map('n', '<leader>lr', [[:Telescope lsp_references<CR>]], {})
