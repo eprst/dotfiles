@@ -1,6 +1,7 @@
 return {
   {
     'simrat39/symbols-outline.nvim',
+    enabled = false, -- in favor of aerial
     opts = {
       highlight_hovered_item = false, -- doesn't work anyways
       show_numbers = false,

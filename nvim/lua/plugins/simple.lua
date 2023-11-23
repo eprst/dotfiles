@@ -8,7 +8,6 @@ return {
   { 'L3MON4D3/LuaSnip', version = 'v2.*' },
   { 'echasnovski/mini.pairs', version = false, config = true },
   { 'echasnovski/mini.comment', version = false, config = true },
-  { 'simrat39/symbols-outline.nvim',  config = true },
   { 'folke/which-key.nvim', opts = {} },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- indendation blank lines
   { 'stevearc/dressing.nvim', opts = {} },
