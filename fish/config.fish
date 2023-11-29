@@ -22,6 +22,7 @@ abbr -a st 'git status'
 abbr -a gl "git --no-pager log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%<(20)%an%Cgreen%d %Creset%s' --date=short"
 abbr -a br 'git branch -v | cat -'
 abbr -a gpr 'git push review'
+abbr -a gfr 'git pull --rebase'
 
 abbr -a --position anywhere G '| grep'
 abbr -a --position anywhere L '| less'
