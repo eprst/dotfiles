@@ -130,14 +130,18 @@ mkdir -p ~/tmp/vim
 # vim -c NeoBundleInstall! -c q -c q
 # success "installed vim bundles"
 
-# info "settin up nvim"
+info "setting up nvim"
 # mkdir -p ~/.config/nvim/lua
 # ln -sf $DOTFILES_ROOT/nvim/init.vim ~/.config/nvim/init.vim
 # ln -sf $DOTFILES_ROOT/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 rm -rf ~/.config/nvim
 ln -sf $DOTFILES_ROOT/nvim ~/.config/nvim
 
-# info "settin up ideavim"
+info "setting up fish"
+rm -rf ~/.config/fish
+ln -sf $DOTFILES_ROOT/fish ~/.config/fish
+
+info "settin up ideavim"
 ln -sf $DOTFILES_ROOT/.ideavimrc ~/.ideavimrc
 
 if hash fc-cache 2>/dev/null; then
