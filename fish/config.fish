@@ -29,8 +29,6 @@ abbr -a --position anywhere L '| less'
 abbr -a --position anywhere psg 'ps auxw | grep'
 
 abbr -a v 'nvim'
-abbr -a ... 'cd ../..'
-abbr -a .... 'cd ../../..'
 
 switch (uname)
     case Linux
@@ -38,4 +36,5 @@ switch (uname)
         abbr -a caly 'TERM="xterm-256color" cal -m -y'
     case Darwin
         abbr -a cal 'gcal -m .'
+        fzf_configure_bindings --directory=\cF --git_log=\cL --git_status=\cS --processes=\cP
 end
