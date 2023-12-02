@@ -1,6 +1,9 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    eval "$(brew shellenv)"
+    switch (uname)
+        case Darwin
+            eval "$(brew shellenv)"
+    end
 end
 
 set -U fish_greeting
