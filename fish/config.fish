@@ -4,6 +4,14 @@ if status is-interactive
         case Darwin
             eval "$(brew shellenv)"
     end
+
+    # rebind push_line to ctrl-q
+    push-line_key_bindings_uninstall
+    bind \cq 'push_line'
+    # crtl-l for clear
+    bind \cl 'clear; commandline -f repaint'
+    # remap fzf bindings to use Ctrl
+    fzf_configure_bindings --directory=\cF --git_log=\cG --git_status=\cS --processes=\cP
 end
 
 set -U fish_greeting
@@ -17,18 +25,11 @@ abbr -a br 'git branch -v | cat -'
 abbr -a gco 'git checkout'
 abbr -a gid 'git diff --no-ext-diff --cached'
 abbr -a gwd 'git diff --no-ext-diff'
+abbr -a v 'nvim'
 
 abbr -a --position anywhere G '| grep'
 abbr -a --position anywhere L '| less'
 abbr -a --position anywhere psg 'ps auxw | grep'
-
-abbr -a v 'nvim'
-
-# rebind push_line to ctrl-q
-push-line_key_bindings_uninstall
-bind \cq 'push_line'
-# remap fzf bindings to use Ctrl
-fzf_configure_bindings --directory=\cF --git_log=\cL --git_status=\cS --processes=\cP
 
 switch (uname)
     case Linux
