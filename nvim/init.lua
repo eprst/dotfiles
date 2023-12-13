@@ -97,6 +97,7 @@ vim.keymap.set('n', "<leader>bl", '<CMD>:set background=light<CR>', {remap=true,
 vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, silent=true, desc='dark theme'})
 vim.keymap.set('v', '<C-Insert>', '"*y', {silent=true})
 vim.keymap.set('n', '<S-Insert>', '<C-R>+', {})
+vim.keymap.set('n', '<C-S>', '<CMD>:w<CR>', {silent=true})
 -- }}}
 
 -- vim:foldmethod=marker:foldlevel=0:
