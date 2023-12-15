@@ -1,3 +1,5 @@
+set -gx EDITOR nvim
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     switch (uname)
@@ -8,15 +10,20 @@ if status is-interactive
     # rebind push_line to ctrl-q
     push-line_key_bindings_uninstall
     bind \cq 'push_line'
+
     # crtl-l for clear
     bind \cl 'clear; commandline -f repaint'
+
     # remap fzf bindings to use Ctrl
     fzf_configure_bindings --directory=\cF --git_log=\cG --git_status=\cS --processes=\cP
+    # also add additional mappings to open vim and scroll preview
+    set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
+    set fzf_git_log_opts --bind "ctrl-j:preview-down" --bind "ctrl-k:preview-up" --bind "ctrl-d:preview-page-down" --bind "ctrl-u:preview-page-up"
+    set fzf_git_status_opts --bind "ctrl-j:preview-down" --bind "ctrl-k:preview-up" --bind "ctrl-d:preview-page-down" --bind "ctrl-u:preview-page-up"
 end
 
 set -U fish_greeting
 set -g tide_right_prompt_items status cmd_duration context jobs direnv node python rustc java php pulumi ruby go gcloud distrobox toolbox terraform aws nix_shell crystal elixir time
-set -gx EDITOR nvim
 
 abbr -a g git
 abbr -a st 'git status'
