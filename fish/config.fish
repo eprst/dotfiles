@@ -3,6 +3,10 @@ set -gx EDITOR nvim
 if status is-interactive
     # Commands to run in interactive sessions can go here
     switch (uname)
+        case Linux
+            # rebind alt-arrows to ctrl-arrows
+            bind \e\[1\;5D prevd-or-backward-word
+            bind \e\[1\;5C nextd-or-forward-word
         case Darwin
             eval "$(brew shellenv)"
     end
