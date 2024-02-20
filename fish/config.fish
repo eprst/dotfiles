@@ -7,6 +7,9 @@ if status is-interactive
             # rebind alt-arrows to ctrl-arrows
             bind \e\[1\;5D prevd-or-backward-word
             bind \e\[1\;5C nextd-or-forward-word
+            # abbrevs to change Konsole theme
+            abbr kl konsoleprofile colors=SolarizedLight
+            abbr kd konsoleprofile colors=Solarized
         case Darwin
             eval "$(brew shellenv)"
     end
@@ -41,6 +44,10 @@ abbr -a v 'nvim'
 abbr -a --position anywhere G '| grep'
 abbr -a --position anywhere L '| less'
 abbr -a --position anywhere psg 'ps auxw | grep'
+
+function ftr
+    find . -type f -iregex ".*$argv[1].*"
+end
 
 switch (uname)
     case Linux

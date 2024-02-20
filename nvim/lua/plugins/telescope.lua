@@ -1,7 +1,8 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
+    tag = '0.1.5',
+    branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
       "nvim-telescope/telescope-file-browser.nvim",
@@ -20,7 +21,6 @@ return {
       telescope.setup {
         defaults = {
           path_display = { "smart" },
-
 
           mappings = {
             n = {
@@ -70,8 +70,8 @@ return {
       map('n', '<leader>fm', [[:Telescope marks<CR>]], {})
       map('n', '<leader>fy', [[:Telescope yank_history<CR>]], {})
       map('n', '<leader>ft', [[:Telescope file_browser<CR>]], {})
-      map('n', '<C-1>', [[:Telescope file_browser path=%:p:h select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
-      map('n', '<leader>f1', [[:Telescope file_browser path=%:p:h select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
+      map('n', '<C-1>', [[:Telescope file_browser path=%:p:h display_stat=false select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
+      map('n', '<leader>f1', [[:Telescope file_browser path=%:p:h display_stat=false select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
       map('n', '<leader>fz', [[:Telescope lazy<CR>]], {})
 
       map('n', '<leader>lr', [[:Telescope lsp_references<CR>]], {})

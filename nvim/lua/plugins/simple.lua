@@ -5,7 +5,7 @@ return {
   { 'tpope/vim-rhubarb' },
   { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons', config = true },
   { 'folke/neoconf.nvim', config = true },
-  { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+  { 'L3MON4D3/LuaSnip', version = 'v2.*', build = "make install_jsregexp" },
   { 'echasnovski/mini.pairs', version = false, config = true },
   { 'echasnovski/mini.comment', version = false, config = true },
   { 'folke/which-key.nvim', opts = {} },

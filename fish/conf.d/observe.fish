@@ -35,3 +35,5 @@ abbr -a gfr 'git pull --rebase'
 set -x GOROOT $HOME/sdk/go1.20.10
 set -x PATH $GOROOT/bin:$PATH
 set -x GOPATH $HOME/observe/code/go/src
+
+ssh-add -q ~/.ssh/observeinc-konstantin
