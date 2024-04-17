@@ -56,3 +56,5 @@ switch (uname)
     case Darwin
         abbr -a cal 'gcal -m .'
 end
+
+[ -f ~/observe-venv/bin/activate.fish ] && . ~/observe-venv/bin/activate.fish

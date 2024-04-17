@@ -15,10 +15,10 @@ require("lazy").setup("plugins")
 -- }}}
 
 -- {{{1 colorscheme
-if not pcall(require, "NeoSolarized") then
+if not pcall(require, "solarized") then
   vim.cmd.colorscheme 'gruvbox'
 else
-  vim.cmd.colorscheme 'NeoSolarized'
+  vim.cmd.colorscheme 'solarized'
 end
 -- }}}
 
@@ -49,6 +49,8 @@ vim.o.list=true
 vim.o.showbreak='↪ '
 vim.o.listchars='tab:▸┈,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨'
 vim.o.colorcolumn=120
+-- use system clipboard
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 -- }}}
 
 -- {{{1 GUI options

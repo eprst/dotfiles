@@ -9,7 +9,7 @@ return {
   { 'echasnovski/mini.pairs', version = false, config = true },
   { 'echasnovski/mini.comment', version = false, config = true },
   { 'folke/which-key.nvim', opts = {} },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- indendation blank lines
+  -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- indendation blank lines
   { 'stevearc/dressing.nvim', opts = {} },
   {
     -- Highlight, edit, and navigate code
@@ -34,11 +34,16 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
   },
   {
+    'shaunsingh/solarized.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+  },
+  {
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
-        -- theme = 'NeoSolarized',
-        theme = 'gruvbox',
+        theme = 'solarized',
+        -- theme = 'gruvbox',
       },
     },
   },
