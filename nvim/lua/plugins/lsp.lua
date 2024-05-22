@@ -1,6 +1,8 @@
 return {
   {
     'neovim/nvim-lspconfig',
+    cmd = {'LspInfo', 'LspInstall', 'LspStart'},
+    event = {'BufReadPre', 'BufNewFile'},
     -- event = 'LazyFile', https://github.com/folke/lazy.nvim/issues/1182
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
@@ -29,7 +31,13 @@ return {
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the inlay hints.
       inlay_hints = {
-        enabled = false,
+        enabled = true,
+      },
+      codelens = {
+        enabled = true,
+      },
+      document_highlight = {
+        enabled = true,
       },
       -- add any global capabilities here
       capabilities = {},
@@ -40,7 +48,7 @@ return {
         timeout_ms = nil,
       },
       -- LSP Server Settings
-      ---@type lspconfig.options
+      -- @type lspconfig.options
       servers = {
         lua_ls = {
           -- mason = false, -- set to false if you don't want this server to be installed with mason
@@ -53,8 +61,22 @@ return {
               workspace = {
                 checkThirdParty = false,
               },
+              codeLens = {
+                enable = true,
+              },
               completion = {
                 callSnippet = "Replace",
+              },
+              doc = {
+                privateName = { "^_" },
+              },
+              hint = {
+                  enable = true,
+                  setType = false,
+                  paramType = true,
+                  paramName = "Disable",
+                  semicolon = "Disable",
+                  arrayIndex = "Disable",
               },
             },
           },
@@ -175,11 +197,13 @@ return {
     build = ":MasonUpdate",
     opts = {
       ensure_installed = {
+        "lua-language-server",
         "stylua",
         "shfmt",
         "gopls",
         -- "flake8",
       },
+      automatic_installation = true,
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
     config = function(_, opts)

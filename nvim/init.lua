@@ -34,7 +34,7 @@ vim.o.linebreak=true
 vim.o.relativenumber=true
 vim.o.number=true
 vim.o.termguicolors=true
-vim.o.ignore=true
+-- vim.o.ignore=true
 vim.o.smartcase=true
 vim.o.undofile=true
 vim.o.incsearch=true
@@ -48,7 +48,7 @@ vim.o.mouse='a'
 vim.o.list=true
 vim.o.showbreak='↪ '
 vim.o.listchars='tab:▸┈,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨'
-vim.o.colorcolumn=120
+vim.o.colorcolumn="120"
 -- use system clipboard
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 -- }}}
@@ -100,6 +100,21 @@ vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, 
 vim.keymap.set('v', '<C-Insert>', '"*y', {silent=true})
 vim.keymap.set('n', '<S-Insert>', '<C-R>+', {})
 vim.keymap.set('n', '<C-S>', '<CMD>:w<CR>', {silent=true})
+-- MacOS
+if vim.g.neovide then
+  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+end
+
+-- Allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 -- }}}
 
 -- vim:foldmethod=marker:foldlevel=0:

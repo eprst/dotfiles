@@ -37,13 +37,14 @@ return {
     'shaunsingh/solarized.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
+    enabled = false,
   },
   {
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
-        theme = 'solarized',
-        -- theme = 'gruvbox',
+        -- theme = 'solarized',
+        theme = 'gruvbox',
       },
     },
   },
