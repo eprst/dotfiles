@@ -35,6 +35,7 @@ set -g tide_right_prompt_items status cmd_duration context jobs direnv node pyth
 abbr -a g git
 abbr -a st 'git status'
 abbr -a gl "git --no-pager log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%<(20)%an%Cgreen%d %Creset%s' --date=short"
+abbr -a gt 'git log --graph --decorate --oneline $(git rev-list -g --all)'
 abbr -a br 'git branch -v | cat -'
 abbr -a gco 'git checkout'
 abbr -a gid 'git diff --no-ext-diff --cached'

@@ -99,8 +99,9 @@ vim.keymap.set('n', "<leader>bl", '<CMD>:set background=light<CR>', {remap=true,
 vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, silent=true, desc='dark theme'})
 vim.keymap.set('v', '<C-Insert>', '"*y', {silent=true})
 vim.keymap.set('n', '<S-Insert>', '<C-R>+', {})
+vim.keymap.set('i', '<S-Insert>', '<C-R>+', {})
 vim.keymap.set('n', '<C-S>', '<CMD>:w<CR>', {silent=true})
--- MacOS
+-- MacOS (D- is command-key)
 if vim.g.neovide then
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y') -- Copy

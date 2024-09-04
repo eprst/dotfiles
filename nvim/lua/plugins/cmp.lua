@@ -71,6 +71,7 @@ return {
           -- { name = 'look' },
           { name = 'path' },
           { name = 'calc' },
+          { name = 'emoji' }
           -- { name = 'spell' }
         }, {
           { name = 'buffer' },

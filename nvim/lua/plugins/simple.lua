@@ -1,10 +1,10 @@
 -- simple plugins without any heavy configs
 return {
-  { 'ethanholz/nvim-lastplace' },
-  { 'tpope/vim-fugitive' },
-  { 'tpope/vim-rhubarb' },
+  { 'ethanholz/nvim-lastplace', config = true },
+  { 'tpope/vim-fugitive' }, -- :Git
+  { 'tpope/vim-rhubarb' }, -- addition to vim-fugitive
   { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons', config = true },
-  { 'folke/neoconf.nvim', config = true },
+  { 'folke/neoconf.nvim', config = true }, -- :Neoconf, do I need it?
   { 'L3MON4D3/LuaSnip', version = 'v2.*', build = "make install_jsregexp" },
   { 'echasnovski/mini.pairs', version = false, config = true },
   { 'echasnovski/mini.comment', version = false, config = true },
@@ -58,6 +58,7 @@ return {
   {
     "rcarriga/nvim-notify",
     config = function()
+      -- local notify = vim.schedule_wrap(require("notify")) -- https://github.com/rcarriga/nvim-notify/issues/205#issuecomment-1755890719
       local notify = require("notify")
 
       notify.setup({
@@ -92,6 +93,29 @@ return {
         },
       }
     },
+  },
+  {
+    "allaman/emoji.nvim",
+    -- version = "1.0.0", -- optionally pin to a tag
+    -- ft = "markdown", -- adjust to your needs
+    dependencies = {
+      -- optional for nvim-cmp integration
+      "hrsh7th/nvim-cmp",
+      -- optional for telescope integration
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      -- default is false
+      enable_cmp_integration = true,
+      -- optional if your plugin installation directory
+      -- is not vim.fn.stdpath("data") .. "/lazy/
+      -- plugin_path = vim.fn.expand("$HOME/plugins/"),
+    },
+    config = function(_, opts)
+      require("emoji").setup(opts)
+      -- optional for telescope integration
+      require("telescope").load_extension("emoji")
+    end,
   }
 
 }
