@@ -6,3 +6,6 @@
 .stignore
 .stfolder
 scratch1.txt
+code/go/src/pkg/
+.pnpm-store
+build/_deps/

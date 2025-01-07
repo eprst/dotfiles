@@ -30,6 +30,7 @@ function istat
     observe_check_venv && ~/observe/s/cloud-instance list
 end
 
+alias ce="s/aws-creds checkout eng"
 alias ihib="aws ec2 stop-instances --instance-ids $CLOUD_INSTANCE --hibernate"
 alias issh="ssh -A -D 8989 -L 5006:localhost:5006 -L15432:localhost:15432 -L8385:localhost:8384 -L22001:localhost:22000 -R22001:localhost:22000 konstantin@$CLOUD_IP"
 
