@@ -40,11 +40,16 @@ abbr -a br 'git branch -v | cat -'
 abbr -a gco 'git checkout'
 abbr -a gid 'git diff --no-ext-diff --cached'
 abbr -a gwd 'git diff --no-ext-diff'
+abbr -a gpr 'git push review'
+abbr -a gfr 'git pull --rebase'
 abbr -a v 'nvim'
 
 abbr -a --position anywhere G '| grep'
 abbr -a --position anywhere L '| less'
 abbr -a --position anywhere psg 'ps auxw | grep'
+
+alias gs="git branch | fzf --preview 'git log -p master..{-1} --color=always {-1}' | cut -c 3- | xargs git switch"
+alias gbd="git branch | fzf -m --preview 'git log -p master..{-1} --color=always {-1}' | cut -c 3- | xargs git branch -D"
 
 function ftr
     find . -type f -iregex ".*$argv[1].*"

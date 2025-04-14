@@ -1,7 +1,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  enabled = false, -- this thing is pretty slow.. consider https://gitlab.com/taken-personal/neovim-config/-/blob/main/lua/taken/plugins/neotree.lua
+  enabled = true, -- this thing is pretty slow.. consider https://gitlab.com/taken-personal/neovim-config/-/blob/main/lua/taken/plugins/neotree.lua
   init = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
@@ -10,9 +10,16 @@ return {
     local nvimtree = require("nvim-tree")
 
     nvimtree.setup({
-      sync_root_with_cwd = true,
+      sync_root_with_cwd = false,
+      respect_buf_cwd = false,
       view = {
         width = 30,
+      },
+      update_focused_file = {
+        enable = true,
+        update_root = {
+          enable = true,
+        }
       },
       git = {
         ignore = false,
@@ -28,11 +35,11 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<leader>t", ":NvimTreeToggle <CR>")
-    -- vim.keymap.set("n", "<leader>e", ":NvimTreeFocus <CR>")
+    -- vim.keymap.set("n", "<leader>t", ":NvimTreeFindFileToggle <CR>")
+    -- vim.keymap.set("n", "<leader>t", ":NvimTreeFocus <CR>")
     -- vim.keymap.set("n", "<leader>r", ":NvimTreeRefresh <CR>")
-    vim.keymap.set("n", "<leader>tr", function()
-      require("nvim-tree.api").tree.change_root(vim.fn.getcwd())
+    vim.keymap.set("n", "<leader>t", function()
+      require("nvim-tree.api").tree.toggle({ focus = false, find_file = true, })
     end, { desc = "Change root dir to current dir" })
 
     -- nvim-tree open_on_setup
