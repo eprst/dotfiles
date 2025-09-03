@@ -22,7 +22,10 @@ if status is-interactive
     bind \cl 'clear; commandline -f repaint'
 
     # remap fzf bindings to use Ctrl
-    fzf_configure_bindings --directory=\cF --git_log=\cG --git_status=\cS --processes=\cP
+    # fzf_configure_bindings --directory=\cF --git_log=\cG --git_status=\cS --processes=\cP
+    fzf_configure_bindings --directory=\cF --git_status=\cS --processes=\cP
+    # Ctrl-g for lazygit
+    bind \cg lazygit
     # also add additional mappings to open vim and scroll preview
     set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
     set fzf_git_log_opts --bind "ctrl-j:preview-down" --bind "ctrl-k:preview-up" --bind "ctrl-d:preview-page-down" --bind "ctrl-u:preview-page-up"

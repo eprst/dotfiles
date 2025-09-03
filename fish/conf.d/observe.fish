@@ -32,7 +32,7 @@ end
 
 alias ce="s/aws-creds checkout eng"
 alias ihib="aws ec2 stop-instances --instance-ids $CLOUD_INSTANCE --hibernate"
-alias issh="ssh -A -D 8989 -L 5006:localhost:5006 -L15432:localhost:15432 -L15433:localhost:15433 -L8385:localhost:8384 -L22001:localhost:22000 -R22001:localhost:22000 konstantin@$CLOUD_IP"
+alias issh="ssh -A -D 8989 -L5433:localhost:5433 -L5006:localhost:5006 -L15432:localhost:15432 -L15433:localhost:15433 -L8385:localhost:8384 -L22001:localhost:22000 -R22001:localhost:22000 konstantin@$CLOUD_IP"
 
 set -x GOROOT $HOME/.gvm/gos/go1.23.7
 set -x GOPATH $HOME/observe/code/go/src
