@@ -75,7 +75,7 @@ if vim.fn.has('gui_running')==1 or vim.g.neovide or vim.g.fvim_loaded then
   if vim.g.neovide then
     vim.g.neovide_remember_window_size = true
     vim.g.neovide_cursor_trail_size = 0.3
-    vim.g.neovide_cursor_vfx_mode = "railgun"
+    vim.g.neovide_cursor_vfx_mode = "pixiedust"
   end
 
   if vim.g.fvim_loaded then
@@ -97,7 +97,7 @@ vim.keymap.set('v', "<C-/>", 'gc', {remap=true})
 vim.keymap.set('v', "", 'gc', {remap=true}) -- linux
 vim.keymap.set('n', "<leader>bl", '<CMD>:set background=light<CR>', {remap=true, silent=true, desc='light theme'})
 vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, silent=true, desc='dark theme'})
-vim.keymap.set('v', '<C-Insert>', '"*y', {silent=true})
+vim.keymap.set('v', '<C-Insert>', '"+y', {silent=true})
 vim.keymap.set('n', '<S-Insert>', '<C-R>+', {})
 vim.keymap.set('i', '<S-Insert>', '<C-R>+', {})
 vim.keymap.set('n', '<C-S>', '<CMD>:w<CR>', {silent=true})

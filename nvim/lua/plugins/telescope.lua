@@ -70,6 +70,7 @@ return {
       map('n', '<leader>fp', [[:Telescope project<CR>]], {})
       map('n', '<leader>ff', [[:Telescope find_files<CR>]], {})
       map('n', '<leader>fm', [[:Telescope marks<CR>]], {})
+      map('n', '<leader>fn', [[:Telescope notify<CR>]], {})
       map('n', '<leader>fy', [[:Telescope yank_history<CR>]], {})
       map('n', '<leader>ft', [[:Telescope file_browser<CR>]], {})
       map('n', '<C-1>', [[:Telescope file_browser path=%:p:h display_stat=false select_buffer=true<CR>]], {desc = 'Files at the current buffer location'})
