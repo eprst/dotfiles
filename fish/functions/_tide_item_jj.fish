@@ -7,7 +7,6 @@ function _tide_item_jj
         # 4. If description exists, truncate first line to 10 chars + ellipsis
         set -l jj_template '
             change_id.shortest(4)
-            ++ " " ++ commit_id.shortest(4)
             ++ if(bookmarks, " " ++ bookmarks.map(|b| b.name()).join(", "))
             ++ if(empty, " (empty)")
             ++ " " ++ if(description, 
@@ -15,7 +14,7 @@ function _tide_item_jj
                 "(no description)"
             )
         '
-        
+
         set -l jj_info (jj log -r @ -n 1 --template $jj_template --no-graph --color never 2>/dev/null | string collect)
 
         if test -n "$jj_info"
