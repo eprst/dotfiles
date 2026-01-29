@@ -68,3 +68,7 @@ switch (uname)
 end
 
 [ -f ~/observe-venv/bin/activate.fish ] && . ~/observe-venv/bin/activate.fish
+
+# Added by Antigravity
+fish_add_path /Users/konstantin/.antigravity/antigravity/bin
+export PATH="$HOME/.local/bin:$PATH"
