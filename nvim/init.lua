@@ -51,6 +51,7 @@ vim.o.listchars='tab:▸┈,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨'
 vim.o.colorcolumn="120"
 -- use system clipboard
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+vim.o.background="light"
 -- }}}
 
 -- {{{1 GUI options
