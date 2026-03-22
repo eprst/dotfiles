@@ -48,15 +48,12 @@ return {
       -- buffer is a directory
       local directory = vim.fn.isdirectory(data.file) == 1
 
-      -- if not no_name and not directory then
       if not directory then
         return
       end
 
       -- change to the directory
-      if directory then
-        vim.cmd.cd(data.file)
-      end
+      vim.cmd.cd(data.file)
 
       -- open the tree
       require("nvim-tree.api").tree.open()

@@ -1,8 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    branch = '0.1.x',
+    branch = 'master',
     dependencies = {
       'nvim-lua/plenary.nvim',
       "nvim-telescope/telescope-file-browser.nvim",
@@ -60,7 +59,6 @@ return {
       map('n', '<leader>pp', [[:Telescope resume<CR>]], {})
       map('n', '<leader>pP', ':lua require("telescope.builtin").buffers()<CR>', {})
       map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
-      map('n', '<leader>fs', [[:Telescope current_buffer_fuzzy_find<CR>]], {})
       map('n', '<leader>fb', [[:Telescope buffers<CR>]], {})
       map('n', '<leader>fo', [[:Telescope oldfiles<CR>]], {})
       map('n', '<leader>fr', [[:Telescope live_grep<CR>]], {})
@@ -79,7 +77,7 @@ return {
 
       map('n', '<leader>lr', [[:Telescope lsp_references<CR>]], {})
       map('n', '<leader>ls', [[:Telescope lsp_document_symbols<CR>]], {})
-      map('n', '<leader>lw', [[:Telescope lsp_dynamic_worspace_symbols<CR>]], {})
+      map('n', '<leader>lw', [[:Telescope lsp_dynamic_workspace_symbols<CR>]], {})
       map('n', '<leader>lc', [[:Telescope lsp_incoming_calls<CR>]], {})
       map('n', '<leader>lo', [[:Telescope lsp_outgoing_calls<CR>]], {})
       map('n', '<leader>le', [[:Telescope diagnostics<CR>]], {})

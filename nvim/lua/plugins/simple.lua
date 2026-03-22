@@ -4,7 +4,7 @@ return {
   { 'tpope/vim-fugitive' }, -- :Git
   { 'tpope/vim-rhubarb' }, -- addition to vim-fugitive
   { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons', config = true },
-  { 'folke/neoconf.nvim', config = true }, -- :Neoconf, do I need it?
+  -- neoconf.nvim is loaded as a dependency in lsp.lua
   { 'L3MON4D3/LuaSnip', version = 'v2.*', build = "make install_jsregexp" },
   { 'echasnovski/mini.pairs', version = false, config = true },
   { 'echasnovski/mini.comment', version = false, config = true },
@@ -22,29 +22,42 @@ return {
   -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-sleuth' },
 
-  -- Themes
-  -- {
-  --   'Tsuzat/NeoSolarized.nvim',
-  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  -- },
   {
     'morhetz/gruvbox',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
+    enabled = false,
+    config = function()
+      vim.cmd [[ colorscheme gruvbox ]]
+    end
   },
   {
     'shaunsingh/solarized.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     enabled = false,
+    config = function()
+      vim.cmd [[ colorscheme solarized ]]
+    end
+  },
+  {
+    "Tsuzat/NeoSolarized.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('NeoSolarized').setup({
+        style = 'light',  -- or 'dark'
+        transparent = false,  -- Try false first
+      })
+      vim.cmd [[ colorscheme NeoSolarized ]]
+    end
   },
   {
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
-        -- theme = 'solarized',
-        theme = 'gruvbox',
+        theme = 'solarized',
+        -- theme = 'gruvbox',
       },
     },
   },
@@ -52,7 +65,7 @@ return {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function ()
-      vim.keymap.set("n", "<leader>xx", "<Cmd>TroubleToggle<CR>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", { silent = true, noremap = true })
     end
   },
   {

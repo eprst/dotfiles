@@ -1,6 +1,6 @@
 -- {{{1 lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -12,14 +12,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
--- }}}
-
--- {{{1 colorscheme
-if not pcall(require, "solarized") then
-  vim.cmd.colorscheme 'gruvbox'
-else
-  vim.cmd.colorscheme 'solarized'
-end
 -- }}}
 
 -- {{{1 options
@@ -34,7 +26,7 @@ vim.o.linebreak=true
 vim.o.relativenumber=true
 vim.o.number=true
 vim.o.termguicolors=true
--- vim.o.ignore=true
+vim.o.ignorecase=true
 vim.o.smartcase=true
 vim.o.undofile=true
 vim.o.incsearch=true
@@ -44,6 +36,7 @@ vim.o.dir="~/tmp/nvim//,~/tmp//,/var/tmp//,/tmp//"
 vim.o.bdir="~/tmp/nvim//,~/tmp//,/var/tmp//,/tmp//"
 vim.o.undodir="~/tmp/nvim,~/tmp,/var/tmp,/tmp,."
 vim.o.completeopt='menuone,noselect'
+vim.o.winborder='rounded'
 vim.o.mouse='a'
 vim.o.list=true
 vim.o.showbreak='↪ '
@@ -60,8 +53,9 @@ if vim.fn.has('gui_running')==1 or vim.g.neovide or vim.g.fvim_loaded then
     vim.g.gui_font_default_size = 13
     vim.g.gui_font_face = "CommitMono Nerd Font"
   elseif vim.fn.has('macunix')==1 then
-    vim.g.gui_font_face = "Hack Nerd Font Mono"
-    vim.g.gui_font_default_size = 15
+    -- vim.g.gui_font_face = "Hack Nerd Font Mono"
+    vim.g.gui_font_face = "FiraCode Nerd Font Mono"
+    vim.g.gui_font_default_size = 14
   end
 
   vim.g.gui_font_size = vim.g.gui_font_default_size
@@ -96,12 +90,10 @@ vim.keymap.set('n', "<C-/>", 'gccj', {remap=true})
 vim.keymap.set('n', "", 'gccj', {remap=true}) -- linux
 vim.keymap.set('v', "<C-/>", 'gc', {remap=true})
 vim.keymap.set('v', "", 'gc', {remap=true}) -- linux
-vim.keymap.set('n', "<leader>bl", '<CMD>:set background=light<CR>', {remap=true, silent=true, desc='light theme'})
-vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, silent=true, desc='dark theme'})
 vim.keymap.set('v', '<C-Insert>', '"+y', {silent=true})
 vim.keymap.set('n', '<S-Insert>', '<C-R>+', {})
 vim.keymap.set('i', '<S-Insert>', '<C-R>+', {})
-vim.keymap.set('n', '<C-S>', '<CMD>:w<CR>', {silent=true})
+vim.keymap.set('n', '<C-S>', '<CMD>w<CR>', {silent=true})
 -- MacOS (D- is command-key)
 if vim.g.neovide then
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
@@ -112,11 +104,26 @@ if vim.g.neovide then
   vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
 
--- Allow clipboard copy paste in neovim
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+local ok, NeoSolarized = pcall(require, "NeoSolarized")
+if ok then
+  vim.g.neosolarized_current_style = 'light'
+  local function set_neosolarized_style(style)
+    NeoSolarized.setup({
+      style = style,
+      transparent = false,  -- Adjust as needed
+    })
+    vim.o.background = style
+    vim.cmd('colorscheme NeoSolarized')
+  end
+  vim.keymap.set('n', '<leader>bd', function() set_neosolarized_style('dark') end, { desc = 'NeoSolarized Dark' })
+  vim.keymap.set('n', '<leader>bl', function() set_neosolarized_style('light') end, { desc = 'NeoSolarized Light' })
+else
+  vim.keymap.set('n', "<leader>bl", '<CMD>:set background=light<CR>', {remap=true, silent=true, desc='light theme'})
+  vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, silent=true, desc='dark theme'})
+end
+
+-- Allow clipboard copy paste in neovim (terminal mode, doesn't conflict with neovide mappings)
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 -- }}}
 
 -- vim:foldmethod=marker:foldlevel=0:

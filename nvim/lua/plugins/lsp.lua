@@ -6,7 +6,7 @@ return {
     -- event = 'LazyFile', https://github.com/folke/lazy.nvim/issues/1182
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      { "folke/neodev.nvim", opts = {} },
+      { "folke/lazydev.nvim", opts = {} },
       'mason.nvim',
       'williamboman/mason-lspconfig.nvim',
     },
@@ -143,15 +143,27 @@ return {
             return
           end
         end
-        require("lspconfig")[server].setup(server_opts)
+        -- require("lspconfig")[server].setup(server_opts)
+        vim.lsp.config(server, server_opts)
+        vim.lsp.enable(server)
       end
 
       -- get all the servers that are available through mason-lspconfig
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
       local all_mslp_servers = {}
       if have_mason then
-        all_mslp_servers = vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_package)
-        -- all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+        -- 1. Try the newer/standard way first
+        local status, mapping = pcall(require, "mason-lspconfig.mappings.server")
+
+        if status then
+            all_mslp_servers = vim.tbl_keys(mapping.lspconfig_to_package)
+        else
+            -- 2. Fallback to the older/alternative internal path
+            local status_old, mapping_old = pcall(require, "mason-lspconfig")
+            if status_old and mapping_old.get_mappings then
+                all_mslp_servers = vim.tbl_keys(mapping_old.get_mappings().lspconfig_to_package)
+            end
+        end
       end
 
       local ensure_installed = {} ---@type string[]
@@ -179,13 +191,29 @@ return {
         Info  = " ",
       }
 
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
-      end
+      -- for type, icon in pairs(signs) do
+      --   local hl = "DiagnosticSign" .. type
+      --   vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+      -- end
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = signs.Error,
+            [vim.diagnostic.severity.WARN] = signs.Warn,
+            [vim.diagnostic.severity.HINT] = signs.Hint,
+            [vim.diagnostic.severity.INFO] = signs.Info,
+          },
+          numhl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+            [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+            [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+          },
+        },
+      })
 
       -- set up key bindings
-      vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { expr=true, silent=true, desc='LSP Rename' })
+      vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { silent=true, desc='LSP Rename' })
     end,
   },
 
