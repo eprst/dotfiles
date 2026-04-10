@@ -44,7 +44,7 @@ vim.o.listchars='tab:▸┈,eol:¬,nbsp:␣,trail:•,extends:⟩,precedes:⟨'
 vim.o.colorcolumn="120"
 -- use system clipboard
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
-vim.o.background="light"
+vim.o.background = 'light' -- default to light; overridden by terminal via OSC 11 if supported
 -- }}}
 
 -- {{{1 GUI options
@@ -94,36 +94,18 @@ vim.keymap.set('v', '<C-Insert>', '"+y', {silent=true})
 vim.keymap.set('n', '<S-Insert>', '<C-R>+', {})
 vim.keymap.set('i', '<S-Insert>', '<C-R>+', {})
 vim.keymap.set('n', '<C-S>', '<CMD>w<CR>', {silent=true})
--- MacOS (D- is command-key)
-if vim.g.neovide then
-  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
-end
+-- MacOS Cmd key bindings (D- is command-key, works in GUI only)
+vim.keymap.set('n', '<D-s>', '<CMD>w<CR>', { silent = true }) -- Save
+vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+vim.keymap.set('t', '<D-v>', '<C-R>+', { noremap = true, silent = true }) -- Paste terminal mode
 
-local ok, NeoSolarized = pcall(require, "NeoSolarized")
-if ok then
-  vim.g.neosolarized_current_style = 'light'
-  local function set_neosolarized_style(style)
-    NeoSolarized.setup({
-      style = style,
-      transparent = false,  -- Adjust as needed
-    })
-    vim.o.background = style
-    vim.cmd('colorscheme NeoSolarized')
-  end
-  vim.keymap.set('n', '<leader>bd', function() set_neosolarized_style('dark') end, { desc = 'NeoSolarized Dark' })
-  vim.keymap.set('n', '<leader>bl', function() set_neosolarized_style('light') end, { desc = 'NeoSolarized Light' })
-else
-  vim.keymap.set('n', "<leader>bl", '<CMD>:set background=light<CR>', {remap=true, silent=true, desc='light theme'})
-  vim.keymap.set('n', "<leader>bd", '<CMD>:set background=dark<CR>', {remap=true, silent=true, desc='dark theme'})
-end
-
--- Allow clipboard copy paste in neovim (terminal mode, doesn't conflict with neovide mappings)
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.keymap.set('n', '<leader>bl', '<CMD>set background=light<CR>', { silent = true, desc = 'Light theme' })
+vim.keymap.set('n', '<leader>bd', '<CMD>set background=dark<CR>', { silent = true, desc = 'Dark theme' })
+vim.keymap.set('n', '<leader>st', ':split | lcd %:p:h | terminal<CR>', { silent = true, desc = 'Terminal at file dir' })
 -- }}}
 
 -- vim:foldmethod=marker:foldlevel=0:

@@ -31,10 +31,15 @@ if status is-interactive
     set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
     set fzf_git_log_opts --bind "ctrl-j:preview-down" --bind "ctrl-k:preview-up" --bind "ctrl-d:preview-page-down" --bind "ctrl-u:preview-page-up"
     set fzf_git_status_opts --bind "ctrl-j:preview-down" --bind "ctrl-k:preview-up" --bind "ctrl-d:preview-page-down" --bind "ctrl-u:preview-page-up"
-end
 
-set -U fish_greeting
-set -g tide_right_prompt_items status cmd_duration context jobs direnv node python rustc java php pulumi ruby go gcloud distrobox toolbox terraform aws nix_shell crystal elixir time
+    set -g fish_greeting
+    set -g tide_right_prompt_items status cmd_duration context jobs direnv node python rustc java php pulumi ruby go gcloud distrobox toolbox terraform aws nix_shell crystal elixir time
+
+    [ -f ~/observe-venv/bin/activate.fish ] && . ~/observe-venv/bin/activate.fish
+
+    # sfid
+    [ -f /usr/local/bin/sf ] && eval "$(sf aliases --fish-shell)"
+end
 
 abbr -a g git
 abbr -a st 'git status'
@@ -46,6 +51,8 @@ abbr -a gid 'git diff --no-ext-diff --cached'
 abbr -a gwd 'git diff --no-ext-diff'
 abbr -a gpr 'git push review'
 abbr -a gfr 'git pull --rebase'
+# jj fetch
+abbr -a jjfe 'jj git fetch && jj rebase --skip-emptied -r "mutable() & mine()" -d master'
 abbr -a v 'nvim'
 
 abbr -a --position anywhere G '| grep'
@@ -67,4 +74,7 @@ switch (uname)
         abbr -a cal 'gcal -m .'
 end
 
-[ -f ~/observe-venv/bin/activate.fish ] && . ~/observe-venv/bin/activate.fish
+fish_add_path $HOME/.local/bin
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish ; or true
+

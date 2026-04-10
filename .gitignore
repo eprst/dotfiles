@@ -1,4 +1,5 @@
 **/*~
+.claude
 git/gitconfig.symlink
 vim.symlink/.netrwhist
 nvim/lazy-lock.json

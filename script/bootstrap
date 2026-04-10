@@ -141,8 +141,12 @@ info "setting up fish"
 rm -rf ~/.config/fish
 ln -sf $DOTFILES_ROOT/fish ~/.config/fish
 
-info "settin up ideavim"
+info "setting up ideavim"
 ln -sf $DOTFILES_ROOT/.ideavimrc ~/.ideavimrc
+
+info "setting up zellij"
+rm -rf ~/.config/zellij
+ln -sf $DOTFILES_ROOT/zellij ~/.config/zellij
 
 if hash fc-cache 2>/dev/null; then
   info "updating fonts cache"
@@ -150,15 +154,15 @@ if hash fc-cache 2>/dev/null; then
   success "updated fonts cache"
 fi
 
-if [ "$(uname -s)" == "Darwin" ]; then
-  info "installing OS X fonts"
-  sudo cp ~/.dotfiles/fonts.symlink/*.?tf /Library/Fonts > /dev/null 2>&1
-  success "installed OS X fonts"
-  info "installing tmux-osx.conf"
-  ln -sf .dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
-else
-  touch ~/.tmux-osx.conf
-fi
+# if [ "$(uname -s)" == "Darwin" ]; then
+#   info "installing OS X fonts"
+#   sudo cp ~/.dotfiles/fonts.symlink/*.?tf /Library/Fonts > /dev/null 2>&1
+#   success "installed OS X fonts"
+#   info "installing tmux-osx.conf"
+#   ln -sf .dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
+# else
+#   touch ~/.tmux-osx.conf
+# fi
 
 info "copying files from 'copy'"
 ( cd copy ; tar cf - . | ( cd ~; tar --keep-newer-files -xf - ) )

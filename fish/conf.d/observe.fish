@@ -34,8 +34,19 @@ alias ce="s/aws-creds checkout eng"
 alias ihib="aws ec2 stop-instances --instance-ids $CLOUD_INSTANCE --hibernate"
 alias issh="ssh -A -D 8989 -L5433:localhost:5433 -L5006:localhost:5006 -L15432:localhost:15432 -L15433:localhost:15433 -L8385:localhost:8384 -L22001:localhost:22000 -R22001:localhost:22000 konstantin@$CLOUD_IP"
 
-set -x GOROOT $HOME/.gvm/gos/go1.24.11
+# jj gerrit push
+abbr -a jjgp 'jj gerrit upload -r "mutable() & ..@"'
+
+set -x GOROOT (ls -d $HOME/.gvm/gos/go* | sort -V | tail -1)
 set -x GOPATH $HOME/observe/code/go/src
 fish_add_path -P -p $GOROOT/bin
 
-ssh-add -q ~/.ssh/observeinc-konstantin
+if test -f ~/.jenkinstoken
+    # Parse the bash-style file and set the variable in fish
+    set -l token (string split "=" (string trim (grep JENKINS_DEV_TOKEN ~/.jenkinstoken)))[2]
+    set -gx JENKINS_DEV_TOKEN $token
+end
+
+[ -f ~/.ssh/sf_emu_id_rsa ] && ssh-add -q ~/.ssh/sf_emu_id_rsa
+[ -f ~/.ssh/sf_ent_id_rsa ] && ssh-add -q ~/.ssh/sf_ent_id_rsa
+[ -f ~/.ssh/observeinc-konstantin ] && ssh-add -q ~/.ssh/observeinc-konstantin

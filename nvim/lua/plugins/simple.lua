@@ -3,7 +3,27 @@ return {
   { 'ethanholz/nvim-lastplace', config = true },
   { 'tpope/vim-fugitive' }, -- :Git
   { 'tpope/vim-rhubarb' }, -- addition to vim-fugitive
-  { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons', config = true },
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      options = {
+        indicator = { style = "icon", icon = "🔹" },
+        diagnostics = "nvim_lsp",
+        --diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        --  return "("..count..")"
+        --end,
+        diagnostics_indicator = function(_, _, diag)
+          local warn_icon = vim.diagnostic.config().signs.text[vim.diagnostic.severity.WARN]
+          local err_icon = vim.diagnostic.config().signs.text[vim.diagnostic.severity.ERROR]
+          local ret = (diag.error and err_icon .. diag.error .. " " or "")
+          .. (diag.warning and warn_icon .. diag.warning or "")
+          return vim.trim(ret)
+        end,
+      },
+    },
+  },
   -- neoconf.nvim is loaded as a dependency in lsp.lua
   { 'L3MON4D3/LuaSnip', version = 'v2.*', build = "make install_jsregexp" },
   { 'echasnovski/mini.pairs', version = false, config = true },
@@ -45,11 +65,25 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require('NeoSolarized').setup({
-        style = 'light',  -- or 'dark'
-        transparent = false,  -- Try false first
+      local applying = false
+      local function apply_neosolarized()
+        if applying then return end
+        applying = true
+        local style = vim.o.background == "dark" and "dark" or "light"
+        require('NeoSolarized').setup({ style = style, transparent = false })
+        vim.cmd('colorscheme NeoSolarized')
+        -- Make listchars nearly invisible
+        local subtle = style == "dark" and "#073642" or "#eee8d5"
+        vim.api.nvim_set_hl(0, "Whitespace", { fg = subtle })
+        vim.api.nvim_set_hl(0, "NonText", { fg = subtle })
+        applying = false
+      end
+      apply_neosolarized()
+      -- Re-apply when background changes (e.g. terminal reports dark/light via OSC 11)
+      vim.api.nvim_create_autocmd("OptionSet", {
+        pattern = "background",
+        callback = apply_neosolarized,
       })
-      vim.cmd [[ colorscheme NeoSolarized ]]
     end
   },
   {
@@ -58,6 +92,9 @@ return {
       options = {
         theme = 'solarized',
         -- theme = 'gruvbox',
+        disabled_filetypes = {
+          statusline = { 'NvimTree', 'aerial' },
+        },
       },
     },
   },
@@ -78,6 +115,7 @@ return {
         fps = 60,
         stages = "slide",
         timeout = 2500,
+        merge_duplicates = true,
       })
 
       vim.notify = notify
@@ -106,6 +144,12 @@ return {
         },
       }
     },
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    ft = { 'markdown', 'codecompanion' },
+    opts = {},
   },
   {
     "allaman/emoji.nvim",
