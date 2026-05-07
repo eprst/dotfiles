@@ -38,6 +38,19 @@ return {
     build = ':TSUpdate',
     -- TODO need to config it properly
   },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    event = 'BufReadPost',
+    opts = {
+      max_lines = 5,
+      trim_scope = 'outer',
+      mode = 'cursor',
+    },
+    keys = {
+      { '<leader>cc', function() require('treesitter-context').go_to_context(vim.v.count1) end, desc = 'Jump to context' },
+    },
+  },
 
   -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-sleuth' },

@@ -16,17 +16,23 @@ return {
       telescope.load_extension("lazy")
       telescope.load_extension("fzf")
 
+      local actions = require("telescope.actions")
       local action_layout = require("telescope.actions.layout")
       telescope.setup {
         defaults = {
           path_display = { "smart" },
+          cycle_layout_list = { 'horizontal', 'vertical' },
 
           mappings = {
             n = {
-              ["<C-p>"] = action_layout.toggle_preview
+              ["<C-p>"] = action_layout.toggle_preview,
+              ["<C-l>"] = action_layout.cycle_layout_next,
             },
             i = {
-              ["<C-p>"] = action_layout.toggle_preview
+              ["<C-p>"] = action_layout.toggle_preview,
+              ["<C-l>"] = action_layout.cycle_layout_next,
+              ["<Down>"] = actions.move_selection_next,
+              ["<Up>"] = actions.move_selection_previous,
             },
           },
 
@@ -65,6 +71,31 @@ return {
       map('n', '<leader>fR', ':lua require("telescope.builtin").live_grep({cwd=require("telescope.utils").buffer_dir()})<CR>', {desc = 'Live grep at the current buffer location'})
       map('n', '<leader>fg', [[:Telescope git_files<CR>]], {})
       map('n', '<leader>fc', [[:Telescope git_commits<CR>]], {})
+      vim.keymap.set('n', '<leader>fd', function()
+        require('telescope.builtin').git_status({
+          attach_mappings = function(_, m)
+            local action_state = require('telescope.actions.state')
+            local tactions = require('telescope.actions')
+            local function open_vdiff(prompt_bufnr)
+              local entry = action_state.get_selected_entry()
+              if not entry then return end
+              tactions.close(prompt_bufnr)
+              -- Close any pre-existing fugitive diff panes from a prior call
+              -- so we don't pile up windows.
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                local buf = vim.api.nvim_win_get_buf(win)
+                if vim.api.nvim_buf_get_name(buf):match('^fugitive://') then
+                  vim.api.nvim_win_close(win, true)
+                end
+              end
+              vim.cmd('edit ' .. vim.fn.fnameescape(entry.value))
+              vim.cmd('Gvdiffsplit')
+            end
+            m({ 'i', 'n' }, '<C-y>', open_vdiff)
+            return true
+          end,
+        })
+      end, { silent = true, desc = 'Git modified files (Ctrl-y for side-by-side diff)' })
       map('n', '<leader>fp', [[:Telescope project<CR>]], {})
       map('n', '<leader>ff', [[:Telescope find_files<CR>]], {})
       map('n', '<leader>fm', [[:Telescope marks<CR>]], {})

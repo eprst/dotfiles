@@ -87,6 +87,15 @@ return {
     config = function(_, opts)
       local cmp = require("cmp")
       cmp.setup(opts)
+      -- Disable cmp inside telescope prompts so it doesn't swallow <Up>/<Down>.
+      -- Has to happen on FileType (before InsertEnter) so cmp never installs
+      -- its buffer-local mappings that would overwrite telescope's.
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'TelescopePrompt',
+        callback = function()
+          cmp.setup.buffer({ enabled = false })
+        end,
+      })
       -- Set configuration for specific filetype.
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
