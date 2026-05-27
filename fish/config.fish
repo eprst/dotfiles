@@ -78,3 +78,7 @@ fish_add_path $HOME/.local/bin
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish ; or true
 
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/konstantin/.local/bin" $PATH

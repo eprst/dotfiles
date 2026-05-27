@@ -34,9 +34,21 @@ return {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'master',
+    dependencies = { { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'master' } },
     build = ':TSUpdate',
-    -- TODO need to config it properly
+    main = 'nvim-treesitter.configs',
+    opts = {
+      ensure_installed = {
+        'bash', 'c', 'go', 'gomod', 'gosum', 'gowork',
+        'javascript', 'json', 'lua', 'markdown', 'markdown_inline',
+        'python', 'query', 'rust', 'toml', 'tsx', 'typescript',
+        'vim', 'vimdoc', 'yaml',
+      },
+      auto_install = true,
+      highlight = { enable = true },
+      indent = { enable = true },
+    },
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
@@ -45,7 +57,7 @@ return {
     opts = {
       max_lines = 5,
       trim_scope = 'outer',
-      mode = 'cursor',
+      mode = 'topline',
     },
     keys = {
       { '<leader>cc', function() require('treesitter-context').go_to_context(vim.v.count1) end, desc = 'Jump to context' },
@@ -79,19 +91,31 @@ return {
     priority = 1000,
     config = function()
       local applying = false
+      local function subtle_listchars()
+        local style = vim.o.background == "dark" and "dark" or "light"
+        local subtle = style == "dark" and "#073642" or "#eee8d5"
+        vim.api.nvim_set_hl(0, "Whitespace", { fg = subtle })
+        vim.api.nvim_set_hl(0, "NonText", { fg = subtle })
+      end
       local function apply_neosolarized()
         if applying then return end
         applying = true
         local style = vim.o.background == "dark" and "dark" or "light"
         require('NeoSolarized').setup({ style = style, transparent = false })
         vim.cmd('colorscheme NeoSolarized')
-        -- Make listchars nearly invisible
-        local subtle = style == "dark" and "#073642" or "#eee8d5"
-        vim.api.nvim_set_hl(0, "Whitespace", { fg = subtle })
-        vim.api.nvim_set_hl(0, "NonText", { fg = subtle })
+        subtle_listchars()
         applying = false
       end
       apply_neosolarized()
+      -- Re-apply override whenever the theme repaints (some plugins trigger
+      -- a ColorScheme event after our initial apply, wiping the override).
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "NeoSolarized",
+        callback = function()
+          if applying then return end
+          subtle_listchars()
+        end,
+      })
       -- Re-apply when background changes (e.g. terminal reports dark/light via OSC 11)
       vim.api.nvim_create_autocmd("OptionSet", {
         pattern = "background",
@@ -109,14 +133,18 @@ return {
           statusline = { 'NvimTree', 'aerial' },
         },
       },
+      sections = {
+        lualine_c = { { 'filename', path = 1 } }, -- 1 = relative to cwd
+      },
     },
   },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function ()
-      vim.keymap.set("n", "<leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", { silent = true, noremap = true })
-    end
+    opts = {},
+    keys = {
+      { "<leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Toggle diagnostics" },
+    },
   },
   {
     "rcarriga/nvim-notify",

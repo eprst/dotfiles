@@ -74,7 +74,7 @@ return {
           -- { name = 'snippy' }, -- For snippy users.
           { name = 'nvim_lua' },
           -- { name = 'look' },
-          { name = 'path' },
+          { name = 'path', option = { get_cwd = function() return vim.fn.getcwd() end } },
           { name = 'calc' },
           { name = 'emoji' }
           -- { name = 'spell' }
@@ -96,6 +96,34 @@ return {
           cmp.setup.buffer({ enabled = false })
         end,
       })
+      -- cmp-path only previews files; extend resolve so directory completions
+      -- show a listing of their contents in the documentation popup.
+      local cmp_path = require('cmp_path')
+      local original_resolve = cmp_path.resolve
+      cmp_path.resolve = function(self, completion_item, callback)
+        if completion_item.data and completion_item.data.type == 'directory' then
+          local entries = vim.fn.readdir(completion_item.data.path)
+          if entries and #entries > 0 then
+            table.sort(entries)
+            local lines = {}
+            for i, name in ipairs(entries) do
+              if i > 30 then
+                table.insert(lines, ('… %d more'):format(#entries - 30))
+                break
+              end
+              local full = completion_item.data.path .. '/' .. name
+              if vim.fn.isdirectory(full) == 1 then name = name .. '/' end
+              table.insert(lines, name)
+            end
+            completion_item.documentation = {
+              kind = 'markdown',
+              value = '```\n' .. table.concat(lines, '\n') .. '\n```',
+            }
+          end
+          return callback(completion_item)
+        end
+        return original_resolve(self, completion_item, callback)
+      end
       -- Set configuration for specific filetype.
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({

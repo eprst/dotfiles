@@ -17,20 +17,42 @@ return {
       telescope.load_extension("fzf")
 
       local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
       local action_layout = require("telescope.actions.layout")
+
+      -- Switch the current picker to a specific layout strategy.
+      -- Note: terminal Alt/Meta bindings like <M-p> are unreliable across
+      -- iTerm2/zellij/ssh, so these all use Ctrl-based keys.
+      local function set_layout(strategy)
+        return function(prompt_bufnr)
+          local picker = action_state.get_current_picker(prompt_bufnr)
+          picker.layout_strategy = strategy
+          picker.layout_config = {}
+          picker:full_layout_update()
+        end
+      end
+
       telescope.setup {
         defaults = {
           path_display = { "smart" },
-          cycle_layout_list = { 'horizontal', 'vertical' },
+          cycle_layout_list = { 'horizontal', 'vertical', 'center', 'cursor', 'flex', 'bottom_pane' },
 
           mappings = {
             n = {
               ["<C-p>"] = action_layout.toggle_preview,
               ["<C-l>"] = action_layout.cycle_layout_next,
+              ["<C-y>"] = action_layout.cycle_layout_prev,
+              -- Direct layout pickers (mnemonic: Horizontal / verticAl / Center / Flex)
+              ["gh"] = set_layout("horizontal"),
+              ["ga"] = set_layout("vertical"),
+              ["gc"] = set_layout("center"),
+              ["gf"] = set_layout("flex"),
+              ["gb"] = set_layout("bottom_pane"),
             },
             i = {
               ["<C-p>"] = action_layout.toggle_preview,
               ["<C-l>"] = action_layout.cycle_layout_next,
+              ["<C-y>"] = action_layout.cycle_layout_prev,
               ["<Down>"] = actions.move_selection_next,
               ["<Up>"] = actions.move_selection_previous,
             },
@@ -96,6 +118,28 @@ return {
           end,
         })
       end, { silent = true, desc = 'Git modified files (Ctrl-y for side-by-side diff)' })
+      vim.keymap.set('n', '<leader>fj', function()
+        local pickers = require('telescope.pickers')
+        local finders = require('telescope.finders')
+        local conf = require('telescope.config').values
+        local previewers = require('telescope.previewers')
+        pickers.new({}, {
+          prompt_title = 'jj diff (current changeset)',
+          finder = finders.new_oneshot_job({ 'jj', 'diff', '--summary', '--no-pager' }, {
+            entry_maker = function(line)
+              local status, path = line:match('^(%S+)%s+(.+)$')
+              if not path then return nil end
+              return { value = path, display = status .. ' ' .. path, ordinal = path, path = path }
+            end,
+          }),
+          sorter = conf.generic_sorter({}),
+          previewer = previewers.new_termopen_previewer({
+            get_command = function(entry)
+              return { 'jj', 'diff', '--color=always', '--no-pager', entry.path }
+            end,
+          }),
+        }):find()
+      end, { silent = true, desc = 'jj modified files in current changeset' })
       map('n', '<leader>fp', [[:Telescope project<CR>]], {})
       map('n', '<leader>ff', [[:Telescope find_files<CR>]], {})
       map('n', '<leader>fm', [[:Telescope marks<CR>]], {})

@@ -1,6 +1,7 @@
 # set -g CLOUD_INSTANCE i-0d4adb011188b1eaf
 # set -g CLOUD_IP 52.33.219.229
-set -g CLOUD_INSTANCE i-04321e03f1250d2ae
+# set -g CLOUD_INSTANCE i-04321e03f1250d2ae
+set -g CLOUD_INSTANCE i-00c5082b0c9a5585d
 set -g CLOUD_IP 35.165.219.213
 
 function observe_check_venv

@@ -131,6 +131,21 @@ vim.keymap.set('t', '<D-v>', '<C-R>+', { noremap = true, silent = true }) -- Pas
 vim.keymap.set('n', '<leader>bl', '<CMD>set background=light<CR>', { silent = true, desc = 'Light theme' })
 vim.keymap.set('n', '<leader>bd', '<CMD>set background=dark<CR>', { silent = true, desc = 'Dark theme' })
 vim.keymap.set('n', '<leader>st', ':split | lcd %:p:h | terminal<CR>', { silent = true, desc = 'Terminal at file dir' })
+vim.keymap.set('n', '<leader>jd', function()
+  local file = vim.api.nvim_buf_get_name(0)
+  if file == '' then
+    vim.notify('No file in current buffer', vim.log.levels.WARN)
+    return
+  end
+  local out = vim.fn.systemlist({ 'jj', 'diff', '--no-pager', '--color=never', file })
+  vim.cmd('tabnew')
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, out)
+  vim.bo.buftype = 'nofile'
+  vim.bo.bufhidden = 'wipe'
+  vim.bo.swapfile = false
+  vim.bo.filetype = 'diff'
+  vim.bo.modifiable = false
+end, { silent = true, desc = 'jj diff current file in new tab' })
 -- }}}
 
 -- {{{1 spell highlights
