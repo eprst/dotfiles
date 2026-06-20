@@ -1,0 +1,125 @@
+# Ghostty config — migrated from iTerm2 (com.googlecode.iterm2.plist)
+# Generated 2026-06-12. Keybindings are the focus; appearance essentials below.
+#
+# NOTE: Ghostty loads THIS file (~/.config/ghostty/config, no extension).
+# Your old ~/.config/ghostty/config.ghostty is NOT read by Ghostty and can be deleted.
+# Ghostty supports ONLY full-line comments (a line starting with #).
+# Do not add trailing "# ..." comments after a value — they become part of the value.
+
+# ============================================================================
+# Shell
+# Launch fish (your login shell is /bin/zsh; this overrides it for Ghostty only).
+# --login gives a proper login shell (runs path_helper, login config).
+# To make fish the system-wide default instead, see the note at the bottom.
+# ============================================================================
+command = /opt/homebrew/bin/fish --login
+
+# ============================================================================
+# Appearance / behavior essentials
+# ============================================================================
+# iTerm2 "Normal Font" was CommitMonoNF-Regular 14. The family name Ghostty
+# expects may be "CommitMono Nerd Font" — verify with:
+#   ghostty +list-fonts | grep -i commit
+font-family = CommitMono Nerd Font
+font-size = 14
+
+# Cursor: kept blinking on (iTerm2 had blink off, per your request to keep it).
+cursor-style-blink = true
+
+# iTerm2 "Option Key Sends" = Esc+ for BOTH left and right option keys.
+macos-option-as-alt = true
+
+# iTerm2 copies on selection by default; preserve that.
+copy-on-select = true
+
+# Light/dark color schemes (replaces your iTerm2 Light/Dark profiles).
+# Auto-switches with the macOS appearance setting. NOTE: Ghostty has no keybind
+# to switch theme manually, so this follows the OS instead of Cmd+Shift+L / D.
+# Built-in Solarized themes (exact names from `ghostty +list-themes`).
+theme = light:iTerm2 Solarized Light,dark:iTerm2 Solarized Dark
+
+# Integrate the tab bar into the titlebar (iTerm2-style), instead of a
+# separate tab strip. Applies to NEW windows only — open a new window to see it.
+macos-titlebar-style = tabs
+
+# ============================================================================
+# Clipboard
+# Cmd+C is remapped below to send Ctrl-C, so explicit copy/paste live on
+# Cmd+Shift+C / Cmd+Shift+V. (Cmd+V still pastes via Ghostty's default.)
+# ============================================================================
+keybind = cmd+shift+c=copy_to_clipboard
+keybind = cmd+shift+v=paste_from_clipboard
+
+# ============================================================================
+# Cmd -> Ctrl character remaps (your core iTerm2 customization).
+# Cmd behaves like Ctrl in the terminal. These intentionally override Ghostty's
+# macOS defaults (Cmd+C copy, Cmd+T new tab, Cmd+W close, etc.).
+#   cmd+a -> Ctrl-A      cmd+c -> Ctrl-C (interrupt, NOT copy)
+#   cmd+d -> Ctrl-D      cmd+l -> Ctrl-L (CSI-u form, matches iTerm2 [108;5u)
+#   cmd+p -> Ctrl-P      cmd+r -> Ctrl-R
+#   cmd+t -> Ctrl-T      cmd+w -> Ctrl-W
+#   cmd+enter -> Enter (CSI-u form, matches iTerm2 [13u)
+# ============================================================================
+keybind = cmd+a=text:\x01
+keybind = cmd+c=text:\x03
+keybind = cmd+d=text:\x04
+keybind = cmd+l=csi:108;5u
+keybind = cmd+p=text:\x10
+keybind = cmd+r=text:\x12
+keybind = cmd+t=text:\x14
+keybind = cmd+w=text:\x17
+keybind = cmd+enter=csi:13u
+
+# ============================================================================
+# Tab navigation
+#   ctrl+tab / ctrl+shift+tab -> next / previous tab
+#   cmd+left / cmd+right      -> previous / next tab
+#   cmd+shift+left / right    -> move current tab left / right
+# ============================================================================
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
+keybind = cmd+left=previous_tab
+keybind = cmd+right=next_tab
+keybind = cmd+shift+left=move_tab:-1
+keybind = cmd+shift+right=move_tab:1
+
+# ============================================================================
+# Scrolling
+#   cmd+up / cmd+down -> scroll one line up / down
+#   cmd+home / cmd+end -> scroll to top / bottom
+#   cmd+pageup/pagedown and shift+pageup/pagedown -> scroll page up / down
+# ============================================================================
+keybind = cmd+up=scroll_page_lines:-1
+keybind = cmd+down=scroll_page_lines:1
+keybind = cmd+home=scroll_to_top
+keybind = cmd+end=scroll_to_bottom
+keybind = cmd+page_up=scroll_page_up
+keybind = cmd+page_down=scroll_page_down
+keybind = shift+page_up=scroll_page_up
+keybind = shift+page_down=scroll_page_down
+
+# ============================================================================
+# Fix Alt+Left / Alt+Right inside zellij (and other TUIs)
+# Ghostty's macOS defaults bind these to "natural text editing" word-jumps:
+#   alt+left  -> ESC b   (zellij reads this as Alt+b -> unbound -> nothing)
+#   alt+right -> ESC f   (zellij reads this as Alt+f -> toggle floating panes)
+# Unbinding restores the standard fixterm encoding (ESC[1;3D / ESC[1;3C),
+# matching alt+up/down, so zellij gets a real Alt+Left / Alt+Right.
+# ============================================================================
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
+# ============================================================================
+# Notes
+# ----------------------------------------------------------------------------
+# Light/Dark profiles: iTerm2 switched them manually via Cmd+Shift+L / Cmd+Shift+D.
+# Ghostty has no theme-switch keybind action, so the `theme = light:...,dark:...`
+# above follows the macOS appearance instead. Toggle macOS Light/Dark and Ghostty
+# follows automatically. Those Cmd+Shift+L / D keys are now free/unbound.
+#
+# System-wide default shell (optional): the `command` line above sets fish for
+# Ghostty only. To make fish your login shell everywhere, run in a terminal:
+#   echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+#   chsh -s /opt/homebrew/bin/fish
+# Then you could remove the `command` line and Ghostty would inherit fish.
+# ============================================================================

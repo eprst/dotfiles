@@ -33,7 +33,35 @@ end
 
 alias ce="s/aws-creds checkout eng"
 alias ihib="aws ec2 stop-instances --instance-ids $CLOUD_INSTANCE --hibernate"
-alias issh="ssh -A -D 8989 -L5433:localhost:5433 -L5006:localhost:5006 -L15432:localhost:15432 -L15433:localhost:15433 -L8385:localhost:8384 -L22001:localhost:22000 -R22001:localhost:22000 konstantin@$CLOUD_IP"
+function issh
+    set -l cf (sf auth show --output json 2>/dev/null | jq -r '.okta_access_tokens.snowhouse')
+    if not test -f "$cf"
+        echo "issh: no snowhouse OAuth token. Run: sfid && sf auth login -l snowhouse-oauth" >&2
+        return 1
+    end
+    set -l token (cat $cf)
+    ssh -A -D 8989 -L5433:localhost:5433 -L5006:localhost:5006 \
+        -L15432:localhost:15432 -L15433:localhost:15433 -L8385:localhost:8384 \
+        -L22001:localhost:22000 -R22001:localhost:22000 \
+        -t konstantin@$CLOUD_IP "umask 077; cat > ~/.claude-secrets.env <<'__SX__' && exec \$SHELL -li
+export ANTHROPIC_BASE_URL=https://snowhouse.snowflakecomputing.com/api/v2/cortex/anthropic
+export ANTHROPIC_AUTH_TOKEN=$token
+export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1
+__SX__
+"
+end
+
+function cl-sf
+    set -l cf (sf auth show --output json 2>/dev/null | jq -r '.okta_access_tokens.snowhouse')
+    if not test -f "$cf"
+        echo "cl-sf: no snowhouse OAuth token. Run: sfid && sf auth login -l snowhouse-oauth" >&2
+        return 1
+    end
+    ANTHROPIC_BASE_URL=https://snowhouse.snowflakecomputing.com/api/v2/cortex/anthropic \
+    ANTHROPIC_AUTH_TOKEN=(cat $cf) \
+    CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 \
+        claude $argv
+end
 
 # jj gerrit push
 abbr -a jjgp 'jj gerrit upload -r "mutable() & ..@"'

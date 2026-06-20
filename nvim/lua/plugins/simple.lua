@@ -34,24 +34,22 @@ return {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
-    dependencies = { { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'master' } },
+    branch = 'main',
+    lazy = false,
+    dependencies = { { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' } },
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs',
-    opts = {
-      ensure_installed = {
+    config = function()
+      require('nvim-treesitter').install({
         'bash', 'c', 'go', 'gomod', 'gosum', 'gowork',
         'javascript', 'json', 'lua', 'markdown', 'markdown_inline',
         'python', 'query', 'rust', 'toml', 'tsx', 'typescript',
         'vim', 'vimdoc', 'yaml',
-      },
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
-    },
+      })
+    end,
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
+    enabled = false, -- crashes on nvim 0.12.2, re-enable when upstream PR #674 is fixed
     dependencies = 'nvim-treesitter/nvim-treesitter',
     event = 'BufReadPost',
     opts = {

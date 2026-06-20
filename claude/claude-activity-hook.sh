@@ -120,12 +120,12 @@ publish_status() {
 
     zellij_call -s "$ZELLIJ_SESSION" pipe "zjstatus::pipe::pipe_status::${sessions}" 2>/dev/null || true
 
-    # Nudge the agent-picker plugin to re-read the state file so its list
-    # tracks the bar live. `--name` without `--plugin` broadcasts only to
-    # already-running plugins, so this is a no-op (discarded by zellij) when
-    # the picker is closed. A payload is passed and stdin is /dev/null so
-    # `zellij pipe` never blocks waiting on STDIN.
-    zellij_call -s "$ZELLIJ_SESSION" pipe --name refresh -- nudge </dev/null 2>/dev/null || true
+    # NOTE: a `zellij pipe --name refresh` broadcast used to live here to give
+    # agent-picker live-refresh-while-open. It fired on every event and reached
+    # EVERY plugin (incl. zjstatus), doubling re-render churn. Removed while
+    # diagnosing an intermittent zjstatus bar-render glitch on zellij 0.44.3.
+    # agent-picker still refreshes on PaneUpdate and via `r`. If the bar glitch
+    # is unrelated, re-add it (ideally scoped to the picker, not broadcast).
 }
 
 prune_dead_panes() {

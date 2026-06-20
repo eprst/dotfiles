@@ -189,7 +189,7 @@ keybinds {
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
-        unbind "Ctrl q"
+        bind "Ctrl q" { Quit; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
@@ -204,12 +204,6 @@ keybinds {
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
-        bind "Alt a" {
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/agent-picker.wasm" {
-                floating true
-                move_to_focused_tab true
-            }
-        }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -288,15 +282,15 @@ plugins {
         format_center "{notifications}"
         format_right  "#[bg=$bg1,fg=$bg3]#[bg=$bg3,fg=$fg3] {pipe_status}#[bg=$bg3,fg=$fg3] #[bg=$fg3,fg=$bg1] {datetime} "
         format_space  "#[bg=$bg1,fg=$fg1]"
-        format_hide_on_overlength "true"
-        format_precedence "rlc"
+        format_hide_on_overlength "false"
+        format_precedence "lrc"
 
         border_enabled  "true"
         border_char     "─"
         border_format   "#[fg=$bg1]{char}"
         border_position "top"
 
-        hide_frame_for_single_pane "false"
+        hide_frame_for_single_pane "true"
 
         mode_normal        "#[bg=$bg3,fg=$bg2]#[bg=$bg3,fg=$fg3,bold] NORMAL#[bg=$bg1,fg=$bg3]"
         mode_tmux          "#[bg=$green,fg=$bg2]#[bg=$green,fg=$bg0,bold] TMUX#[bg=$bg1,fg=$green]"
@@ -381,7 +375,7 @@ load_plugins {
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-default_shell "fish"
+// default_shell "fish"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
